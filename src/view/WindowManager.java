@@ -35,7 +35,7 @@ public class WindowManager {
         fxmlLoader.setController(null);
         fxmlLoader.setLocation(getClass().getResource(scene.getSceneName()));
         Parent root = null;
-        
+
         try{
             root = fxmlLoader.load();
         }catch (IOException e){
