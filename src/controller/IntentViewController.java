@@ -1,8 +1,5 @@
 package controller;
 
-import com.gluonhq.ignite.guice.GuiceContext;
-
-import com.google.inject.Injector;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -33,7 +30,7 @@ public class IntentViewController implements Initializable {
     @FXML
     TextField intentNameTextField;
 
-    @FXML TextArea exampleTextArea;
+    @FXML TextField exampleTextField;
 
     @Inject
     IntentManager intentManagerImpl;
@@ -41,7 +38,7 @@ public class IntentViewController implements Initializable {
     @Inject
     FXMLLoader fxmlLoader;
 
-    private String currentIntentName;
+    private String currentIntentName = "";
 
 
 
@@ -76,15 +73,17 @@ public class IntentViewController implements Initializable {
             if(!currentIntentName.isEmpty()){
                 intentManagerImpl.deleteIntent(currentIntentName);
                 currentIntentName = "";
+                exampleListView.setItems(null);
             }
         });
 
         addExampleButton.setOnAction(event -> {
-            String exampleText = exampleTextArea.getText();
+            String exampleText = exampleTextField.getText();
             if(!exampleText.isEmpty() && !currentIntentName.isEmpty()){
                 intentManagerImpl.addIntentExample(currentIntentName,exampleText);
+                exampleTextField.clear();
             }
-            exampleTextArea.clear();
+
         });
 
         deleteExampleButton.setOnAction(event -> {

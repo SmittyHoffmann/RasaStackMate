@@ -1,41 +1,36 @@
 package model;
 
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class Entity {
 
-    String entityName;
-    ArrayList<String> entityValues;
-    SimpleFilter<String> filter = new SimpleFilter<>();
+    ObservableList<String> values;
 
-    public Entity(String entityName, ArrayList<String> entityValues){
-        this.entityName = entityName;
-        this.entityValues = entityValues;
+
+
+    public Entity(){
+        values = FXCollections.observableArrayList();
     }
 
-    public String getEntityName() {
-        return entityName;
+    public ObservableList<String> getValues(){
+        return this.values;
     }
 
-    public void setEntityName(String entityName) {
-        this.entityName = entityName;
+    public void addValue(String value){
+        this.values.add(value);
     }
 
-    public ArrayList<String> getEntityValues() {
-        return entityValues;
+    public void deleteValue(String value){
+        this.values.remove(value);
     }
 
-    public void setEntityValues(ArrayList<String> entityValues) {
-        this.entityValues = entityValues;
+    public void setValues(List<String> valueList){
+        this.values = FXCollections.observableArrayList(valueList);
     }
 
-    public void addEntityValue(String entityValue){
-        this.entityValues.add(entityValue);
-    }
-
-    public void deleteEntityValue(String entityValue){
-        filter.setFilter(entityValue);
-        this.entityValues.removeIf(filter);
-    }
 }

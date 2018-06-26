@@ -51,6 +51,7 @@ public class MenuController implements Initializable{
     private void setComponentsSize(){
 
         vBox.setPrefWidth(200);
+        vBox.setPrefHeight(800);
     }
 
     private void addMenusToMap(){

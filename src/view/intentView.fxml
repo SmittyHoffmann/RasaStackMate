@@ -11,13 +11,13 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.IntentViewController">
+<AnchorPane  minHeight="-Infinity" minWidth="-Infinity"  xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.IntentViewController">
    <children>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane  AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="48.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+          <AnchorPane minHeight="0.0" minWidth="0.0"  BorderPane.alignment="CENTER">
                <children>
-                  <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <HBox  AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <ChoiceBox fx:id="intentChoiceBox" prefWidth="150.0">
                            <HBox.margin>
@@ -45,18 +45,18 @@
             </AnchorPane>
          </top>
          <right>
-            <VBox fx:id="buttonBox" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+            <VBox fx:id="buttonBox" BorderPane.alignment="CENTER"  prefWidth="400" alignment="TOP_CENTER">
                <children>
-                  <Button fx:id="addExampleButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="101.0" text="Beispiel hinzufügen">
+                  <Button fx:id="addExampleButton" mnemonicParsing="false"  text="Beispiel hinzufügen" alignment="CENTER">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin></Button>
-                  <TextArea fx:id="exampleTextArea" prefHeight="100.0" prefWidth="200.0">
+                  <TextField fx:id="exampleTextField" prefHeight="20.0" prefWidth="150.0">
                      <VBox.margin>
                         <Insets top="15.0" />
                      </VBox.margin>
-                  </TextArea>
-                  <Button fx:id="deleteExampleButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="107.0" text="Beispiel entfernen">
+                  </TextField>
+                  <Button fx:id="deleteExampleButton" mnemonicParsing="false" alignment="CENTER" text="Beispiel entfernen">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin></Button>
@@ -64,7 +64,7 @@
             </VBox>
          </right>
          <center>
-            <ListView fx:id="exampleListView" prefHeight="353.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
+            <ListView fx:id="exampleListView" BorderPane.alignment="CENTER" />
          </center>
       </BorderPane>
    </children>

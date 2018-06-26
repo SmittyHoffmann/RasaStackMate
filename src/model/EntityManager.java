@@ -1,30 +1,18 @@
 package model;
 
-import java.util.ArrayList;
+import javafx.collections.ObservableList;
+
 import java.util.HashMap;
 
-public class EntityManager {
+public interface EntityManager {
 
-    HashMap<String, Entity> entities;
-
-    public EntityManager(HashMap<String, Entity> entities) {
-        this.entities = entities;
-    }
-
-    public void addEntity(String entityName) {
-        if(this.getEntity(entityName) == null){
-            Entity newEntity = new Entity(entityName,new ArrayList<String>());
-            this.entities.put(newEntity.getEntityName(), newEntity);
-        }
-    }
-
-    public void deleteEntity(String entityName) {
-        this.entities.remove(entityName);
-    }
-
-    public Entity getEntity(String entityName) {
-        return this.entities.get(entityName);
-    }
-
-
+    void addEntityValue(String entityName, String value);
+    void addEntity(String entityName);
+    void deleteEntity(String entityName);
+    Entity getEntity(String entityName);
+    ObservableList<String> getEntityNames();
+    HashMap<String,Entity> getEntities();
+    void deleteIntentExample(String entityName, String value);
+    ObservableList<String> getValuesToEntity(String entityName);
 }
+

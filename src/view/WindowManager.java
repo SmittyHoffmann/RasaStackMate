@@ -34,6 +34,7 @@ public class WindowManager {
         fxmlLoader.setRoot(null);
         fxmlLoader.setController(null);
         fxmlLoader.setLocation(getClass().getResource(scene.getSceneName()));
+
         Parent root = null;
 
         try{
@@ -46,17 +47,14 @@ public class WindowManager {
             throw new IllegalStateException("Gab nen Fehler beim Controller Initialisieren");
         }
         fxmlLoader.getController();
-        stage = new Stage();
 
+        stage = new Stage();
+        root.getStylesheets().add("/view/style.css");
         stage.setMinHeight(400);
         stage.setMinWidth(800);
         stage.setTitle("RasaStackMate");
         stage.setScene(new Scene(root));
-        Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
-        stage.setX(primaryScreenBounds.getMinX());
-        stage.setY(primaryScreenBounds.getMinY());
-        stage.setWidth(primaryScreenBounds.getWidth());
-        stage.setHeight((primaryScreenBounds.getHeight()));
+        stage.setResizable(false);
         stage.show();
 
 

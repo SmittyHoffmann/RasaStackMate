@@ -49,6 +49,7 @@ public class MainViewController implements Initializable {
             e.printStackTrace();
         }
 
+
         mainPane.setCenter(content);
         mainPane.setLeft(menu);
 

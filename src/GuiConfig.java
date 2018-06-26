@@ -1,5 +1,7 @@
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
+import model.EntityManager;
+import model.EntityManagerImpl;
 import model.IntentManager;
 import model.IntentManagerImpl;
 
@@ -16,6 +18,12 @@ public class GuiConfig extends AbstractModule {
     @Provides
     IntentManager provideIntentManager(){
         IntentManager manager = new IntentManagerImpl();
+        return manager;
+    }
+
+    @Provides
+    EntityManager provideEntityManager(){
+        EntityManager manager = new EntityManagerImpl();
         return manager;
     }
 }

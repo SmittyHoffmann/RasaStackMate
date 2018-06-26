@@ -33,6 +33,7 @@ public class NLUViewController implements Initializable {
     FXMLLoader fxmlLoader;
 
     Parent intentView;
+    Parent entityView;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -44,8 +45,20 @@ public class NLUViewController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("Fertig");
+        fxmlLoader.setRoot(null);
+        fxmlLoader.setController(null);
+        fxmlLoader.setLocation(getClass().getResource("../view/entityView.fxml"));
+
+        try {
+            entityView = fxmlLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
 
         intentTab.setContent(intentView);
+        entityTab.setContent(entityView);
+
     }
 }

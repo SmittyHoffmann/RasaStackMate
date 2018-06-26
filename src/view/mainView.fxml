@@ -3,9 +3,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane prefHeight="1200" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainViewController">
+<AnchorPane prefHeight="1000" prefWidth="1400.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainViewController">
    <children>
-      <BorderPane prefHeight="1200.0" prefWidth="800.0" fx:id="mainPane">
+      <BorderPane fx:id="mainPane" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
       </BorderPane>
    </children>
 </AnchorPane>
