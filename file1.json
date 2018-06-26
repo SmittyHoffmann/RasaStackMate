@@ -1,0 +1,78 @@
+{
+  "rasa_nlu_data": {
+    "common_examples": [
+      {
+        "entities": [
+          {
+            "start": 1,
+            "end": 2,
+            "value": "1",
+            "entity": "number"
+          },
+          {
+            "start": 9,
+            "end": 10,
+            "value": "a",
+            "entity": "char"
+          }
+        ],
+        "text": "1 a",
+        "intent": "test"
+      },
+      {
+        "entities": [
+          {
+            "start": 1,
+            "end": 2,
+            "value": "1",
+            "entity": "number"
+          },
+          {
+            "start": 9,
+            "end": 10,
+            "value": "b",
+            "entity": "char"
+          }
+        ],
+        "text": "1 b",
+        "intent": "test"
+      },
+      {
+        "entities": [
+          {
+            "start": 1,
+            "end": 2,
+            "value": "2",
+            "entity": "number"
+          },
+          {
+            "start": 9,
+            "end": 10,
+            "value": "a",
+            "entity": "char"
+          }
+        ],
+        "text": "2 a",
+        "intent": "test"
+      },
+      {
+        "entities": [
+          {
+            "start": 1,
+            "end": 2,
+            "value": "2",
+            "entity": "number"
+          },
+          {
+            "start": 9,
+            "end": 10,
+            "value": "b",
+            "entity": "char"
+          }
+        ],
+        "text": "2 b",
+        "intent": "test"
+      }
+    ]
+  }
+}

@@ -1,0 +1,150 @@
+{
+  "rasa_nlu_data": {
+    "common_examples": [
+      {
+        "entities": [
+          {
+            "start": 70,
+            "end": 75,
+            "value": "Chris",
+            "entity": "name"
+          }
+        ],
+        "text": "Das ist ein perfekter Beispielsatz mit der Entität Name und dem Wert Chris",
+        "intent": "test3"
+      },
+      {
+        "entities": [
+          {
+            "start": 70,
+            "end": 76,
+            "value": "Stefan",
+            "entity": "name"
+          }
+        ],
+        "text": "Das ist ein perfekter Beispielsatz mit der Entität Name und dem Wert Stefan",
+        "intent": "test3"
+      },
+      {
+        "entities": [
+          {
+            "start": 1,
+            "end": 2,
+            "value": "1",
+            "entity": "number"
+          }
+        ],
+        "text": "1",
+        "intent": "test"
+      },
+      {
+        "entities": [
+          {
+            "start": 1,
+            "end": 2,
+            "value": "2",
+            "entity": "number"
+          }
+        ],
+        "text": "2",
+        "intent": "test"
+      },
+      {
+        "entities": [
+          {
+            "start": 1,
+            "end": 2,
+            "value": "1",
+            "entity": "number"
+          },
+          {
+            "start": 9,
+            "end": 10,
+            "value": "a",
+            "entity": "char"
+          }
+        ],
+        "text": "1 a",
+        "intent": "test"
+      },
+      {
+        "entities": [
+          {
+            "start": 1,
+            "end": 2,
+            "value": "1",
+            "entity": "number"
+          },
+          {
+            "start": 9,
+            "end": 10,
+            "value": "b",
+            "entity": "char"
+          }
+        ],
+        "text": "1 b",
+        "intent": "test"
+      },
+      {
+        "entities": [
+          {
+            "start": 1,
+            "end": 2,
+            "value": "2",
+            "entity": "number"
+          },
+          {
+            "start": 9,
+            "end": 10,
+            "value": "a",
+            "entity": "char"
+          }
+        ],
+        "text": "2 a",
+        "intent": "test"
+      },
+      {
+        "entities": [
+          {
+            "start": 1,
+            "end": 2,
+            "value": "2",
+            "entity": "number"
+          },
+          {
+            "start": 9,
+            "end": 10,
+            "value": "b",
+            "entity": "char"
+          }
+        ],
+        "text": "2 b",
+        "intent": "test"
+      },
+      {
+        "entities": [
+          {
+            "start": 1,
+            "end": 2,
+            "value": "a",
+            "entity": "char"
+          }
+        ],
+        "text": "a",
+        "intent": "@test2"
+      },
+      {
+        "entities": [
+          {
+            "start": 1,
+            "end": 2,
+            "value": "b",
+            "entity": "char"
+          }
+        ],
+        "text": "b",
+        "intent": "@test2"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="rootPane" fx:id="rootPane" styleClass="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" minHeight="-Infinity" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MenuController">
+    <children>
+        <VBox id="vBox" fx:id="vBox" layoutX="0.0" styleClass="vBox">
+            <children>
+                <VBox id="firstSubVBox" fx:id="firstSubVBox" styleClass="vBox">
+                    <children>
+                        <Button fx:id="firstMenu" styleClass="menu" alignment="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="RasaNLU"/>
+                        <VBox fx:id="firstSubMenuList" styleClass="subVBox">
+                            <Button fx:id="nluIntent" alignment="CENTER" styleClass="subMenu" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Intents"/>
+                            <Button fx:id="nluEntity" alignment="CENTER" styleClass="subMenu" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Entities"/>
+                            <Button fx:id="nluSynoynm" alignment="CENTER" styleClass="subMenu" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Synonyme"/>
+                            <Button fx:id="nluRegex" alignment="CENTER" styleClass="subMenu" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Reguläre Ausdrücke"/>
+                        </VBox>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+    </children>
+
+
+
+
+</AnchorPane>

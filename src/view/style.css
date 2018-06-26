@@ -1,0 +1,28 @@
+.rootPane{
+    -fx-background-color: #FFFFFF;
+    }
+.vBox{
+    -fx-border-style: solid inside;
+    -fx-border-width: 2;
+    -fx-border-color: #000000;
+    -fx-background-color: #FFFFFF;
+}
+.subVBox{
+    -fx-border-style: solid inside;
+    -fx-border-width: 1;
+    -fx-border-color: #000000;
+    -fx-background-color: #FFFFFF;
+}
+.menu{
+    -fx-background-color: #d243f2;
+    -fx-text-fill : white;
+    -fx-font-size : 14px;
+}
+.subMenu{
+    -fx-border-style: solid inside;
+    -fx-border-width: 1;
+    -fx-border-color: #000000;
+    -fx-background-color: #e266ff;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}
