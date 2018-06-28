@@ -3,9 +3,26 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
 <AnchorPane prefHeight="1000" prefWidth="1400.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainViewController">
    <children>
       <BorderPane fx:id="mainPane" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+          <left>
+              <VBox id="vBox" fx:id="vBox" layoutX="0.0" AnchorPane.topAnchor="40">
+                  <children>
+                      <VBox id="firstSubVBox" fx:id="firstSubVBox" >
+                          <children>
+                              <Button fx:id="firstMenu"  alignment="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="RasaNLU"/>
+                              <VBox fx:id="firstSubMenuList" >
+                                  <Button fx:id="nluEdit" alignment="CENTER" styleClass="subMenu" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Bearbeiten"/>
+                                  <Button fx:id="nluTrain" alignment="CENTER" styleClass="subMenu" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Trainieren"/>
+                              </VBox>
+                          </children>
+                      </VBox>
+                  </children>
+              </VBox>
+          </left>
       </BorderPane>
    </children>
 </AnchorPane>

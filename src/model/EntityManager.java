@@ -14,5 +14,7 @@ public interface EntityManager {
     HashMap<String,Entity> getEntities();
     void deleteIntentExample(String entityName, String value);
     ObservableList<String> getValuesToEntity(String entityName);
+    ObservableList<String> getEntityPlaceHolders();
+
 }
 

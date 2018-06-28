@@ -15,7 +15,7 @@
    <children>
       <BorderPane  AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
-          <AnchorPane minHeight="0.0" minWidth="0.0"  BorderPane.alignment="CENTER">
+            <AnchorPane minHeight="0.0" minWidth="0.0"  BorderPane.alignment="CENTER">
                <children>
                   <HBox  AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>

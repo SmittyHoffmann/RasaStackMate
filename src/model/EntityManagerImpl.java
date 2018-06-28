@@ -6,7 +6,7 @@ import javafx.collections.ObservableList;
 import javax.inject.Singleton;
 import java.util.HashMap;
 
-@Singleton
+
 public class EntityManagerImpl implements EntityManager{
 
     
@@ -15,11 +15,13 @@ public class EntityManagerImpl implements EntityManager{
 
     HashMap<String, Entity> entities;
     ObservableList<String> entityNames;
+    ObservableList<String> entityPlaceHolders;
 
 
     public EntityManagerImpl() {
         this.entities = new HashMap<>();
         this.entityNames = FXCollections.observableArrayList();
+        this.entityPlaceHolders = FXCollections.observableArrayList();
     }
 
 
@@ -32,13 +34,23 @@ public class EntityManagerImpl implements EntityManager{
         if(!entities.containsKey(entityName)){
             this.entities.put(entityName,new Entity());
             this.entityNames.add(entityName);
+            this.addPlaceHolder(entityName);
         }
+    }
+
+    private void addPlaceHolder(String entityName) {
+        this.entityPlaceHolders.add("@"+entityName);
     }
 
 
     public void deleteEntity(String entityName) {
         this.entities.remove(entityName);
         this.entityNames.remove(entityName);
+        this.removePlaceHolder(entityName);
+    }
+
+    private void removePlaceHolder(String entityName) {
+        this.entityPlaceHolders.remove("@"+entityName);
     }
 
 
@@ -62,6 +74,11 @@ public class EntityManagerImpl implements EntityManager{
 
     public ObservableList<String> getValuesToEntity(String entityName){
         return this.entities.get(entityName).getValues();
+    }
+
+    @Override
+    public ObservableList<String> getEntityPlaceHolders() {
+        return this.entityPlaceHolders;
     }
 
 

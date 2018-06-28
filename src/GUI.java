@@ -19,4 +19,8 @@ public class GUI extends Application {
     public void run(String []args){
         launch(args);
     }
+
+    public static void main(String []args){
+        launch(args);
+    }
 }

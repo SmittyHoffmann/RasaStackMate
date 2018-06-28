@@ -9,7 +9,7 @@ import org.json.simple.JSONObject;
 import javax.inject.Singleton;
 import java.util.HashMap;
 
-@Singleton
+
 public class IntentManagerImpl implements IntentManager {
 
     HashMap<String, Intent> intents;
