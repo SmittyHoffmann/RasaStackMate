@@ -23,4 +23,5 @@ public interface IntentManager {
 
     public ObservableList<String> getExamplesToIntent(String intentName);
 
+    void changeIntentName(String currentIntentName, String changedName);
 }

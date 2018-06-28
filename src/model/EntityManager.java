@@ -15,6 +15,8 @@ public interface EntityManager {
     void deleteIntentExample(String entityName, String value);
     ObservableList<String> getValuesToEntity(String entityName);
     ObservableList<String> getEntityPlaceHolders();
+    ObservableList<String> getAllEntityValues();
 
+    void changeEntityName(String currentEntityName, String changedName);
 }
 

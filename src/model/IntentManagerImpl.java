@@ -63,6 +63,24 @@ public class IntentManagerImpl implements IntentManager {
         return this.intents.get(intentName).getExamples();
     }
 
+    @Override
+    public void changeIntentName(String currentIntentName, String changedName) {
+        if(intents.containsKey(changedName)){
+            for(String value : intents.get(currentIntentName).getExamples()){
+                intents.get(changedName).addExample(value);
+            }
+
+        }else{
+            intents.put(changedName,intents.get(currentIntentName));
+            intentNames.add(changedName);
+
+        }
+        intents.remove(currentIntentName);
+        intentNames.remove(currentIntentName);
+
+
+    }
+
 
 }
 

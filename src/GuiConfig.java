@@ -35,7 +35,16 @@ public class GuiConfig extends AbstractModule {
         return manager;
     }
 
-
+    @Provides @Singleton
+    SynonymManager provideSynonymManager(){
+        SynonymManager manager = new SynonymManagerImpl();
+        return manager;
+    }
+    @Provides @Singleton
+    RegexManager provideRegexManager(){
+        RegexManager manager = new RegexManagerImpl();
+        return manager;
+    }
 
 
 

@@ -39,6 +39,11 @@
                                         <Insets left="20.0" top="15.0" />
                                     </HBox.margin>
                                 </Button>
+                                <Button fx:id="editSynonymNameButton" mnemonicParsing="false" text="Synonymname bearbeiten">
+                                    <HBox.margin>
+                                        <Insets left="20.0" top="15.0" />
+                                    </HBox.margin>
+                                </Button>
                             </children>
                         </HBox>
                     </children>

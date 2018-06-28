@@ -34,6 +34,8 @@ public class NLUViewController implements Initializable {
 
     Parent intentView;
     Parent entityView;
+    Parent synonymView;
+    Parent regexView;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -55,10 +57,29 @@ public class NLUViewController implements Initializable {
             e.printStackTrace();
         }
 
+        fxmlLoader.setRoot(null);
+        fxmlLoader.setController(null);
+        fxmlLoader.setLocation(getClass().getResource("../view/synonymView.fxml"));
+        try {
+            synonymView = fxmlLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        fxmlLoader.setRoot(null);
+        fxmlLoader.setController(null);
+        fxmlLoader.setLocation(getClass().getResource("../view/regexView.fxml"));
+        try {
+            regexView = fxmlLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
 
         intentTab.setContent(intentView);
         entityTab.setContent(entityView);
-
+        synonymTab.setContent(synonymView);
+        regexTab.setContent(regexView);
     }
 }

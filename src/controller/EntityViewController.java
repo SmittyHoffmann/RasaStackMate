@@ -5,15 +5,14 @@ import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.TextFieldListCell;
 import model.EntityManager;
 import model.EntityManagerImpl;
 
 import javax.inject.Inject;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class EntityViewController implements Initializable {
@@ -43,6 +42,8 @@ public class EntityViewController implements Initializable {
             @Inject
             EntityManager entityManager;
 
+            @FXML
+            Button editEntityNameButton;
 
             @Inject
             FXMLLoader fxmlLoader;
@@ -106,11 +107,22 @@ public class EntityViewController implements Initializable {
 
                 });
 
+                valueListView.setCellFactory(TextFieldListCell.forListView());
+                valueListView.setEditable(true);
 
 
+                editEntityNameButton.setOnAction(event -> {
+                    Dialog<String> dialog = new NameChangeDialog(currentEntityName);
+                    Optional<String> result = dialog.showAndWait();
 
+                    result.ifPresent(changedName -> {
+                        if(!changedName.equals(currentEntityName)){
+                            entityManager.changeEntityName(currentEntityName,changedName);
+                            entityChoiceBox.getSelectionModel().select(changedName);
+                        }
+                    });
 
-
+                });
 
 
 

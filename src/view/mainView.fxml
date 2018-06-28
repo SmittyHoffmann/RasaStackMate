@@ -5,9 +5,9 @@
 
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Button?>
-<AnchorPane prefHeight="1000" prefWidth="1400.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainViewController">
+<AnchorPane prefHeight="800" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainViewController">
    <children>
-      <BorderPane fx:id="mainPane" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+      <BorderPane fx:id="mainPane" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="40">
           <left>
               <VBox id="vBox" fx:id="vBox" layoutX="0.0" AnchorPane.topAnchor="40">
                   <children>

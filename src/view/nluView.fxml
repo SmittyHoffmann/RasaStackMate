@@ -11,7 +11,7 @@
 
 <AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.NLUViewController">
    <children>
-      <BorderPane AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="10.0">
+      <BorderPane AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="0">
          <center>
             <TabPane fx:id="TabPane" minHeight="-Infinity" minWidth="-Infinity" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
               <tabs>
@@ -41,17 +41,13 @@
          <top>
             <HBox BorderPane.alignment="CENTER">
                <children>
-                  <ChoiceBox fx:id="trainFileChoiceBox" prefWidth="100">
-                     <HBox.margin>
-                        <Insets top="20.0" />
-                     </HBox.margin></ChoiceBox>
+                   <ChoiceBox fx:id="trainFileChoiceBox" prefWidth="100"></ChoiceBox>
+
                   <Button fx:id="importButton" mnemonicParsing="false" text="Importieren">
-                     <HBox.margin>
-                        <Insets top="20.0" />
-                     </HBox.margin></Button>
+                     </Button>
                   <Button fx:id="generateButton" mnemonicParsing="false" text="Generieren">
                      <HBox.margin>
-                        <Insets left="50.0" top="20.0" />
+                        <Insets left="50.0" />
                      </HBox.margin>
                   </Button>
                </children>

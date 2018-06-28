@@ -1,23 +1,29 @@
 package controller;
 
+import impl.org.controlsfx.autocompletion.SuggestionProvider;
 import javafx.beans.value.ChangeListener;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.TextFieldListCell;
+import model.EntityManager;
 import model.SynonymManager;
+import org.controlsfx.control.textfield.TextFields;
 
 import javax.inject.Inject;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class SynonymViewController implements Initializable {
 
 
-
+        @FXML
+        Button editSynonymNameButton;
         @FXML
         ChoiceBox<String> synonymChoiceBox;
 
@@ -42,20 +48,37 @@ public class SynonymViewController implements Initializable {
         SynonymManager synonymManagerImpl;
 
         @Inject
+        EntityManager entityManager;
+
+        @Inject
         FXMLLoader fxmlLoader;
 
         private String currentSynonymName = "";
 
+        private ObservableList<String> suggestions = FXCollections.observableArrayList();
+
+        private SuggestionProvider<String> provider;
+
+
+
         @Override
         public void initialize(URL location, ResourceBundle resources){
+
+            suggestions = entityManager.getAllEntityValues();
+
+            suggestions.addListener((ListChangeListener<String>) event -> {
+                    provider.clearSuggestions();
+                    provider.addPossibleSuggestions(suggestions);
+            });
+            this.provider = SuggestionProvider.create(suggestions);
+            TextFields.bindAutoCompletion(synonymNameTextField, provider);
 
 
 
             synonymChoiceBox.setItems(synonymManagerImpl.getSynonymNames());
-            synonymChoiceBox.getSelectionModel().selectedItemProperty().addListener((ChangeListener<String>) (observable, oldValue, newValue) ->{
+            synonymChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->{
                 if(newValue!= null) {
                     valueListView.setItems(synonymManagerImpl.getValuesToSynonym(newValue));
-
                 }
                 currentSynonymName = newValue;
             });
@@ -69,6 +92,7 @@ public class SynonymViewController implements Initializable {
                     synonymNameTextField.clear();
                 }
             });
+
 
 
             deleteSynonymButton.setOnAction(event -> {
@@ -99,10 +123,23 @@ public class SynonymViewController implements Initializable {
                 }
 
             });
+            valueListView.setEditable(true);
+            valueListView.setCellFactory(TextFieldListCell.forListView());
 
 
+            editSynonymNameButton.setOnAction(event-> {
+                Dialog<String> dialog = new NameChangeDialog(currentSynonymName);
+                ((NameChangeDialog) dialog).addSuggestionProvider(this.provider);
+                Optional<String> result = dialog.showAndWait();
 
 
+                result.ifPresent(changedName -> {
+                   if(!changedName.equals(currentSynonymName)){
+                       synonymManagerImpl.changeSynonymName(currentSynonymName,changedName);
+                       synonymChoiceBox.getSelectionModel().select(changedName);
+                   }
+                });
+            });
 
 
 

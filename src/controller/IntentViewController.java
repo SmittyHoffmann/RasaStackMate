@@ -1,13 +1,12 @@
 package controller;
 
-import impl.org.controlsfx.autocompletion.AutoCompletionTextFieldBinding;
+
 import impl.org.controlsfx.autocompletion.SuggestionProvider;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
+
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -18,8 +17,7 @@ import org.controlsfx.control.textfield.TextFields;
 
 import javax.inject.Inject;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class IntentViewController implements Initializable {
@@ -32,6 +30,7 @@ public class IntentViewController implements Initializable {
     @FXML
     Button addExampleButton;
 
+    @FXML Button editIntentNameButton;
     @FXML Button deleteExampleButton;
 
     @FXML Button addIntentButton;
@@ -71,28 +70,35 @@ public class IntentViewController implements Initializable {
                 currentIntentName = newValue;
                 });
 
+        exampleListView.setEditable(true);
+        exampleListView.setCellFactory(param -> new TextFieldListCellWithProvider(this.entityManagerImpl));
 
         addIntentButton.setOnAction(event -> {
-            if(!intentNameTextField.getText().isEmpty()){
-                intentManagerImpl.addIntent(intentNameTextField.getText());
-                intentChoiceBox.getSelectionModel().select(intentNameTextField.getText()
-                );
-                intentNameTextField.clear();
-            }
-        });
+                    if (!intentNameTextField.getText().isEmpty()) {
+                        intentManagerImpl.addIntent(intentNameTextField.getText());
+                        intentChoiceBox.getSelectionModel().select(intentNameTextField.getText()
+                        );
+                        intentNameTextField.clear();
+                    }
+                });
 
         exampleTextField.textProperty().addListener((observable,oldValue,newValue) -> {
             String currentText = newValue;
-            provider.clearSuggestions();
+
             if(!currentText.isEmpty()) {
 
-                if(currentText.substring(currentText.length()-2,currentText.length()-1).equals(" @")){
+                if(currentText.equals("@")){
+                    provider.clearSuggestions();
+                    provider.addPossibleSuggestions(entityManagerImpl.getEntityPlaceHolders());
+                }
 
-
+                if(currentText.length() >= 2 && currentText.substring(currentText.length()-2).equals(" @")){
+                    provider.clearSuggestions();
+                    suggestions.clear();
 
                     for (String value : entityManagerImpl.getEntityPlaceHolders()) {
 
-                        suggestions.add(currentText.substring(0,currentText.length()-3) + value);
+                        suggestions.add(currentText.substring(0,currentText.length()-1) + value);
                     }
 
                     provider.addPossibleSuggestions(suggestions);
@@ -134,7 +140,19 @@ public class IntentViewController implements Initializable {
 
 
 
+        editIntentNameButton.setOnAction(event-> {
+            if(!currentIntentName.isEmpty()){
+                Dialog<String> dialog = new NameChangeDialog(currentIntentName);
+                Optional<String> result = dialog.showAndWait();
 
+                result.ifPresent(changedName ->{
+                    if(!changedName.equals(currentIntentName)){
+                        intentManagerImpl.changeIntentName(currentIntentName,changedName);
+                        intentChoiceBox.getSelectionModel().select(changedName);
+                    }
+                });
+            }
+        });
 
 
 

@@ -22,7 +22,10 @@ public class Intent {
     }
 
     public void addExample(String example){
-        this.examples.add(example);
+        if(!this.examples.contains(example)){
+            this.examples.add(example);
+        }
+
     }
 
     public void deleteExample(String example){

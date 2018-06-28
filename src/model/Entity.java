@@ -22,7 +22,11 @@ public class Entity {
     }
 
     public void addValue(String value){
-        this.values.add(value);
+
+        if(!this.values.contains(value)){
+            this.values.add(value);
+        }
+
     }
 
     public void deleteValue(String value){

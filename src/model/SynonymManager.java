@@ -14,4 +14,5 @@ public interface SynonymManager {
     void deleteSynonymValue(String synonymName, String value);
     ObservableList<String> getValuesToSynonym(String synonymName);
 
+    void changeSynonymName(String oldName, String newName);
 }
