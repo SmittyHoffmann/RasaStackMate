@@ -16,7 +16,8 @@ public class WindowManager {
     @Inject private FXMLLoader fxmlLoader;
 
     public enum SCENES{
-        START_SCENE("/view/mainView.fxml");
+        START_SCENE("/view/startView.fxml"),
+        MAIN_SCENE("/view/mainView.fxml");
 
         private String sceneName;
 

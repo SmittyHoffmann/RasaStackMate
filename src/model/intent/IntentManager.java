@@ -1,9 +1,8 @@
-package model;
+package model.intent;
 
 import javafx.collections.ObservableList;
 
 import java.util.HashMap;
-import java.util.Map;
 
 public interface IntentManager {
 

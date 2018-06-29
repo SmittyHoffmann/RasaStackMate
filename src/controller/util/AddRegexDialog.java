@@ -1,4 +1,4 @@
-package controller;
+package controller.util;
 
 import javafx.application.Platform;
 import javafx.geometry.Insets;
@@ -12,8 +12,8 @@ public class AddRegexDialog  extends Dialog {
     private TextField nameField;
     public AddRegexDialog(){
         super();
-        this.setTitle("Regex hinzufügen");
-        this.setHeaderText("Gib die Regex-Daten ein");
+        this.setTitle("regex hinzufügen");
+        this.setHeaderText("Gib die regex-Daten ein");
 
         ButtonType confirmButtonType = new ButtonType("Ok", ButtonBar.ButtonData.OK_DONE);
         ButtonType cancelButtonType = new ButtonType("Abbrechen", ButtonBar.ButtonData.CANCEL_CLOSE);
@@ -27,7 +27,7 @@ public class AddRegexDialog  extends Dialog {
         grid.setPadding(new Insets(20,150,10,10));
 
         this.nameField = new TextField();
-        this.nameField.setPromptText("Name des Regex");
+        this.nameField.setPromptText("Name des regex");
         this.patternField = new TextField();
         this.patternField.setPromptText("Regulärer Ausdruck");
 

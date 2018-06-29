@@ -1,4 +1,4 @@
-package model;
+package model.synonym;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

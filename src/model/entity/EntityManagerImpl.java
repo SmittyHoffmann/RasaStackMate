@@ -1,9 +1,8 @@
-package model;
+package model.entity;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import javax.inject.Singleton;
 import java.util.HashMap;
 
 

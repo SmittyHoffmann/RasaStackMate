@@ -1,4 +1,4 @@
-package controller;
+package controller.util;
 
 import impl.org.controlsfx.autocompletion.SuggestionProvider;
 import javafx.application.Platform;

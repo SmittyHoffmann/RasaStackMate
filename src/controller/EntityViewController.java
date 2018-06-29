@@ -1,14 +1,13 @@
 package controller;
 
-import com.gluonhq.ignite.guice.GuiceContext;
+import controller.util.NameChangeDialog;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldListCell;
-import model.EntityManager;
-import model.EntityManagerImpl;
+import model.entity.EntityManager;
 
 import javax.inject.Inject;
 import java.net.URL;

@@ -1,13 +1,11 @@
-package controller;
+package controller.util;
 
 import impl.org.controlsfx.autocompletion.SuggestionProvider;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.TextField;
-import model.EntityManager;
+import model.entity.EntityManager;
 import org.controlsfx.control.textfield.TextFields;
 
 import javax.inject.Inject;

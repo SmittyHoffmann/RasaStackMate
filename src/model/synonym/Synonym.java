@@ -1,19 +1,17 @@
-package model;
-
+package model.synonym;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class Entity {
+public class Synonym {
 
     ObservableList<String> values;
 
 
 
-    public Entity(){
+    public Synonym(){
         values = FXCollections.observableArrayList();
     }
 
@@ -22,7 +20,6 @@ public class Entity {
     }
 
     public void addValue(String value){
-
         if(!this.values.contains(value)){
             this.values.add(value);
         }
@@ -33,8 +30,7 @@ public class Entity {
         this.values.remove(value);
     }
 
-    public void setValues(List<String> valueList){
-        this.values = FXCollections.observableArrayList(valueList);
+    public void setValues(List<String> exampleList){
+        this.values = FXCollections.observableArrayList(exampleList);
     }
-
 }

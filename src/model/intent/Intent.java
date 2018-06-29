@@ -1,9 +1,8 @@
-package model;
+package model.intent;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Intent {

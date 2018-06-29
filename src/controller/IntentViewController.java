@@ -1,6 +1,8 @@
 package controller;
 
 
+import controller.util.NameChangeDialog;
+import controller.util.TextFieldListCellWithProvider;
 import impl.org.controlsfx.autocompletion.SuggestionProvider;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
@@ -11,8 +13,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import model.EntityManager;
-import model.IntentManager;
+import model.entity.EntityManager;
+import model.intent.IntentManager;
 import org.controlsfx.control.textfield.TextFields;
 
 import javax.inject.Inject;

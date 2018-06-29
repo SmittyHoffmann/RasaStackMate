@@ -1,12 +1,8 @@
-package model;
+package model.intent;
 
-import controller.IntentViewController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 
-import javax.inject.Singleton;
 import java.util.HashMap;
 
 

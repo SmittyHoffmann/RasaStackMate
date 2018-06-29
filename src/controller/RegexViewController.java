@@ -1,5 +1,6 @@
 package controller;
 
+import controller.util.AddRegexDialog;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -8,8 +9,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.Pair;
-import model.Regex;
-import model.RegexManager;
+import model.regex.Regex;
+import model.regex.RegexManager;
 
 
 import javax.inject.Inject;
