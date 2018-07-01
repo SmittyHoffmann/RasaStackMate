@@ -4,15 +4,32 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.Tab;
+import javafx.scene.control.*;
+import main.GUI;
+import model.NLUJSONGenerator;
+import model.NLUTrainDataGenerator;
+import model.RasaFileManager;
+import model.RasaFileManagerImpl;
+import model.entity.EntityManager;
 import model.intent.IntentManager;
+import model.regex.RegexManager;
+import model.synonym.SynonymManager;
+import org.json.simple.JSONObject;
 
 import javax.inject.Inject;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class NLUViewController implements Initializable {
+
+    @FXML Button generateButton;
+
+    @FXML Button importButton;
+
+    @FXML ChoiceBox trainFileChoiceBox;
+
 
     @FXML
     Tab intentTab;
@@ -27,10 +44,32 @@ public class NLUViewController implements Initializable {
     Tab regexTab;
 
     @Inject
-    IntentManager manager;
+    RasaFileManager fileManager;
+
+    @Inject
+    NLUTrainDataGenerator generator;
 
     @Inject
     FXMLLoader fxmlLoader;
+
+
+    @Inject
+    IntentManager intentManager;
+
+    @Inject
+    EntityManager entityManager;
+
+    @Inject
+    SynonymManager synonymManager;
+
+    @Inject
+    RegexManager regexManager;
+
+
+
+
+
+
 
     Parent intentView;
     Parent entityView;
@@ -75,7 +114,38 @@ public class NLUViewController implements Initializable {
             e.printStackTrace();
         }
 
+        trainFileChoiceBox.setItems(fileManager.getNLUTrainFiles());
 
+        generateButton.setOnAction(e-> {
+            String fileName;
+            TextInputDialog dialog = new TextInputDialog("Dateiname");
+            dialog.setContentText("Bitte geben sie den gewünschten Dateinamen an");
+
+            Optional<String> result = dialog.showAndWait();
+            if(result.isPresent()){
+                fileName = result.get();
+                JSONObject root = generator.generateTrainingData(intentManager.getIntents(),entityManager.getEntities(),synonymManager.getSynonyms(),regexManager.getRegexList());
+                fileManager.writeNLUTrainData(root,fileName);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Datei schreiben erfolgreich");
+                alert.setHeaderText(null);
+                alert.setContentText("Das Generieren der Trainingsdatei war erfolgreich!");
+                alert.showAndWait();
+            }
+        });
+
+        importButton.setOnAction(event ->{
+            String fileName = GUI.getWorkSpace()+"/"+RasaFileManagerImpl.FOLDERS.TRAIN_DATA_FOLDER.getFolderName()+"/"+trainFileChoiceBox.getSelectionModel().getSelectedItem();
+            generator.fillNLUManagers(fileName,intentManager,entityManager,synonymManager,regexManager);
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Import erfolgreich");
+            alert.setHeaderText(null);
+            alert.setContentText("Der Import war erfolgreich");
+
+            alert.showAndWait();
+
+        });
 
         intentTab.setContent(intentView);
         entityTab.setContent(entityView);

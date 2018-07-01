@@ -48,7 +48,9 @@ public class WindowManager {
             throw new IllegalStateException("Gab nen Fehler beim Controller Initialisieren");
         }
         fxmlLoader.getController();
-
+        if(stage!=null){
+            stage.close();
+        }
         stage = new Stage();
         root.getStylesheets().add("/view/style.css");
         stage.setMinHeight(400);
