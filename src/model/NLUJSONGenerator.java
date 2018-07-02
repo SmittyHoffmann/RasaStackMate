@@ -146,9 +146,16 @@ public class NLUJSONGenerator implements NLUTrainDataGenerator{
             JSONArray entitySynonyms = (JSONArray) rasaNLUData.get("entity_synonyms");
             JSONArray regexFeatures = (JSONArray) rasaNLUData.get("regex_features");
 
-            fillIntentsandEntities(commonExamples,intentManager,entityManager);
-            fillSynonyms(entitySynonyms,synonymManager);
-            fillRegex(regexFeatures,regexManager);
+            if(commonExamples != null){
+                fillIntentsandEntities(commonExamples,intentManager,entityManager);
+            }
+            if(entitySynonyms != null){
+                fillSynonyms(entitySynonyms,synonymManager);
+            }
+            if(regexFeatures != null){
+                fillRegex(regexFeatures,regexManager);
+            }
+
 
 
 

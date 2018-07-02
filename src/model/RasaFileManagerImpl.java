@@ -15,7 +15,8 @@ public class RasaFileManagerImpl implements RasaFileManager {
     public enum FOLDERS {
         TRAIN_DATA_FOLDER("/data"),
         NLU_MODEL_FOLDER("/models/nlu/default/"),
-        CORE_MODEL_FOLDER("/models/dialogue/");
+        CORE_MODEL_FOLDER("/models/dialogue/"),
+        SPACY_CONFIG_FILE("/config_spacy.json");
 
 
         private String folderName;
@@ -39,7 +40,7 @@ public class RasaFileManagerImpl implements RasaFileManager {
         this.checkDirectories();
     }
 
-    public void checkDirectories() {
+    public void checkDirectories(){
         this.trainDataFolder = new File(GUI.getWorkSpace() + FOLDERS.TRAIN_DATA_FOLDER.getFolderName());
         if (!trainDataFolder.exists()) {
             trainDataFolder.mkdir();
@@ -51,6 +52,21 @@ public class RasaFileManagerImpl implements RasaFileManager {
         this.coreModelFolder = new File(GUI.getWorkSpace() + FOLDERS.CORE_MODEL_FOLDER.getFolderName());
         if (!coreModelFolder.exists()) {
             coreModelFolder.mkdirs();
+        }
+
+        File spacyConfig = new File(GUI.getWorkSpace()+FOLDERS.SPACY_CONFIG_FILE.getFolderName());
+        if(!spacyConfig.exists()){
+            JSONObject root = new JSONObject();
+            root.put("pipeline","spacy_sklearn");
+            root.put("language","de");
+
+            try {
+                FileWriter writer = new FileWriter(spacyConfig);
+                writer.write(root.toJSONString());
+                writer.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
     }

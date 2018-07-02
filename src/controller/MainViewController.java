@@ -5,12 +5,16 @@ import javafx.animation.Interpolator;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Dialog;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
+import model.TrainFinishedEvent;
 import model.intent.IntentManager;
 
 import javax.inject.Inject;
@@ -53,7 +57,6 @@ public class MainViewController implements Initializable {
     @Inject
     IntentManager manager;
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -74,7 +77,14 @@ public class MainViewController implements Initializable {
             removeOtherMenus(firstSubVBox);
         });
 
+        mainPane.addEventHandler(TrainFinishedEvent.TRAIN_SUCCESSFUL, event -> {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Training erfolgreich!");
+            alert.setHeaderText(null);
+            alert.setContentText("Das Training war erfolgreich!");
 
+            alert.showAndWait();
+        });
 
     }
 

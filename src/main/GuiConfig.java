@@ -4,10 +4,7 @@ import com.google.inject.AbstractModule;
 
 import com.google.inject.Provides;
 import com.google.inject.Singleton;
-import model.NLUJSONGenerator;
-import model.NLUTrainDataGenerator;
-import model.RasaFileManager;
-import model.RasaFileManagerImpl;
+import model.*;
 import model.entity.EntityManager;
 import model.entity.EntityManagerImpl;
 import model.intent.IntentManager;
@@ -62,6 +59,11 @@ public class GuiConfig extends AbstractModule {
         return generator;
     }
 
+    @Provides
+    NLUPythonProcessor providePythonProcessor(){
+        NLUPythonProcessor processor = new NLUPythonProcessorImpl();
+        return processor;
+    }
 
 
 

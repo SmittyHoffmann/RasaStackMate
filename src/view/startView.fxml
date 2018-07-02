@@ -23,6 +23,7 @@
                   </HBox>
                   <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="RasaStackMate starten" fx:id="startButton">
                      <VBox.margin>
+
                         <Insets top="25.0" />
                      </VBox.margin>
                   </Button>
