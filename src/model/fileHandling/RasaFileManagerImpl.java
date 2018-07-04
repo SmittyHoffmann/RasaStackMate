@@ -1,4 +1,4 @@
-package model;
+package model.fileHandling;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,7 +14,7 @@ public class RasaFileManagerImpl implements RasaFileManager {
 
     public enum FOLDERS {
         TRAIN_DATA_FOLDER("/data"),
-        NLU_MODEL_FOLDER("/models/nlu/default/"),
+        NLU_MODEL_FOLDER("/models/nlu/"),
         CORE_MODEL_FOLDER("/models/dialogue/"),
         SPACY_CONFIG_FILE("/config_spacy.json");
 

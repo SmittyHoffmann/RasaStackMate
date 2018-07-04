@@ -1,4 +1,4 @@
-package model;
+package model.nluJSONData;
 
 
 import javafx.collections.ObservableList;
@@ -6,7 +6,6 @@ import model.entity.Entity;
 import model.entity.EntityManager;
 import model.intent.Intent;
 import model.intent.IntentManager;
-import model.nluJSONData.*;
 import model.regex.Regex;
 import model.regex.RegexManager;
 import model.synonym.Synonym;

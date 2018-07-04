@@ -17,6 +17,7 @@
                               <VBox fx:id="firstSubMenuList" >
                                   <Button fx:id="nluEdit" alignment="CENTER" styleClass="subMenu" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Bearbeiten"/>
                                   <Button fx:id="nluTrain" alignment="CENTER" styleClass="subMenu" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Trainieren"/>
+                                  <Button fx:id="nluTest" alignment="CENTER" styleClass="subMenu" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Testen"/>
                               </VBox>
                           </children>
                       </VBox>

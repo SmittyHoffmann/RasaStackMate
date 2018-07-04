@@ -1,12 +1,15 @@
 package controller;
 
+import javafx.concurrent.WorkerStateEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
-import model.NLUPythonProcessor;
-import model.RasaFileManager;
+import model.pythonProcessing.NLUCOMMANDS;
+import model.pythonProcessing.NLUTrainPythonProcessor;
+import model.fileHandling.RasaFileManager;
 
 import javax.inject.Inject;
 import java.net.URL;
@@ -23,8 +26,7 @@ public class nluTrainViewController implements Initializable {
     @Inject
     RasaFileManager fileManager;
 
-    @Inject
-    NLUPythonProcessor processor;
+    NLUTrainPythonProcessor processor;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -35,8 +37,23 @@ public class nluTrainViewController implements Initializable {
             String modelName = this.modelNameTextField.getText();
             String fileName = trainFileChoiceBox.getSelectionModel().getSelectedItem();
             if(!modelName.isEmpty() && !fileName.isEmpty()){
-                this.processor.trainNLU(fileName,modelName);
+                this.processor = new NLUTrainPythonProcessor(fileName,modelName);
+                this.processor.start();
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Training gestartet!");
+                alert.setHeaderText(null);
+                alert.setContentText("Das Training wurde gestartet");
+                alert.showAndWait();
             }
+
+            this.processor.setOnSucceeded((WorkerStateEvent we) -> {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Training erfolgreich!");
+                alert.setHeaderText(null);
+                alert.setContentText("Das Training war erfolgreich!");
+                alert.showAndWait();
+                this.processor.reset();
+            });
         });
 
 

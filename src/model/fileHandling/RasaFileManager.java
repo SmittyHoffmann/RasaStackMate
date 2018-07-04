@@ -1,4 +1,4 @@
-package model;
+package model.fileHandling;
 
 import javafx.collections.ObservableList;
 import org.json.simple.JSONObject;

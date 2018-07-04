@@ -5,16 +5,12 @@ import javafx.animation.Interpolator;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.Dialog;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
-import model.TrainFinishedEvent;
 import model.intent.IntentManager;
 
 import javax.inject.Inject;
@@ -46,6 +42,7 @@ public class MainViewController implements Initializable {
 
     @FXML Button nluEdit;
     @FXML Button nluTrain;
+    @FXML Button nluTest;
 
     private Parent content;
     private Parent menu;
@@ -72,21 +69,31 @@ public class MainViewController implements Initializable {
             setContentToTrainNLU();
         });
 
+        nluTest.setOnAction(event-> {
+            setContentToTestNLU();
+        });
+
         firstMenu.setOnAction(event -> {
             toolsSlider(firstSubVBox, firstSubMenuList);
             removeOtherMenus(firstSubVBox);
         });
 
-        mainPane.addEventHandler(TrainFinishedEvent.TRAIN_SUCCESSFUL, event -> {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Training erfolgreich!");
-            alert.setHeaderText(null);
-            alert.setContentText("Das Training war erfolgreich!");
-
-            alert.showAndWait();
-        });
 
     }
+
+    private void setContentToTestNLU() {
+        fxmlLoader.setRoot(null);
+        fxmlLoader.setController(null);
+        fxmlLoader.setLocation(getClass().getResource("../view/nluTestView.fxml"));
+        try {
+            content = fxmlLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        mainPane.setCenter(content);
+    }
+
 
 
     public void setContentToNLU(){

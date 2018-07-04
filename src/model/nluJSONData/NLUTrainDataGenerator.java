@@ -1,4 +1,4 @@
-package model;
+package model.nluJSONData;
 
 import javafx.collections.ObservableList;
 import model.entity.Entity;

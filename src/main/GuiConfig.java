@@ -4,11 +4,15 @@ import com.google.inject.AbstractModule;
 
 import com.google.inject.Provides;
 import com.google.inject.Singleton;
-import model.*;
+import model.fileHandling.RasaFileManager;
+import model.fileHandling.RasaFileManagerImpl;
+import model.pythonProcessing.NLUTrainPythonProcessor;
 import model.entity.EntityManager;
 import model.entity.EntityManagerImpl;
 import model.intent.IntentManager;
 import model.intent.IntentManagerImpl;
+import model.nluJSONData.NLUJSONGenerator;
+import model.nluJSONData.NLUTrainDataGenerator;
 import model.regex.RegexManager;
 import model.regex.RegexManagerImpl;
 import model.synonym.SynonymManager;
@@ -59,11 +63,7 @@ public class GuiConfig extends AbstractModule {
         return generator;
     }
 
-    @Provides
-    NLUPythonProcessor providePythonProcessor(){
-        NLUPythonProcessor processor = new NLUPythonProcessorImpl();
-        return processor;
-    }
+
 
 
 
