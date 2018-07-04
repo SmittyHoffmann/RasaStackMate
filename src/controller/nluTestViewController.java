@@ -67,7 +67,7 @@ public class nluTestViewController implements Initializable {
             if (this.currentProcess != null && !this.testTextfield.getText().isEmpty()) {
                 this.sendProcessor = new NLUSendTestPythonProcessor(this.currentProcess, this.testTextfield.getText());
                 this.sendProcessor.start();
-            }
+
 
 
             this.sendProcessor.setOnSucceeded(event -> {
@@ -75,6 +75,7 @@ public class nluTestViewController implements Initializable {
                 this.sendProcessor.reset();
                 this.resultLabel.setText(result);
             });
+            }
         });
     }
 }

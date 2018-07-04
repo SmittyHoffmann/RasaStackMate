@@ -112,7 +112,7 @@ public class RasaFileManagerImpl implements RasaFileManager {
 
     @Override
     public ObservableList<String> getNLUModels() {
-        File[] nluModels = this.nluModelFolder.listFiles();
+        File[] nluModels = new File(this.nluModelFolder.getPath()+"\\"+"default").listFiles();
         ObservableList<String> nluModelNames = FXCollections.observableArrayList();
 
         for (File f : nluModels) {

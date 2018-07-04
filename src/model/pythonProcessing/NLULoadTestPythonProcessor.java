@@ -24,7 +24,9 @@ public class NLULoadTestPythonProcessor extends Service<Process> {
             @Override
             protected Process call() throws Exception {
                 List<String> output = new ArrayList<>();
-                String formattedCommand = String.format(NLUCOMMANDS.LOAD_AND_TEST_NLU.getCommandString(), getClass().getResource("nluInterpreter.py").getPath(), GUI.getWorkSpace()+"\\"+ RasaFileManagerImpl.FOLDERS.NLU_MODEL_FOLDER + "\\default\\" +modelName);
+                String test = getClass().getResource("nluInterpreter.py").getPath();
+                test = test.substring(1);
+                String formattedCommand = String.format(NLUCOMMANDS.LOAD_AND_TEST_NLU.getCommandString(), test, GUI.getWorkSpace()+"\\"+ RasaFileManagerImpl.FOLDERS.NLU_MODEL_FOLDER.getFolderName() + "default\\" +modelName);
                 System.out.println(formattedCommand);
                 List<String> commandList = Arrays.asList(formattedCommand.split(" "));
                 ProcessBuilder builder = new ProcessBuilder(commandList);
@@ -32,13 +34,13 @@ public class NLULoadTestPythonProcessor extends Service<Process> {
                 Process process = builder.start();
                 BufferedReader in = new BufferedReader(new InputStreamReader(process.getInputStream()));
                 String line;
-                while (process.isAlive()) {
+                //while (process.isAlive()) {
                     while ((line = in.readLine()) != null) {
                         if (line.equals("Model geladen")) {
                             return process;
                         }
                     }
-                }
+          //      }
                 return null;
             }
         };
