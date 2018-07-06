@@ -12,8 +12,8 @@ public class AddRegexDialog  extends Dialog {
     private TextField nameField;
     public AddRegexDialog(){
         super();
-        this.setTitle("regex hinzufügen");
-        this.setHeaderText("Gib die regex-Daten ein");
+        this.setTitle("Regex hinzufügen");
+        this.setHeaderText("Gib die Regex-Daten ein");
 
         ButtonType confirmButtonType = new ButtonType("Ok", ButtonBar.ButtonData.OK_DONE);
         ButtonType cancelButtonType = new ButtonType("Abbrechen", ButtonBar.ButtonData.CANCEL_CLOSE);
@@ -46,7 +46,7 @@ public class AddRegexDialog  extends Dialog {
             confirmButton.setDisable(newValue.trim().isEmpty() || patternField.getText().isEmpty());
         }));
         this.patternField.textProperty().addListener(((observable, oldValue, newValue) -> {
-        confirmButton.setDisable(newValue.trim().isEmpty() || nameField.getText().isEmpty());
+            confirmButton.setDisable(newValue.trim().isEmpty() || nameField.getText().isEmpty());
         }));
 
         this.getDialogPane().setContent(grid);
@@ -55,9 +55,9 @@ public class AddRegexDialog  extends Dialog {
 
         this.setResultConverter(dialogButton -> {
             if (dialogButton == confirmButtonType){
-                return new Pair<String,String>(nameField.getText(),patternField.getText());
+                return new Pair<>(nameField.getText(), patternField.getText());
             }
             return null;
         });
-    }{
-}}
+    }
+}

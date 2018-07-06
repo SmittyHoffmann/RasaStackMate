@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<BorderPane minHeight="100.0" minWidth="300.0" prefHeight="800.0" prefWidth="1000.0" AnchorPane.bottomAnchor="40.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.NluTestViewController">
+<BorderPane minHeight="100.0" minWidth="300.0" prefHeight="800.0" prefWidth="1000.0" AnchorPane.bottomAnchor="40.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.rasaNLU.test.NluTestViewController">
     <center>
         <VBox alignment="CENTER" maxWidth="800.0" BorderPane.alignment="CENTER">
             <children>

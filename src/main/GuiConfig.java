@@ -6,17 +6,16 @@ import com.google.inject.Provides;
 import com.google.inject.Singleton;
 import model.fileHandling.RasaFileManager;
 import model.fileHandling.RasaFileManagerImpl;
-import model.pythonProcessing.NLUTrainPythonProcessor;
-import model.entity.EntityManager;
-import model.entity.EntityManagerImpl;
-import model.intent.IntentManager;
-import model.intent.IntentManagerImpl;
-import model.nluJSONData.NLUJSONGenerator;
-import model.nluJSONData.NLUTrainDataGenerator;
-import model.regex.RegexManager;
-import model.regex.RegexManagerImpl;
-import model.synonym.SynonymManager;
-import model.synonym.SynonymManagerImpl;
+import model.rasaNLU.entity.EntityManager;
+import model.rasaNLU.entity.EntityManagerImpl;
+import model.rasaNLU.intent.IntentManager;
+import model.rasaNLU.intent.IntentManagerImpl;
+import model.rasaNLU.nluJSONData.NLUJSONGenerator;
+import model.rasaNLU.nluJSONData.NLUTrainDataGenerator;
+import model.rasaNLU.regex.RegexManager;
+import model.rasaNLU.regex.RegexManagerImpl;
+import model.rasaNLU.synonym.SynonymManager;
+import model.rasaNLU.synonym.SynonymManagerImpl;
 
 public class GuiConfig extends AbstractModule {
 

@@ -5,7 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.TextField;
-import model.entity.EntityManager;
+import model.rasaNLU.entity.EntityManager;
 import org.controlsfx.control.textfield.TextFields;
 
 import javax.inject.Inject;

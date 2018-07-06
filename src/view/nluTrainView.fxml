@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane minHeight="100.0" minWidth="300.0" prefHeight="800.0" prefWidth="1000.0" AnchorPane.bottomAnchor="40.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.NluTrainViewController">
+<BorderPane minHeight="100.0" minWidth="300.0" prefHeight="800.0" prefWidth="1000.0" AnchorPane.bottomAnchor="40.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.rasaNLU.train.NluTrainViewController">
             <center>
                 <VBox alignment="CENTER" prefHeight="400.0" prefWidth="400.0" BorderPane.alignment="CENTER">
                     <children>

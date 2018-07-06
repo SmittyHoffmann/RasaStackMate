@@ -5,7 +5,7 @@
 
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Button?>
-<AnchorPane prefHeight="800" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainViewController">
+<AnchorPane prefHeight="800" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.rasaNLU.develop.MainViewController">
    <children>
       <BorderPane fx:id="mainPane" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="40">
           <left>

@@ -11,17 +11,17 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DomainSlotController">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.rasaCore.domain.DomainSlotController">
     <children>
         <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <right>
                 <VBox fx:id="buttonBox" alignment="TOP_CENTER" prefWidth="223.0" BorderPane.alignment="CENTER">
                     <children>
-                  <TextField>
+                  <TextField fx:id="slotNameTextField">
                      <VBox.margin>
                         <Insets top="20.0" />
                      </VBox.margin></TextField>
-                  <ChoiceBox prefWidth="150.0">
+                  <ChoiceBox fx:id="slotTypeChoiceBox" prefWidth="150.0">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
@@ -46,10 +46,10 @@
                 </VBox>
             </right>
             <center>
-                <TableView fx:id="regexTableView" prefWidth="500.0" BorderPane.alignment="CENTER">
+                <TableView fx:id="slotTableView" prefWidth="500.0" BorderPane.alignment="CENTER">
                     <columns>
                         <TableColumn fx:id="nameColumn" prefWidth="250.0" text="Name" />
-                        <TableColumn fx:id="patternColumn" minWidth="0.0" prefWidth="250.0" text="Typ" />
+                        <TableColumn fx:id="typeColumn" minWidth="0.0" prefWidth="250.0" text="Typ" />
                     </columns>
                 </TableView>
             </center>
