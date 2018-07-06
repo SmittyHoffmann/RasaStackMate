@@ -1,6 +1,8 @@
 package model.entity;
 
 import javafx.collections.ObservableList;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import java.util.HashMap;
 
@@ -18,5 +20,7 @@ public interface EntityManager {
     ObservableList<String> getAllEntityValues();
 
     void changeEntityName(String currentEntityName, String changedName);
+
+    void parseJSONEntities(JSONArray entities);
 }
 

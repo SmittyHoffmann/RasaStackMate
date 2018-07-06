@@ -23,6 +23,13 @@ import java.util.ResourceBundle;
 public class MainViewController implements Initializable {
 
 
+    @FXML Button storyEditor;
+    @FXML Button domainEdit;
+    @FXML Button feedBack;
+    @FXML VBox secondSubMenuList;
+    @FXML Button secondMenu;
+    @FXML VBox secondSubVBox;
+
     @FXML
     BorderPane mainPane;
     @FXML
@@ -73,12 +80,47 @@ public class MainViewController implements Initializable {
             setContentToTestNLU();
         });
 
+        domainEdit.setOnAction(event-> {
+            setContentToDomain();
+        });
+
+        storyEditor.setOnAction(event-> {
+            setContentToStoryEditor();
+        });
+
+        feedBack.setOnAction(event-> {
+            setContentToFeedBack();
+        });
+
         firstMenu.setOnAction(event -> {
             toolsSlider(firstSubVBox, firstSubMenuList);
             removeOtherMenus(firstSubVBox);
         });
 
+        secondMenu.setOnAction(event-> {
+            toolsSlider(secondSubVBox, secondSubMenuList);
+            removeOtherMenus(secondSubVBox);
+        });
 
+
+    }
+
+    private void setContentToFeedBack() {
+    }
+
+    private void setContentToStoryEditor() {
+    }
+
+    private void setContentToDomain() {
+        fxmlLoader.setRoot(null);
+        fxmlLoader.setController(null);
+        fxmlLoader.setLocation(getClass().getResource("../view/domainView.fxml"));
+        try {
+            content = fxmlLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        mainPane.setCenter(content);
     }
 
     private void setContentToTestNLU() {
@@ -134,7 +176,7 @@ public class MainViewController implements Initializable {
 
     private void addMenusToMap(){
         map.put(firstSubVBox,firstSubMenuList);
-
+        map.put(secondSubVBox,secondSubMenuList);
 
         for(Map.Entry<VBox,VBox> entry : map.entrySet()){
             entry.getKey().getChildren().remove(entry.getValue());

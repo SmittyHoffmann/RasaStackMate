@@ -1,6 +1,7 @@
 package model.intent;
 
 import javafx.collections.ObservableList;
+import org.json.simple.JSONObject;
 
 import java.util.HashMap;
 
@@ -23,4 +24,6 @@ public interface IntentManager {
     public ObservableList<String> getExamplesToIntent(String intentName);
 
     void changeIntentName(String currentIntentName, String changedName);
+
+    void parseJSONIntent(JSONObject currentJSONObject);
 }

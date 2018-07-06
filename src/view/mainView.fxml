@@ -21,6 +21,16 @@
                               </VBox>
                           </children>
                       </VBox>
+                      <VBox id="secondSubVBox" fx:id="secondSubVBox" >
+                          <children>
+                              <Button fx:id="secondMenu"  alignment="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="RasaCore"/>
+                              <VBox fx:id="secondSubMenuList" >
+                                  <Button fx:id="domainEdit" alignment="CENTER" styleClass="subMenu" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Domain Bearbeiten"/>
+                                  <Button fx:id="storyEditor" alignment="CENTER" styleClass="subMenu" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Story-Editor"/>
+                                  <Button fx:id="feedBack" alignment="CENTER" styleClass="subMenu" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Feedback"/>
+                              </VBox>
+                          </children>
+                      </VBox>
                   </children>
               </VBox>
           </left>

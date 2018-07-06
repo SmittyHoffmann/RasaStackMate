@@ -2,8 +2,11 @@ package model.entity;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import java.util.HashMap;
+import java.util.Iterator;
 
 
 public class EntityManagerImpl implements EntityManager{
@@ -110,6 +113,19 @@ public class EntityManagerImpl implements EntityManager{
         entities.remove(oldName);
         entityNames.remove(oldName);
 
+    }
+
+    @Override
+    public void parseJSONEntities(JSONArray entities) {
+        Iterator<JSONObject> iterator = entities.iterator();
+        while(iterator.hasNext()){
+            JSONObject entity = iterator.next();
+            String entityName = (String) entity.get("entity");
+            String entityValue = (String) entity.get("value");
+            this.addEntity(entityName);
+            this.addEntityValue(entityName,entityValue);
+
+        }
     }
 
 

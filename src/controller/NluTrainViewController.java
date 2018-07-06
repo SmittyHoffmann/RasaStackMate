@@ -15,7 +15,7 @@ import javax.inject.Inject;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class nluTrainViewController implements Initializable {
+public class NluTrainViewController implements Initializable {
 
 
     @FXML

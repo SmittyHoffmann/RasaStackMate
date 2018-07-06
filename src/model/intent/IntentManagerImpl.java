@@ -2,8 +2,11 @@ package model.intent;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import java.util.HashMap;
+import java.util.Iterator;
 
 
 public class IntentManagerImpl implements IntentManager {
@@ -74,6 +77,25 @@ public class IntentManagerImpl implements IntentManager {
         intents.remove(currentIntentName);
         intentNames.remove(currentIntentName);
 
+
+    }
+
+    @Override
+    public void parseJSONIntent(JSONObject currentJSONObject) {
+        JSONObject intent = (JSONObject) currentJSONObject.get("intent");
+        String intentName = (String) intent.get("name");
+        String text = (String) currentJSONObject.get("text");
+        JSONArray entities = (JSONArray) currentJSONObject.get("entities");
+
+        Iterator<JSONObject> iterator = entities.iterator();
+        while(iterator.hasNext()){
+            JSONObject entity = iterator.next();
+            String entityName = (String) entity.get("entity");
+            String entityValue = (String) entity.get("value");
+            text = text.replace(entityValue, "@"+entityName);
+        }
+        this.addIntent(intentName);
+        this.addIntentExample(intentName,text);
 
     }
 

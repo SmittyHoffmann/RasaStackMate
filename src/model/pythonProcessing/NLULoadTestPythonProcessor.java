@@ -34,13 +34,11 @@ public class NLULoadTestPythonProcessor extends Service<Process> {
                 Process process = builder.start();
                 BufferedReader in = new BufferedReader(new InputStreamReader(process.getInputStream()));
                 String line;
-                //while (process.isAlive()) {
-                    while ((line = in.readLine()) != null) {
+                while ((line = in.readLine()) != null) {
                         if (line.equals("Model geladen")) {
                             return process;
                         }
                     }
-          //      }
                 return null;
             }
         };

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DomainEntityController">
+    <children>
+        <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <right>
+                <VBox fx:id="buttonBox" alignment="TOP_CENTER" prefWidth="223.0" BorderPane.alignment="CENTER">
+                    <children>
+                  <TextField fx:id="entityTextField">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </TextField>
+                        <Button fx:id="addEntityButton" alignment="CENTER" mnemonicParsing="false" text="Entity hinzufügen">
+                            <VBox.margin>
+                                <Insets top="10.0" />
+                            </VBox.margin></Button>
+                  <Separator prefWidth="200.0">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Separator>
+                        <Button fx:id="deleteEntityButton" alignment="CENTER" mnemonicParsing="false" text="Entity entfernen">
+                            <VBox.margin>
+                                <Insets top="10.0" />
+                            </VBox.margin></Button>
+                        <Button fx:id="takeOverButton" alignment="CENTER" mnemonicParsing="false" text="Entities aus NLU übernehmen">
+                            <VBox.margin>
+                                <Insets top="10.0" />
+                            </VBox.margin></Button>
+                    </children>
+                </VBox>
+            </right>
+            <center>
+                <ListView fx:id="entityListView" prefWidth="500.0" BorderPane.alignment="CENTER">
+
+                </ListView>
+            </center>
+        </BorderPane>
+    </children>
+</AnchorPane>

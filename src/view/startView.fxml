@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
 <AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StartViewController">
    <children>
       <BorderPane minHeight="100.0" minWidth="300.0" prefHeight="100.0" prefWidth="300.0" AnchorPane.bottomAnchor="400.0" AnchorPane.leftAnchor="600.0" AnchorPane.rightAnchor="600.0" AnchorPane.topAnchor="400.0">
@@ -17,11 +16,14 @@
                <children>
                   <HBox alignment="CENTER">
                      <children>
-                        <Label prefHeight="17.0" prefWidth="151.0" text="Ausgewählter Ordner" fx:id="directoryLabel"/>
-                        <Button mnemonicParsing="false" text="Ordner auswählen" fx:id="directoryButton" />
+                        <Label fx:id="directoryLabel" text="Ausgewählter Ordner">
+                           <padding>
+                              <Insets right="15.0" />
+                           </padding></Label>
+                        <Button fx:id="directoryButton" mnemonicParsing="false" text="Ordner auswählen" />
                      </children>
                   </HBox>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="RasaStackMate starten" fx:id="startButton">
+                  <Button fx:id="startButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="RasaStackMate starten">
                      <VBox.margin>
 
                         <Insets top="25.0" />
