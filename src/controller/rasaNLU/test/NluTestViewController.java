@@ -89,7 +89,6 @@ public class NluTestViewController implements Initializable {
 
             this.sendProcessor.setOnSucceeded(event -> {
                 entityText.getChildren().clear();
-                System.out.println("what is the fucking problem?");
                 this.currentJSONObject = this.sendProcessor.getValue();
 
                 textLabel.setText((String) currentJSONObject.get("text"));
@@ -97,7 +96,7 @@ public class NluTestViewController implements Initializable {
                 JSONArray entities = (JSONArray) currentJSONObject.get("entities");
 
                 String intentName = (String) intent.get("name");
-                System.out.println("Name:" +  intentName);
+
                 double intentConfidence = (double) intent.get("confidence");
 
                 Iterator<JSONObject> iterator = entities.iterator();

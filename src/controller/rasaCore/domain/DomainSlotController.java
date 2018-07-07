@@ -1,5 +1,6 @@
 package controller.rasaCore.domain;
 
+import controller.util.AddCategoricalSlotDialog;
 import controller.util.AddFloatSlotDialog;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -13,6 +14,7 @@ import org.controlsfx.control.textfield.TextFields;
 
 import javax.inject.Inject;
 import java.net.URL;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -55,9 +57,9 @@ public class DomainSlotController implements Initializable {
 
             if(!slotName.isEmpty() && type != null) {
                 Slot slot = factory.getSlot(slotName, type);
-                if(slot.getType() == SLOTTYPE.FLOAT){
-                    Dialog<Pair<Float,Float>> dialog = new AddFloatSlotDialog();
-                    Optional<Pair<Float,Float>> result = dialog.showAndWait();
+                if (slot.getType() == SLOTTYPE.FLOAT) {
+                    Dialog<Pair<Float, Float>> dialog = new AddFloatSlotDialog();
+                    Optional<Pair<Float, Float>> result = dialog.showAndWait();
                     FloatSlot floatSlot = (FloatSlot) slot;
                     result.ifPresent(resultData -> {
                         floatSlot.setMinValue(resultData.getKey());
@@ -65,12 +67,27 @@ public class DomainSlotController implements Initializable {
                         slotManager.addSlot(floatSlot);
                     });
 
-                }else if(slot.getType() == SLOTTYPE.CATEGORICAL){
-
+                } else if (slot.getType() == SLOTTYPE.CATEGORICAL) {
+                    Dialog<List<String>> dialog = new AddCategoricalSlotDialog();
+                    Optional<List<String>> result = dialog.showAndWait();
+                    CategoricalSlot categorySlot = (CategoricalSlot) slot;
+                    result.ifPresent(resultData -> {
+                        categorySlot.setValues(resultData);
+                        slotManager.addSlot(categorySlot);
+                    });
+                } else{
+                    slotManager.addSlot(slot);
                 }
+            }
+        });
 
+        deleteSlotButton.setOnAction(event -> {
+            Slot selectedSlot = slotTableView.getSelectionModel().getSelectedItem();
+            if(selectedSlot != null){
+                slotManager.removeSlot(selectedSlot);
+            }
         });
         }
 
     }
-}
+

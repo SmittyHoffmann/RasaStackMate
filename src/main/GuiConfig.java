@@ -6,6 +6,10 @@ import com.google.inject.Provides;
 import com.google.inject.Singleton;
 import model.fileHandling.RasaFileManager;
 import model.fileHandling.RasaFileManagerImpl;
+import model.rasaCore.DomainManager;
+import model.rasaCore.DomainManagerImpl;
+import model.rasaCore.slot.SlotManager;
+import model.rasaCore.slot.SlotManagerImpl;
 import model.rasaNLU.entity.EntityManager;
 import model.rasaNLU.entity.EntityManagerImpl;
 import model.rasaNLU.intent.IntentManager;
@@ -63,7 +67,20 @@ public class GuiConfig extends AbstractModule {
     }
 
 
+    @Provides @Singleton
+    DomainManager provideDomainManager(){
+        DomainManager manager = new DomainManagerImpl();
+        return manager;
+    }
+    @Provides @Singleton
+    SlotManager provideSlotManager(){
+        SlotManager manager = new SlotManagerImpl();
+            return manager;
+        }
+    }
 
 
 
-}
+
+
+

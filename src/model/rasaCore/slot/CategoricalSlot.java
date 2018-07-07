@@ -3,6 +3,8 @@ package model.rasaCore.slot;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.util.List;
+
 public class CategoricalSlot extends Slot{
 
     ObservableList<String> values;
@@ -27,5 +29,9 @@ public class CategoricalSlot extends Slot{
 
     public ObservableList<String> getValues(){
         return this.values;
+    }
+
+    public void setValues(List<String> values) {
+        this.values.addAll(values);
     }
 }

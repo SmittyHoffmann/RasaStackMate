@@ -1,5 +1,6 @@
 package controller.util;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -36,10 +37,11 @@ public class AddCategoricalSlotDialog extends Dialog {
         Button addButton = new Button("Wert hinzufügen");
         Button deleteButton = new Button("Wert entfernen");
         Separator separator = new Separator();
-        separator.setOrientation(Orientation.HORIZONTAL)
+        separator.setOrientation(Orientation.HORIZONTAL);
 
         vbox.getChildren().addAll(valueTextField,addButton,separator,deleteButton);
 
+        borderPane.setRight(vbox);
 
         Node confirmButton = this.getDialogPane().lookupButton(confirmButtonType);
 
@@ -57,14 +59,19 @@ public class AddCategoricalSlotDialog extends Dialog {
             }
         });
 
-        values.addListener(new ListChangeListener<String>() {
-            @Override
-            public void onChanged(Change<? extends String> c) {
+        values.addListener((ListChangeListener<String>) c -> confirmButton.setDisable((c.getList().size() == 0)));
 
+
+        this.getDialogPane().setContent(borderPane);
+
+        Platform.runLater(() -> valueTextField.requestFocus());
+
+        this.setResultConverter(dialogButton -> {
+            if(dialogButton == confirmButtonType){
+                return values;
             }
+            return null;
         });
-
-
 
     }
 

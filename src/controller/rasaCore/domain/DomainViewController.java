@@ -67,7 +67,7 @@ public class DomainViewController implements Initializable {
     private void setCustomActionTabContent() {
         fxmlLoader.setRoot(null);
         fxmlLoader.setController(null);
-        fxmlLoader.setLocation(getClass().getResource("../view/domainCustomActionView.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("../../../view/domainCustomActionView.fxml"));
         try {
             customActionView = fxmlLoader.load();
         } catch (IOException e) {
@@ -79,7 +79,7 @@ public class DomainViewController implements Initializable {
     private void setTemplateTabContent() {
         fxmlLoader.setRoot(null);
         fxmlLoader.setController(null);
-        fxmlLoader.setLocation(getClass().getResource("../view/domainTemplateView.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("../../../view/domainTemplateView.fxml"));
         try {
             templateView = fxmlLoader.load();
         } catch (IOException e) {
@@ -92,7 +92,7 @@ public class DomainViewController implements Initializable {
     private void setSlotTabContent() {
         fxmlLoader.setRoot(null);
         fxmlLoader.setController(null);
-        fxmlLoader.setLocation(getClass().getResource("../view/domainSlotView.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("../../../view/domainSlotView.fxml"));
         try {
             slotView = fxmlLoader.load();
         } catch (IOException e) {
@@ -104,7 +104,7 @@ public class DomainViewController implements Initializable {
     private void setEntityTabContent() {
         fxmlLoader.setRoot(null);
         fxmlLoader.setController(null);
-        fxmlLoader.setLocation(getClass().getResource("../view/domainEntityView.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("../../../view/domainEntityView.fxml"));
         try {
             entityView = fxmlLoader.load();
         } catch (IOException e) {
@@ -116,7 +116,7 @@ public class DomainViewController implements Initializable {
     private void setIntentTabContent() {
         fxmlLoader.setRoot(null);
         fxmlLoader.setController(null);
-        fxmlLoader.setLocation(getClass().getResource("../view/domainIntentView.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("../../../view/domainIntentView.fxml"));
         try {
             intentView = fxmlLoader.load();
         } catch (IOException e) {
