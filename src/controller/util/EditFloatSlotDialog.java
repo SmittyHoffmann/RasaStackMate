@@ -7,16 +7,30 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Pair;
+import model.rasaCore.domain.slot.FloatSlot;
 
-public class AddFloatSlotDialog extends Dialog {
+public class EditFloatSlotDialog extends Dialog {
 
     private TextField minValueField;
     private TextField maxValueField;
     float minvalue;
     float maxValue;
 
-    public AddFloatSlotDialog(){
+
+    public EditFloatSlotDialog(FloatSlot slot){
         super();
+        this.maxValue = slot.getMaxValue();
+        this.minvalue = slot.getMinValue();
+        setupDialog();
+    }
+    public EditFloatSlotDialog(){
+        super();
+        setupDialog();
+
+
+    }
+
+    public void setupDialog(){
         this.setTitle("FloatSlot bearbeiten");
         this.setHeaderText("Gib die Daten ein");
 
@@ -34,9 +48,9 @@ public class AddFloatSlotDialog extends Dialog {
         grid.setPadding(new Insets(20,150,10,10));
 
         this.minValueField = new TextField();
-        this.minValueField.setPromptText("Minimaler Wert");
+        this.minValueField.setText(String.valueOf(minvalue));
         this.maxValueField = new TextField();
-        this.maxValueField.setPromptText("Maximaler Wert");
+        this.maxValueField.setText(String.valueOf(maxValue));
 
         Label minvalueLabel = new Label("Minimaler Wert:");
         Label maxValueLabel = new Label("Maximaler Wert");
@@ -77,6 +91,5 @@ public class AddFloatSlotDialog extends Dialog {
             }
             return null;
         });
-
     }
 }

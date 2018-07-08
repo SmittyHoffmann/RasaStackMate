@@ -1,12 +1,13 @@
 package controller.rasaCore.domain;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.TextFieldListCell;
-import model.rasaCore.DomainManager;
+import model.rasaCore.domain.DomainManager;
 import model.rasaNLU.entity.EntityManager;
 
 import javax.inject.Inject;
@@ -32,16 +33,17 @@ public class DomainEntityController implements Initializable {
 
     @Inject
     DomainManager domainManager;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        entityListView.setItems(domainManager.getIntents());
+        entityListView.setItems((ObservableList<String>) domainManager.getEntities());
 
         entityListView.setEditable(true);
         entityListView.setCellFactory(TextFieldListCell.forListView());
 
         takeOverButton.setOnAction(event-> {
-            domainManager.setIntents(entityManager.getEntityNames());
+            domainManager.setEntities(entityManager.getEntityNames());
         });
 
         addEntityButton.setOnAction(event -> {

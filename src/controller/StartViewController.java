@@ -1,4 +1,4 @@
-package controller.rasaNLU;
+package controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

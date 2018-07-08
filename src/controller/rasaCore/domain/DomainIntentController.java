@@ -1,12 +1,13 @@
 package controller.rasaCore.domain;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.TextFieldListCell;
-import model.rasaCore.DomainManager;
+import model.rasaCore.domain.DomainManager;
 import model.rasaNLU.intent.IntentManager;
 
 import javax.inject.Inject;
@@ -35,7 +36,7 @@ public class DomainIntentController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        intentListView.setItems(domainManager.getIntents());
+        intentListView.setItems((ObservableList<String>) domainManager.getIntents());
 
         intentListView.setEditable(true);
         intentListView.setCellFactory(TextFieldListCell.forListView());
@@ -47,7 +48,7 @@ public class DomainIntentController implements Initializable {
         addIntentButton.setOnAction(event->{
             String intentName = intentTextField.getText();
             if(!intentName.isEmpty()){
-                domainManager.addEntity(intentName);
+                domainManager.addIntent(intentName);
             }
         });
 

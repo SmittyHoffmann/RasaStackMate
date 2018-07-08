@@ -1,4 +1,4 @@
-package model.rasaCore.slot;
+package model.rasaCore.domain.slot;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,21 +17,17 @@ public class CategoricalSlot extends Slot{
 
     @Override
     public SLOTTYPE getType() {
-        return null;
+        return SLOTTYPE.CATEGORICAL;
     }
 
-    public void addValue(String value){
-        this.values.add(value);
-    }
-    public void deleteValue(String value){
-        this.values.remove(value);
-    }
+
 
     public ObservableList<String> getValues(){
         return this.values;
     }
 
     public void setValues(List<String> values) {
+        this.values.clear();
         this.values.addAll(values);
     }
 }

@@ -16,5 +16,5 @@ import java.util.HashMap;
 public interface NLUTrainDataGenerator {
 
     JSONObject generateTrainingData(HashMap<String,Intent> intents, HashMap<String,Entity> entities, HashMap<String, Synonym> synonyms, ObservableList<Regex> regexList);
-    void fillNLUManagers(String filePath, IntentManager intentManager, EntityManager entityManager, SynonymManager synonymManager, RegexManager regexManager);
+    void fillNLUManagers(String fileName, IntentManager intentManager, EntityManager entityManager, SynonymManager synonymManager, RegexManager regexManager);
 }

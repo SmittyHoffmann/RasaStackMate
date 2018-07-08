@@ -2,6 +2,8 @@ package model.rasaNLU.nluJSONData;
 
 
 import javafx.collections.ObservableList;
+import main.GUI;
+import model.fileHandling.RasaFileManagerImpl;
 import model.rasaNLU.entity.Entity;
 import model.rasaNLU.entity.EntityManager;
 import model.rasaNLU.intent.Intent;
@@ -131,11 +133,11 @@ public class NLUJSONGenerator implements NLUTrainDataGenerator{
         return "";
     }
 
-    public void fillNLUManagers(String filePath, IntentManager intentManager, EntityManager entityManager, SynonymManager synonymManager, RegexManager regexManager){
+    public void fillNLUManagers(String fileName, IntentManager intentManager, EntityManager entityManager, SynonymManager synonymManager, RegexManager regexManager){
         JSONParser parser = new JSONParser();
-
+        String path = GUI.getWorkSpace()+"/"+RasaFileManagerImpl.FOLDERS.TRAIN_DATA_FOLDER.getFolderName()+"/"+fileName;
         try{
-            Object obj = parser.parse(new FileReader(filePath));
+            Object obj = parser.parse(new FileReader(path));
 
             JSONObject root = (JSONObject) obj;
 

@@ -1,4 +1,4 @@
-package model.rasaCore.slot;
+package model.rasaCore.domain.slot;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

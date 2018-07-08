@@ -5,10 +5,15 @@ import javafx.collections.ObservableList;
 import main.GUI;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.yaml.snakeyaml.DumperOptions;
+import org.yaml.snakeyaml.Yaml;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class RasaFileManagerImpl implements RasaFileManager {
 
@@ -150,8 +155,42 @@ public class RasaFileManagerImpl implements RasaFileManager {
 
     }
 
-    public void readTrainData(){
-        JSONParser parser = new JSONParser();
+    @Override
+    public void writeDomainFile(String fileName, Map<String, List<String>> intents, Map<String, List<String>> entities, Map<String, Map<String, Map<String, Object>>> slots, List<String> templates, Map<String, List<String>> actions) {
+        try {
+            String filePath = GUI.getWorkSpace()+"\\"+fileName+".yml";
+            FileWriter writer = new FileWriter(filePath);
+            DumperOptions options = new DumperOptions();
+            options.setPrettyFlow(true);
+            options.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK);
 
+            Yaml yaml = new Yaml(options);
+
+            yaml.dump(intents,writer);
+
+            writer = new FileWriter(filePath,true);
+
+            writer.write("\n");
+            yaml.dump(entities,writer);
+            writer.write("\n");
+
+            yaml.dump(slots,writer);
+            writer.write("\n");
+
+            for(String line : templates){
+                writer.write(line);
+            }
+
+            writer.write("\n");
+            yaml.dump(actions,writer);
+            writer.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
+
+
+
 }

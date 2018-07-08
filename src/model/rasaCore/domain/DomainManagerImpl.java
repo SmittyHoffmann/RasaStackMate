@@ -1,25 +1,31 @@
-package model.rasaCore;
+package model.rasaCore.domain;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class DomainManagerImpl  implements DomainManager {
+import java.util.List;
+
+public class DomainManagerImpl implements DomainManager {
 
     ObservableList<String> intents;
     ObservableList<String> entities;
     ObservableList<String> customActions;
 
-    public DomainManagerImpl(){
+
+    public DomainManagerImpl() {
         this.intents = FXCollections.observableArrayList();
         this.entities = FXCollections.observableArrayList();
         this.customActions = FXCollections.observableArrayList();
+
     }
+
     @Override
-    public ObservableList<String> getIntents() {
+    public List<String> getIntents() {
         return this.intents;
     }
 
-    public void setIntents(ObservableList<String> intents){
+
+    public void setIntents(List<String> intents) {
         this.intents.clear();
         this.intents.addAll(intents);
 
@@ -27,7 +33,7 @@ public class DomainManagerImpl  implements DomainManager {
 
     @Override
     public void addIntent(String intent) {
-        if(!this.intents.contains(intent)){
+        if (!this.intents.contains(intent)) {
             this.intents.add(intent);
         }
     }
@@ -38,13 +44,13 @@ public class DomainManagerImpl  implements DomainManager {
     }
 
     @Override
-    public ObservableList<String> getEntities() {
+    public List<String> getEntities() {
         return this.entities;
     }
 
     @Override
     public void addEntity(String entity) {
-        if(!this.entities.contains(entity)){
+        if (!this.entities.contains(entity)) {
             this.entities.add(entity);
         }
     }
@@ -61,7 +67,7 @@ public class DomainManagerImpl  implements DomainManager {
 
     @Override
     public void addCustomAction(String customAction) {
-        if(!this.customActions.contains(customAction)){
+        if (!this.customActions.contains(customAction)) {
             this.customActions.add(customAction);
         }
     }
@@ -69,5 +75,11 @@ public class DomainManagerImpl  implements DomainManager {
     @Override
     public void deleteCustomAction(String customAction) {
         this.customActions.remove(customAction);
+    }
+
+    @Override
+    public void setEntities(List<String> entityNames) {
+        this.entities.clear();
+        this.entities.addAll(entityNames);
     }
 }

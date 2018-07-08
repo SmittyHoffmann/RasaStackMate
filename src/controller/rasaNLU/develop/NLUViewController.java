@@ -27,7 +27,7 @@ public class NLUViewController implements Initializable {
 
     @FXML Button importButton;
 
-    @FXML ChoiceBox trainFileChoiceBox;
+    @FXML ChoiceBox <String> trainFileChoiceBox;
 
 
     @FXML
@@ -134,7 +134,7 @@ public class NLUViewController implements Initializable {
         });
 
         importButton.setOnAction(event ->{
-            String fileName = GUI.getWorkSpace()+"/"+RasaFileManagerImpl.FOLDERS.TRAIN_DATA_FOLDER.getFolderName()+"/"+trainFileChoiceBox.getSelectionModel().getSelectedItem();
+            String fileName = trainFileChoiceBox.getSelectionModel().getSelectedItem();
             generator.fillNLUManagers(fileName,intentManager,entityManager,synonymManager,regexManager);
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);

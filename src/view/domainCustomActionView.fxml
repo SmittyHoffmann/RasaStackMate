@@ -15,7 +15,7 @@
             <right>
                 <VBox fx:id="buttonBox" alignment="TOP_CENTER" prefWidth="223.0" BorderPane.alignment="CENTER">
                     <children>
-                  <TextField>
+                  <TextField fx:id="customActionTextField">
                      <VBox.margin>
                         <Insets top="20.0" />
                      </VBox.margin>

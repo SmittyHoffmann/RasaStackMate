@@ -1,4 +1,4 @@
-package model.rasaCore.slot;
+package model.rasaCore.domain.slot;
 
 public class TextSlot extends Slot {
 

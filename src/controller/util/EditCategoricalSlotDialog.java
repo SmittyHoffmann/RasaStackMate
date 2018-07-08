@@ -9,15 +9,26 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import model.rasaCore.domain.slot.CategoricalSlot;
 
-import javax.script.Bindings;
-
-public class AddCategoricalSlotDialog extends Dialog {
+public class EditCategoricalSlotDialog extends Dialog {
     private ListView<String> valueListView;
     private ObservableList<String> values;
 
-    public AddCategoricalSlotDialog(){
+    public EditCategoricalSlotDialog(CategoricalSlot slot){
         super();
+        values = FXCollections.observableArrayList();
+        values.addAll(slot.getValues());
+        setupDialog();
+    }
+
+    public EditCategoricalSlotDialog(){
+        super();
+        values = FXCollections.observableArrayList();
+        setupDialog();
+    }
+
+    private void setupDialog(){
         this.setTitle("CategoricalSlot bearbeiten");
         this.setHeaderText("Gib die Daten ein");
 
@@ -25,7 +36,7 @@ public class AddCategoricalSlotDialog extends Dialog {
         ButtonType cancelButtonType = new ButtonType("Abbrechen", ButtonBar.ButtonData.CANCEL_CLOSE);
 
         this.getDialogPane().getButtonTypes().addAll(confirmButtonType,cancelButtonType);
-        values = FXCollections.observableArrayList();
+
         BorderPane borderPane = new BorderPane();
         valueListView = new ListView<>();
         valueListView.setItems(values);
@@ -72,7 +83,6 @@ public class AddCategoricalSlotDialog extends Dialog {
             }
             return null;
         });
-
     }
 
 }

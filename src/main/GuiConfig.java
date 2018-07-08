@@ -6,10 +6,15 @@ import com.google.inject.Provides;
 import com.google.inject.Singleton;
 import model.fileHandling.RasaFileManager;
 import model.fileHandling.RasaFileManagerImpl;
-import model.rasaCore.DomainManager;
-import model.rasaCore.DomainManagerImpl;
-import model.rasaCore.slot.SlotManager;
-import model.rasaCore.slot.SlotManagerImpl;
+import model.rasaCore.domain.DomainGenerator;
+import model.rasaCore.domain.DomainGeneratorImpl;
+import model.rasaCore.domain.DomainManager;
+import model.rasaCore.domain.DomainManagerImpl;
+import model.rasaCore.domain.slot.SlotFactory;
+import model.rasaCore.domain.slot.SlotManager;
+import model.rasaCore.domain.slot.SlotManagerImpl;
+import model.rasaCore.domain.template.TemplateManager;
+import model.rasaCore.domain.template.TemplateManagerImpl;
 import model.rasaNLU.entity.EntityManager;
 import model.rasaNLU.entity.EntityManagerImpl;
 import model.rasaNLU.intent.IntentManager;
@@ -77,7 +82,26 @@ public class GuiConfig extends AbstractModule {
         SlotManager manager = new SlotManagerImpl();
             return manager;
         }
+
+    @Provides
+    SlotFactory provideSlotFactory(){
+        SlotFactory factory = new SlotFactory();
+        return factory;
     }
+
+    @Provides @Singleton
+    TemplateManager provideTemplateManager(){
+        TemplateManager manager = new TemplateManagerImpl();
+        return manager;
+    }
+
+    @Provides
+    DomainGenerator provideDomainGenerator(){
+        DomainGenerator generator = new DomainGeneratorImpl();
+        return generator;
+    }
+    }
+
 
 
 
