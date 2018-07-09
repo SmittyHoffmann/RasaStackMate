@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="Python" name="Python">
+      <configuration sdkName="Python 3.6 (venv)" />
+    </facet>
+  </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$">
@@ -7,9 +12,9 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="com.gluonhq:ignite-guice:1.0.3-SNAPSHOT" level="project" />
-    <orderEntry type="library" name="com.googlecode.json-simple:json-simple:1.1" level="project" />
-    <orderEntry type="library" name="org.controlsfx:controlsfx:9.0.0" level="project" />
     <orderEntry type="library" name="org.yaml:snakeyaml:1.21" level="project" />
+    <orderEntry type="library" name="org.controlsfx:controlsfx:9.0.0" level="project" />
+    <orderEntry type="library" name="com.gluonhq:ignite-guice:1.0.2" level="project" />
+    <orderEntry type="library" name="com.googlecode.json-simple:json-simple:1.1.1" level="project" />
   </component>
 </module>

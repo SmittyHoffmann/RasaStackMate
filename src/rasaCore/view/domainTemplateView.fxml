@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane  minHeight="-Infinity" minWidth="-Infinity"  xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rasaCore.controller.DomainTemplateController">
+    <children>
+        <BorderPane  AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <top>
+                <AnchorPane minHeight="0.0" minWidth="0.0"  BorderPane.alignment="CENTER">
+                    <children>
+                        <HBox  AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <children>
+                                <ChoiceBox fx:id="templateChoiceBox" prefWidth="150.0">
+                                    <HBox.margin>
+                                        <Insets top="15.0" />
+                                    </HBox.margin>
+                                </ChoiceBox>
+                                <TextField fx:id="templateNameTextField" promptText="Name des neuen Templates">
+                                    <HBox.margin>
+                                        <Insets left="15.0" top="15.0" />
+                                    </HBox.margin>
+                                </TextField>
+                                <Button fx:id="addTemplateButton" mnemonicParsing="false" text="Template hinzufügen">
+                                    <HBox.margin>
+                                        <Insets left="20.0" top="15.0" />
+                                    </HBox.margin>
+                                </Button>
+                                <Button fx:id="deleteTemplateButton" mnemonicParsing="false" text="Template entfernen">
+                                    <HBox.margin>
+                                        <Insets left="20.0" top="15.0" />
+                                    </HBox.margin>
+                                </Button>
+                                <Button fx:id="editTemplateNameButton" mnemonicParsing="false" text="Templatename bearbeiten">
+                                    <HBox.margin>
+                                        <Insets left="20.0" top="15.0" />
+                                    </HBox.margin>
+                                </Button>
+                            </children>
+                        </HBox>
+                    </children>
+                </AnchorPane>
+            </top>
+            <right>
+                <VBox fx:id="buttonBox" BorderPane.alignment="CENTER"  prefWidth="400" alignment="TOP_CENTER">
+                    <children>
+                        <Button fx:id="addExampleButton" mnemonicParsing="false"  text="Beispielsatz hinzufügen" alignment="CENTER">
+                            <VBox.margin>
+                                <Insets top="10.0" />
+                            </VBox.margin></Button>
+                        <TextField fx:id="exampleTextField" prefHeight="20.0" prefWidth="150.0">
+                            <VBox.margin>
+                                <Insets top="15.0" />
+                            </VBox.margin>
+                        </TextField>
+                        <Button fx:id="deleteExampleButton" mnemonicParsing="false" alignment="CENTER" text="Beispielsatz entfernen">
+                            <VBox.margin>
+                                <Insets top="10.0" />
+                            </VBox.margin></Button>
+                    </children>
+                </VBox>
+            </right>
+            <center>
+                <ListView fx:id="exampleListView" BorderPane.alignment="CENTER" />
+            </center>
+        </BorderPane>
+    </children>
+</AnchorPane>
