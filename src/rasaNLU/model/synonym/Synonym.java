@@ -30,7 +30,7 @@ public class Synonym {
         this.values.remove(value);
     }
 
-    public void setValues(List<String> exampleList){
-        this.values = FXCollections.observableArrayList(exampleList);
-    }
+    public void setValues(List<String> valueList){
+        this.values.clear();
+        this.values.addAll(valueList);}
 }
