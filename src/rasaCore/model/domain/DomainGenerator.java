@@ -1,4 +1,4 @@
-package rasaCore.model;
+package rasaCore.model.domain;
 
 import rasaCore.model.slot.SlotManager;
 import rasaCore.model.template.TemplateManager;

@@ -77,7 +77,7 @@ public class NLUViewController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         fxmlLoader.setRoot(null);
         fxmlLoader.setController(null);
-        fxmlLoader.setLocation(getClass().getResource("../../../view/intentView.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("../view/intentView.fxml"));
         try {
             intentView = fxmlLoader.load();
         } catch (IOException e) {
@@ -85,7 +85,7 @@ public class NLUViewController implements Initializable {
         }
         fxmlLoader.setRoot(null);
         fxmlLoader.setController(null);
-        fxmlLoader.setLocation(getClass().getResource("../../../view/entityView.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("../view/entityView.fxml"));
 
         try {
             entityView = fxmlLoader.load();
@@ -95,7 +95,7 @@ public class NLUViewController implements Initializable {
 
         fxmlLoader.setRoot(null);
         fxmlLoader.setController(null);
-        fxmlLoader.setLocation(getClass().getResource("../../../view/synonymView.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("../view/synonymView.fxml"));
         try {
             synonymView = fxmlLoader.load();
         } catch (IOException e) {
@@ -104,7 +104,7 @@ public class NLUViewController implements Initializable {
 
         fxmlLoader.setRoot(null);
         fxmlLoader.setController(null);
-        fxmlLoader.setLocation(getClass().getResource("../../../view/regexView.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("../view/regexView.fxml"));
         try {
             regexView = fxmlLoader.load();
         } catch (IOException e) {

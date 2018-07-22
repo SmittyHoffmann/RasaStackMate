@@ -27,7 +27,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.stream.Collectors;
 
-public class NLUJSONGenerator implements NLUTrainDataGenerator{
+public class
+NLUJSONGenerator implements NLUTrainDataGenerator{
 
     private JSONObject root;
     private RasaNLUJSONObject rasaObject;

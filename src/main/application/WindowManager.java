@@ -14,8 +14,8 @@ public class WindowManager {
     @Inject private FXMLLoader fxmlLoader;
 
     public enum SCENES{
-        START_SCENE("/main/application/startView.fxml"),
-        MAIN_SCENE("/main/application/mainView.fxml");
+        START_SCENE("startView.fxml"),
+        MAIN_SCENE("mainView.fxml");
 
         private String sceneName;
 
@@ -50,7 +50,7 @@ public class WindowManager {
             stage.close();
         }
         stage = new Stage();
-        root.getStylesheets().add("/main/application/style.css");
+        root.getStylesheets().add("main/application/style.css");
         stage.setMinHeight(400);
         stage.setMinWidth(800);
         stage.setTitle("RasaStackMate");

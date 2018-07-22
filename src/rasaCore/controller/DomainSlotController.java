@@ -12,7 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.Pair;
-import rasaCore.model.DomainManager;
+import rasaCore.model.domain.DomainManager;
 import rasaCore.model.slot.*;
 import org.controlsfx.control.textfield.TextFields;
 

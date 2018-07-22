@@ -81,7 +81,7 @@ public class EntityManagerImpl implements EntityManager{
         return this.entities;
     }
 
-    public void deleteIntentExample(String entityName, String value){
+    public void deleteEntityValue(String entityName, String value){
         this.entities.get(entityName).deleteValue(value);
     }
 

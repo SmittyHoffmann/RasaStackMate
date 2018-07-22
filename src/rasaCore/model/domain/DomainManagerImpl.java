@@ -1,4 +1,4 @@
-package rasaCore.model;
+package rasaCore.model.domain;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

@@ -1,4 +1,4 @@
-package rasaCore.model;
+package rasaCore.model.domain;
 
 import main.application.GUI;
 import rasaCore.model.slot.*;
@@ -146,8 +146,6 @@ public class DomainGeneratorImpl implements DomainGenerator {
                     } else if (entry.getKey().equals("actions")) {
                         List<String> actions = (List<String>) entry.getValue();
                         if (actions != null) {
-
-
                             for (String action : actions) {
                                 if (action.contains(".")) {
                                     domainManager.addCustomAction(action);

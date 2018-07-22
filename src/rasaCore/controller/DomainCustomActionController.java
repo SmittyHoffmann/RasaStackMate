@@ -7,7 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.TextFieldListCell;
-import rasaCore.model.DomainManager;
+import rasaCore.model.domain.DomainManager;
 
 import javax.inject.Inject;
 import java.net.URL;

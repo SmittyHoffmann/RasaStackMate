@@ -114,7 +114,7 @@ public class MainViewController implements Initializable {
     private void setContentToDomain() {
         fxmlLoader.setRoot(null);
         fxmlLoader.setController(null);
-        fxmlLoader.setLocation(getClass().getResource("../../../view/domainView.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("../../rasaCore/view/domain/domainView.fxml"));
         try {
             content = fxmlLoader.load();
         } catch (IOException e) {
@@ -126,7 +126,7 @@ public class MainViewController implements Initializable {
     private void setContentToTestNLU() {
         fxmlLoader.setRoot(null);
         fxmlLoader.setController(null);
-        fxmlLoader.setLocation(getClass().getResource("../../../view/nluTestView.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("../../rasaNLU/view/nluTestView.fxml"));
         try {
             content = fxmlLoader.load();
         } catch (IOException e) {
@@ -141,7 +141,7 @@ public class MainViewController implements Initializable {
     public void setContentToNLU(){
         fxmlLoader.setRoot(null);
         fxmlLoader.setController(null);
-        fxmlLoader.setLocation(getClass().getResource("../../../view/nluView.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("../../rasaNLU/view/nluView.fxml"));
         try {
             content = fxmlLoader.load();
         } catch (IOException e) {
@@ -156,7 +156,7 @@ public class MainViewController implements Initializable {
     public void setContentToTrainNLU(){
         fxmlLoader.setRoot(null);
         fxmlLoader.setController(null);
-        fxmlLoader.setLocation(getClass().getResource("../../../view/nluTrainView.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("../../rasaNLU/view/nluTrainView.fxml"));
         try {
             content = fxmlLoader.load();
         } catch (IOException e) {

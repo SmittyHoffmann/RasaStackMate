@@ -9,6 +9,6 @@ public interface RegexManager {
     void deleteRegex(Regex regex);
     void setRegexName(Regex regex, String name);
     void setRegexPattern(Regex regex, String pattern);
-    List<Regex> getRegexList();
+    ObservableList<Regex> getRegexList();
 
 }

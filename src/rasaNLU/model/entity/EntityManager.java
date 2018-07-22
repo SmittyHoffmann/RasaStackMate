@@ -13,7 +13,7 @@ public interface EntityManager {
     Entity getEntity(String entityName);
     ObservableList<String> getEntityNames();
     HashMap<String,Entity> getEntities();
-    void deleteIntentExample(String entityName, String value);
+    void deleteEntityValue(String entityName, String value);
     ObservableList<String> getValuesToEntity(String entityName);
     ObservableList<String> getEntityPlaceHolders();
     ObservableList<String> getAllEntityValues();
