@@ -2,9 +2,16 @@ package main.application;
 
 import com.gluonhq.ignite.guice.GuiceContext;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.stage.Stage;
+import rasaCore.graph.Cell;
+import rasaCore.graph.IntentElement;
+import rasaNLU.model.intent.Intent;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class GUI extends Application {
     private GuiceContext guiceContext;
@@ -15,6 +22,7 @@ public class GUI extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+
         guiceContext = new GuiceContext(this, ()-> Arrays.asList(new GuiConfig()));
         guiceContext.init();
 

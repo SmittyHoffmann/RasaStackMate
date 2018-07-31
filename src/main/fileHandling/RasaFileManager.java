@@ -8,12 +8,16 @@ import java.util.Map;
 
 public interface RasaFileManager {
 
+
+    void checkDirectories();
     ObservableList<String> getNLUTrainFiles();
     ObservableList<String> getCoreStoryFiles();
     ObservableList<String> getCoreDomainFiles();
     ObservableList<String> getNLUModels();
     ObservableList<String> getCoreModelFiles();
     void writeNLUTrainData(JSONObject root, String fileName);
+
+    void writeStoryFile(List<String>resultList, String fileName);
 
     void writeDomainFile(String fileName, Map<String, List<String>> intents, Map<String, List<String>> entities, Map<String, Map<String, Map<String,Object>>> slots, List<String> templates, Map<String, List<String>> actions);
 }

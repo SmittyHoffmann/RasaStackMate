@@ -20,7 +20,7 @@ public class DomainManagerImpl implements DomainManager {
     }
 
     @Override
-    public List<String> getIntents() {
+    public ObservableList<String> getIntents() {
         return this.intents;
     }
 
@@ -44,7 +44,7 @@ public class DomainManagerImpl implements DomainManager {
     }
 
     @Override
-    public List<String> getEntities() {
+    public ObservableList<String> getEntities() {
         return this.entities;
     }
 

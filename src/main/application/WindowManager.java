@@ -51,8 +51,8 @@ public class WindowManager {
         }
         stage = new Stage();
         root.getStylesheets().add("main/application/style.css");
-        stage.setMinHeight(400);
-        stage.setMinWidth(800);
+        stage.setMinHeight(800);
+        stage.setMinWidth(1200);
         stage.setTitle("RasaStackMate");
         stage.setScene(new Scene(root));
         stage.setResizable(false);

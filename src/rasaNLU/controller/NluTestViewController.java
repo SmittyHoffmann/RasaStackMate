@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import rasaNLU.model.entity.EntityManager;
@@ -58,6 +60,13 @@ public class NluTestViewController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.modelChoiceBox.setItems(fileManager.getNLUModels());
+
+        String defaultFont = Font.getDefault().getName();
+        textLabel.setFont(Font.font(defaultFont,FontWeight.BOLD,12));
+        textLabel.setTextFill(Color.WHITE);
+        intentLabel.setFont(Font.font(defaultFont,FontWeight.BOLD,12));
+        intentLabel.setTextFill(Color.WHITE);
+
 
         this.loadModelButton.setOnAction(e -> {
             String modelName = this.modelChoiceBox.getSelectionModel().getSelectedItem();

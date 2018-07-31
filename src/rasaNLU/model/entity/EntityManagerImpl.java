@@ -7,6 +7,7 @@ import org.json.simple.JSONObject;
 
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Random;
 
 
 public class EntityManagerImpl implements EntityManager{
@@ -126,6 +127,17 @@ public class EntityManagerImpl implements EntityManager{
             this.addEntityValue(entityName,entityValue);
 
         }
+    }
+
+    public String getRandomEntityValue(String entityId){
+        if(entities.containsKey(entityId)){
+            Entity entity = entities.get(entityId);
+            Random random = new Random();
+            int index = random.nextInt(entity.getValues().size());
+
+            return entity.getValues().get(index);
+        }
+        return "entityWert";
     }
 
 

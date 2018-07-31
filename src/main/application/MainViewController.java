@@ -109,6 +109,15 @@ public class MainViewController implements Initializable {
     }
 
     private void setContentToStoryEditor() {
+        fxmlLoader.setRoot(null);
+        fxmlLoader.setController(null);
+        fxmlLoader.setLocation(getClass().getResource("../../rasaCore/view/story/storyView.fxml"));
+        try {
+            content = fxmlLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        mainPane.setCenter(content);
     }
 
     private void setContentToDomain() {

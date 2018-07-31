@@ -8,18 +8,17 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.text.Text?>
 <AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.application.StartViewController">
    <children>
       <BorderPane minHeight="100.0" minWidth="300.0" prefHeight="100.0" prefWidth="300.0" AnchorPane.bottomAnchor="400.0" AnchorPane.leftAnchor="600.0" AnchorPane.rightAnchor="600.0" AnchorPane.topAnchor="400.0">
          <center>
             <VBox alignment="CENTER" BorderPane.alignment="CENTER">
                <children>
-                  <HBox alignment="CENTER">
+                  <HBox alignment="CENTER" spacing="5">
                      <children>
-                        <Label fx:id="directoryLabel" text="Ausgewählter Ordner">
-                           <padding>
-                              <Insets right="15.0" />
-                           </padding></Label>
+                        <Text fx:id="directoryText" text="Ausgewählter Ordner">
+                           </Text>
                         <Button fx:id="directoryButton" mnemonicParsing="false" text="Ordner auswählen" />
                      </children>
                   </HBox>

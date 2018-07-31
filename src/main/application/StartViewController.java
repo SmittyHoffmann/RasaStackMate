@@ -4,6 +4,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.stage.DirectoryChooser;
 
 import javax.inject.Inject;
@@ -13,7 +17,7 @@ import java.util.ResourceBundle;
 
 public class StartViewController implements Initializable {
     @FXML
-    private Label directoryLabel;
+    private Text directoryText;
 
     @FXML
     private Button directoryButton;
@@ -28,15 +32,20 @@ public class StartViewController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
 
+        String defaultFont = Font.getDefault().getName();
+
+        directoryText.setFont(Font.font(defaultFont,FontWeight.BOLD,12));
+        directoryText.setFill(Color.WHITE);
+
         directoryButton.setOnAction(event -> {
             DirectoryChooser directoryChooser = new DirectoryChooser();
             File choosedDirectory = directoryChooser.showDialog(WindowManager.stage);
             if(choosedDirectory == null){
-                directoryLabel.setText("Kein Ordner ausgewählt");
+                directoryText.setText("Kein Ordner ausgewählt");
             }
             else{
                 String path = choosedDirectory.getAbsolutePath();
-                directoryLabel.setText(path);
+                directoryText.setText(path);
                 GUI.setWorkSpace(path);
                 startButton.setDisable(false);
             }

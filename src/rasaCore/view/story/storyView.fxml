@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rasaCore.controller.StoryViewController">
+    <children>
+        <BorderPane fx:id="contentPane" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="0">
+            <top>
+                <HBox BorderPane.alignment="CENTER">
+                    <children>
+                        <ChoiceBox fx:id="storyFileChoiceBox" prefWidth="100" />
+
+                        <Button fx:id="importButton" mnemonicParsing="false" text="Importieren">
+                        </Button>
+                        <Button fx:id="generateButton" mnemonicParsing="false" text="Generieren">
+                            <HBox.margin>
+                                <Insets left="50.0" />
+                            </HBox.margin>
+                        </Button>
+                  <Button mnemonicParsing="false" text="Zurücksetzen" fx:id="resetButton">
+                     <HBox.margin>
+                        <Insets left="100.0" />
+                     </HBox.margin>
+                  </Button>
+                    </children>
+                </HBox>
+            </top>
+         <right>
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="125.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ListView fx:id="actionListView" prefHeight="200.0" prefWidth="200.0" />
+                  <Button fx:id="addActionButton" mnemonicParsing="false" text="Action hinzufügen">
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Separator prefHeight="10.0" prefWidth="125.0" />
+                  <ListView fx:id="intentListView" prefHeight="200.0" prefWidth="200.0">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </ListView>
+                  <Button fx:id="addIntentButton" mnemonicParsing="false" text="Intent hinzufügen">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+         </right>
+        </BorderPane>
+    </children>
+    <padding>
+        <Insets left="10.0" />
+    </padding>
+</AnchorPane>

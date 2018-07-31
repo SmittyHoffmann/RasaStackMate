@@ -21,5 +21,7 @@ public interface EntityManager {
     void changeEntityName(String currentEntityName, String changedName);
 
     void parseJSONEntities(JSONArray entities);
+
+    String getRandomEntityValue(String entityId);
 }
 
