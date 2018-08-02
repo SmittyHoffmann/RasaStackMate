@@ -38,7 +38,7 @@ public class NLUTrainPythonProcessor extends Service<List<String>>{
 
                 @Override
                 protected List<String> call() throws Exception {
-                    String formattedCommand = String.format(NLUCOMMANDS.TRAIN_NLU.getCommandString(),
+                    String formattedCommand = String.format(NluCommands.TRAIN_NLU.getCommandString(),
                             GUI.getWorkSpace() + "\\" + RasaFileManagerImpl.FOLDERS.NLU_MODEL_FOLDER.getFolderName(),
                             GUI.getWorkSpace() + "\\" + RasaFileManagerImpl.FOLDERS.TRAIN_DATA_FOLDER.getFolderName() + "\\" + trainFileName,
                             GUI.getWorkSpace() + RasaFileManagerImpl.FOLDERS.SPACY_CONFIG_FILE.getFolderName(), modelName);
@@ -47,16 +47,54 @@ public class NLUTrainPythonProcessor extends Service<List<String>>{
 
 
                     ProcessBuilder builder = new ProcessBuilder(commandList);
-                    builder.redirectErrorStream(true);
+                    List<String> output = new ArrayList<>();
                     Process process = builder.start();
+
+                    final Thread ioThread = new Thread() {
+                        @Override
+                        public void run() {
+                            try {
+                                final BufferedReader reader = new BufferedReader(
+                                        new InputStreamReader(process.getInputStream()));
+                                String line = null;
+                                while ((line = reader.readLine()) != null) {
+                                    System.out.println(line);
+                                    output.add(line);
+                                }
+                                reader.close();
+                            } catch (final Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    };
+                    final Thread errorThread = new Thread() {
+                        @Override
+                        public void run() {
+                            try {
+                                final BufferedReader errorReader = new BufferedReader(
+                                        new InputStreamReader(process.getErrorStream()));
+                                String error = null;
+                                while ((error = errorReader.readLine()) != null) {
+                                    System.out.println(error);
+                                    output.add(error);
+                                }
+                                errorReader.close();
+                            } catch (final Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    };
+
+                    ioThread.start();
+                    errorThread.start();
+
+
+
                     BufferedReader in = new BufferedReader(new InputStreamReader(process.getInputStream()));
                     int exitCode = process.waitFor();
-                    List<String> output = new ArrayList<>();
+                    output.add(Integer.toString(exitCode));
                     String line;
-                    while ((line = in.readLine()) != null) {
-                        output.add(line);
-                        System.out.println(line);
-                    }
+
                     return output;
                 }
 

@@ -89,6 +89,7 @@ public class StoryViewController implements Initializable {
             if(action != null){
                 graph.beginUpdate();
                 graph.getModel().addCell(action,CellType.ACTION);
+                graph.getModel().getCell(graph.getModel().getCellCounter()).setManaged(true);
                 graph.endUpdate();
             }
 
@@ -99,6 +100,7 @@ public class StoryViewController implements Initializable {
             if(intent != null){
                 graph.beginUpdate();
                 graph.getModel().addCell(intent,CellType.INTENT);
+                graph.getModel().getCell(graph.getModel().getCellCounter()).setManaged(true);
                 graph.endUpdate();
             }
 

@@ -23,6 +23,8 @@ import java.util.ResourceBundle;
 public class MainViewController implements Initializable {
 
 
+    @FXML Button coreTest;
+    @FXML Button coreTrain;
     @FXML Button storyEditor;
     @FXML Button domainEdit;
     @FXML Button feedBack;
@@ -88,6 +90,16 @@ public class MainViewController implements Initializable {
             setContentToStoryEditor();
         });
 
+        coreTrain.setOnAction(event -> {
+            setContentToTrainCore();
+        });
+
+        coreTest.setOnAction(event -> {
+            setContentToTestCore();
+        });
+
+
+
         feedBack.setOnAction(event-> {
             setContentToFeedBack();
         });
@@ -104,6 +116,32 @@ public class MainViewController implements Initializable {
 
 
     }
+
+    private void setContentToTrainCore() {
+        fxmlLoader.setRoot(null);
+        fxmlLoader.setController(null);
+        fxmlLoader.setLocation(getClass().getResource("../../rasaCore/view/coreTrainView.fxml"));
+        try {
+            content = fxmlLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        mainPane.setCenter(content);
+    }
+
+    private void setContentToTestCore() {
+        fxmlLoader.setRoot(null);
+        fxmlLoader.setController(null);
+        fxmlLoader.setLocation(getClass().getResource("../../rasaCore/view/coreTestView.fxml"));
+        try {
+            content = fxmlLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        mainPane.setCenter(content);
+    }
+
+
 
     private void setContentToFeedBack() {
     }

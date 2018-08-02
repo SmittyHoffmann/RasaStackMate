@@ -14,7 +14,7 @@ public interface RasaFileManager {
     ObservableList<String> getCoreStoryFiles();
     ObservableList<String> getCoreDomainFiles();
     ObservableList<String> getNLUModels();
-    ObservableList<String> getCoreModelFiles();
+    ObservableList<String> getCoreModels();
     void writeNLUTrainData(JSONObject root, String fileName);
 
     void writeStoryFile(List<String>resultList, String fileName);

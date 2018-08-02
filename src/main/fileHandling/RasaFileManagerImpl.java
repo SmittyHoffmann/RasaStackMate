@@ -39,7 +39,7 @@ public class RasaFileManagerImpl implements RasaFileManager {
     File workspaceFolder;
 
     public RasaFileManagerImpl() {
-        this.workspaceFolder = new File(GUI.getWorkSpace());
+        this.workspaceFolder = new File(GUI.getWorkSpace()+"/");
         this.checkDirectories();
     }
 
@@ -128,7 +128,7 @@ public class RasaFileManagerImpl implements RasaFileManager {
     }
 
     @Override
-    public ObservableList<String> getCoreModelFiles() {
+    public ObservableList<String> getCoreModels() {
         File[] coreModels = this.coreModelFolder.listFiles();
         ObservableList<String> coreModelNames = FXCollections.observableArrayList();
 

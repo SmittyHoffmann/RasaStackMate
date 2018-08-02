@@ -37,11 +37,6 @@ public class NLUSendTestPythonProcessor extends Service<JSONObject> {
                 writer.write("\n");
                 writer.flush();
 
-
-
-
-
-
                 while((result = reader.readLine()) != null) {
 
                     if(result.startsWith("{")){

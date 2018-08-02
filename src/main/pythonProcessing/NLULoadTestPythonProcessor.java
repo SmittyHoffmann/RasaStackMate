@@ -26,7 +26,7 @@ public class NLULoadTestPythonProcessor extends Service<Process> {
                 List<String> output = new ArrayList<>();
                 String test = getClass().getResource("nluInterpreter.py").getPath();
                 test = test.substring(1);
-                String formattedCommand = String.format(NLUCOMMANDS.LOAD_AND_TEST_NLU.getCommandString(), test, GUI.getWorkSpace()+"\\"+ RasaFileManagerImpl.FOLDERS.NLU_MODEL_FOLDER.getFolderName() + "default\\" +modelName);
+                String formattedCommand = String.format(NluCommands.LOAD_AND_TEST_NLU.getCommandString(), test, GUI.getWorkSpace()+"\\"+ RasaFileManagerImpl.FOLDERS.NLU_MODEL_FOLDER.getFolderName() + "default\\" +modelName);
                 System.out.println(formattedCommand);
                 List<String> commandList = Arrays.asList(formattedCommand.split(" "));
                 ProcessBuilder builder = new ProcessBuilder(commandList);

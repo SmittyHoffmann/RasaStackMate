@@ -27,6 +27,8 @@
                               <VBox fx:id="secondSubMenuList" >
                                   <Button fx:id="domainEdit" alignment="CENTER" styleClass="subMenu" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Domain Bearbeiten"/>
                                   <Button fx:id="storyEditor" alignment="CENTER" styleClass="subMenu" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Story-Editor"/>
+                                  <Button fx:id="coreTrain" alignment="CENTER" styleClass="subMenu" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Trainieren"/>
+                                  <Button fx:id="coreTest" alignment="CENTER" styleClass="subMenu" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Testen"/>
                                   <Button fx:id="feedBack" alignment="CENTER" styleClass="subMenu" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Feedback"/>
                               </VBox>
                           </children>

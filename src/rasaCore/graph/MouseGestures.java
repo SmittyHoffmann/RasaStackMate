@@ -37,13 +37,17 @@ public class MouseGestures {
                     if(graph.getCellLayer().getChildren().contains(line)){
                         graph.getCellLayer().getChildren().remove(line);
                     }
-                    line = new Line();
-                    line.setStartX(event.getSceneX());
-                    line.setStartY(event.getSceneY());
-                    line.setEndX(event.getSceneX());
-                    line.setEndY(event.getSceneY());
-                    graph.getCellLayer().getChildren().add(0,line);
                     Node node = (Node) event.getSource();
+                    line = new Line();
+                    dragContext.x = node.getLayoutX() + node.getBoundsInParent().getWidth()/2;
+                    dragContext.y = node.getLayoutY() + node.getBoundsInParent().getHeight() / 2;
+                    line.setStartX(dragContext.x);
+                    line.setStartY(dragContext.y);
+                    line.setEndX(dragContext.x);
+                    line.setEndY(dragContext.y);
+
+                    graph.getCellLayer().getChildren().add(0,line);
+
                     node.startFullDrag();
                     event.consume();
 
@@ -74,8 +78,9 @@ public class MouseGestures {
 
         @Override
         public void handle(MouseEvent event) {
+            Node node = (Node) event.getSource();
             if (event.isPrimaryButtonDown() && !event.isSecondaryButtonDown()) {
-                Node node = (Node) event.getSource();
+
 
                 double offsetX = event.getScreenX() + dragContext.x;
                 double offsetY = event.getScreenY() + dragContext.y;
@@ -89,8 +94,10 @@ public class MouseGestures {
                 node.relocate(offsetX, offsetY);
             } else if (!event.isPrimaryButtonDown() && event.isSecondaryButtonDown()) {
                 if (line != null) {
-                    line.setEndX(event.getSceneX());
-                    line.setEndY(event.getSceneY());
+
+
+                    line.setEndX(event.getX() + dragContext.x - node.getBoundsInParent().getWidth() / 2);
+                    line.setEndY(event.getY() + dragContext.y - node.getBoundsInParent().getHeight() / 2);
                 }
             }
             event.consume();

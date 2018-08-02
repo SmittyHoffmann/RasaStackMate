@@ -54,9 +54,9 @@
                <children>
                   <Label fx:id="textLabel" GridPane.columnIndex="1" />
                   <Label fx:id="intentLabel" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text:" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Intent:" GridPane.rowIndex="1" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Entities:" GridPane.rowIndex="2" />
+                  <Label  text="Text:" />
+                  <Label  text="Intent:" GridPane.rowIndex="1" />
+                  <Label text="Entities:" GridPane.rowIndex="2" />
                   <TextFlow prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" fx:id="entityText" />
                </children>
                <padding>

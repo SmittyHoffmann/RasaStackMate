@@ -115,6 +115,8 @@ public class NluTestViewController implements Initializable {
                     String entityName = (String) entity.get("entity");
                     double entityConfidence = (double) entity.get("confidence");
                     Text bufferText = new Text(entityName +" : "+ entityValue);
+
+                    textLabel.setFont(Font.font(defaultFont,FontWeight.BOLD,12));
                     if(entityConfidence > 0.75){
                         bufferText.setFill(Color.GREEN);
                     }else{
