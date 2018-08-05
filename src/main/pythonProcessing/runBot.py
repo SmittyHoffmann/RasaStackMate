@@ -10,9 +10,6 @@ import os
 from rasa_core.agent import Agent
 from rasa_core import utils
 from rasa_core.channels.console import ConsoleInputChannel
-from rasa_core.interpreter import RegexInterpreter
-from rasa_core.policies.keras_policy import KerasPolicy
-from rasa_core.policies.memoization import MemoizationPolicy
 from rasa_core.interpreter import RasaNLUInterpreter
 
 logger = logging.getLogger(__name__)
@@ -21,7 +18,7 @@ logger = logging.getLogger(__name__)
 
 
 def create_argument_parser():
-    parser = argparse.ArgumentParser(description='runs a bot or starts onlinetraining')
+    parser = argparse.ArgumentParser(description='Startet einen Chatbot')
 
     parser.add_argument('-c','--core', type=str,required=True,help="coreModel folder")
     parser.add_argument('-n','--nlu',type=str,required=True,help="nluModelFolder")

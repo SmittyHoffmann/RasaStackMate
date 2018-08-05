@@ -10,8 +10,13 @@ import org.yaml.snakeyaml.Yaml;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.CopyOption;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 import java.util.Map;
+
+import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 public class RasaFileManagerImpl implements RasaFileManager {
 
@@ -56,6 +61,13 @@ public class RasaFileManagerImpl implements RasaFileManager {
         if (!coreModelFolder.exists()) {
             coreModelFolder.mkdirs();
         }
+        try {
+            Files.copy(new File(getClass().getResource("../pythonProcessing/runBot.py").getPath()).toPath(),new File(GUI.getWorkSpace()+"/runBot.py").toPath(),REPLACE_EXISTING);
+            Files.copy(new File(getClass().getResource("../pythonProcessing/trainOnline.py").getPath()).toPath(),new File(GUI.getWorkSpace()+"/trainOnline.py").toPath(),REPLACE_EXISTING);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
         File spacyConfig = new File(GUI.getWorkSpace()+FOLDERS.SPACY_CONFIG_FILE.getFolderName());
         if(!spacyConfig.exists()){

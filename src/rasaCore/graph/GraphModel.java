@@ -1,6 +1,7 @@
 package rasaCore.graph;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
+import javafx.scene.shape.Circle;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -44,6 +45,7 @@ public class GraphModel {
         cellMap = new HashMap<>(); // <id,cell>
 
         graphParent = new Cell( "_ROOT_");
+
 
     }
 
