@@ -1,5 +1,7 @@
 package rasaNLU.controller;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -24,6 +26,8 @@ import java.util.ResourceBundle;
 public class NluTestViewController implements Initializable {
 
 
+    @FXML Slider slider;
+    @FXML Label valueLabel;
     @FXML Label textLabel;
     @FXML Label intentLabel;
     @FXML TextFlow entityText;
@@ -57,8 +61,34 @@ public class NluTestViewController implements Initializable {
     NLULoadTestPythonProcessor loadProcessor;
     NLUSendTestPythonProcessor sendProcessor;
 
+    double security;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+
+        slider.setMin(0.25);
+        slider.setMax(1);
+
+
+        slider.setShowTickLabels(true);
+        slider.setShowTickMarks(true);
+        slider.setBlockIncrement(0.25);
+
+        slider.valueProperty().addListener(new ChangeListener<Number>() {
+
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, //
+                                Number oldValue, Number newValue) {
+
+                security = newValue.doubleValue();
+                valueLabel.setText(String.format("%.2f",security));
+
+            }
+        });
+
+        slider.setValue(0.75);
+        security = 0.75;
         this.modelChoiceBox.setItems(fileManager.getNLUModels());
 
         String defaultFont = Font.getDefault().getName();
@@ -117,7 +147,7 @@ public class NluTestViewController implements Initializable {
                     Text bufferText = new Text(entityName +" : "+ entityValue);
 
                     textLabel.setFont(Font.font(defaultFont,FontWeight.BOLD,12));
-                    if(entityConfidence > 0.75){
+                    if(entityConfidence > security){
                         bufferText.setFill(Color.GREEN);
                     }else{
                         bufferText.setFill(Color.RED);
@@ -126,7 +156,7 @@ public class NluTestViewController implements Initializable {
                 }
 
                 intentLabel.setText(intentName);
-                if(intentConfidence > 0.75 ){
+                if(intentConfidence > security ){
                     intentLabel.setTextFill(Color.GREEN);
                 }else{
                     intentLabel.setTextFill(Color.RED);

@@ -56,6 +56,10 @@ public class CoreSendTestPythonProcessor extends Service<String> {
         this.message = message;
     }
 
+    public Process getProcess() {
+        return process;
+    }
+
     @Override
     protected Task<String> createTask() {
         currentTask = new SenderTask(this.writer,this.errorReader,this.process,this.message);

@@ -7,7 +7,6 @@ import com.google.inject.Singleton;
 import main.fileHandling.RasaFileManager;
 import main.fileHandling.RasaFileManagerImpl;
 import rasaCore.graph.Graph;
-import rasaCore.graph.GraphModel;
 import rasaCore.model.domain.DomainGenerator;
 import rasaCore.model.domain.DomainGeneratorImpl;
 import rasaCore.model.domain.DomainManager;
@@ -17,8 +16,6 @@ import rasaCore.model.slot.SlotManager;
 import rasaCore.model.slot.SlotManagerImpl;
 import rasaCore.model.template.TemplateManager;
 import rasaCore.model.template.TemplateManagerImpl;
-import rasaCore.view.story.StoryGenerator;
-import rasaCore.view.story.StoryGeneratorImpl;
 import rasaNLU.model.entity.EntityManager;
 import rasaNLU.model.entity.EntityManagerImpl;
 import rasaNLU.model.intent.IntentManager;
@@ -111,11 +108,6 @@ public class GuiConfig extends AbstractModule {
         return graph;
     }
 
-    @Provides
-    StoryGenerator provideStoryGenerator(){
-        StoryGenerator generator = new StoryGeneratorImpl();
-        return generator;
-    }
 
     }
 

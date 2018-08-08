@@ -1,4 +1,4 @@
-package rasaCore.view.story;
+package rasaCore.model.story;
 
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
@@ -9,16 +9,17 @@ import rasaCore.graph.IntentElement;
 import rasaNLU.model.entity.EntityManager;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.ServiceConfigurationError;
+import java.util.Map;
 
 public class StoryGeneratorService extends Service<List<String>> {
 
     GraphModel model;
-    EntityManager manager;
-    public StoryGeneratorService(GraphModel model, EntityManager manager){
+
+    public StoryGeneratorService(GraphModel model){
         this.model = model;
-        this.manager = manager;
+
     }
 
 
@@ -61,9 +62,10 @@ public class StoryGeneratorService extends Service<List<String>> {
                 String intent = "* "+ ((IntentElement) cell).getIntentName();
                 if(!(((IntentElement) cell).getEntities().isEmpty())){
                     List<String> entityStrings = new ArrayList<>();
-                    for(String entity : ((IntentElement) cell).getEntities()){
-                        String randomEntityValue = manager.getRandomEntityValue(entity);
-                        String entityString = "\""+entity+"\" : \""+randomEntityValue+"\"";
+                    for(Map.Entry<String,String> entry : ((IntentElement) cell).getEntities().entrySet()){
+                        String entityValue = entry.getValue();
+                        String entityKey = entry.getKey();
+                        String entityString = "\""+entityKey+"\" : \""+entityValue+"\"";
                         entityStrings.add(entityString);
                     }
                     intent = intent+"{"+String.join(",",entityStrings)+"}";

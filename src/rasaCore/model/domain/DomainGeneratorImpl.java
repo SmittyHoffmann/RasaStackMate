@@ -38,8 +38,9 @@ public class DomainGeneratorImpl implements DomainGenerator {
     public Map<String, List<String>> generateActions(DomainManager domainManager, TemplateManager templateManager) {
         Map<String, List<String>> actions = new HashMap<>();
         List<String> actionList = new ArrayList<>();
-
-        actionList.addAll(domainManager.getCustomActions());
+        for(String customAction : domainManager.getCustomActions()){
+            actionList.add("actions."+customAction);
+        }
         actionList.addAll(templateManager.getTemplateNames());
 
         actions.put("actions", actionList);
@@ -131,7 +132,6 @@ public class DomainGeneratorImpl implements DomainGenerator {
                         }
                     }
                 } else if (entry.getKey().equals("templates")) {
-
                     Map<String, List<String>> templateMap = (Map<String, List<String>>) entry.getValue();
                     if (templateMap != null) {
                         for (Map.Entry<String, List<String>> template : templateMap.entrySet()) {
@@ -142,20 +142,21 @@ public class DomainGeneratorImpl implements DomainGenerator {
                                 templateManager.addUtterance(templateName, utterance);
                             }
                         }
-
+                    }
                     } else if (entry.getKey().equals("actions")) {
                         List<String> actions = (List<String>) entry.getValue();
                         if (actions != null) {
                             for (String action : actions) {
-                                if (action.contains(".")) {
-                                    domainManager.addCustomAction(action);
+                                if (action.startsWith("actions.")) {
+                                    String [] split = action.split("\\.");
+                                    domainManager.addCustomAction(split[split.length-1]);
                                 }
                             }
                         }
                     }
 
                 }
-            }
+
             } catch(FileNotFoundException e){
                 e.printStackTrace();
             }

@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -11,7 +12,6 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
 <BorderPane minHeight="100.0" minWidth="300.0" prefHeight="800.0" prefWidth="1000.0" AnchorPane.bottomAnchor="40.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rasaNLU.controller.NluTestViewController">
@@ -39,6 +39,9 @@
                         <TextField fx:id="testTextfield" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Button fx:id="loadModelButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="118.0" text="Laden" GridPane.columnIndex="2" />
                   <Button fx:id="testSentenceButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="114.0" text="Abschicken" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <Slider GridPane.columnIndex="1" GridPane.rowIndex="2" fx:id="slider"/>
+                  <Label text="Mindest-Sicherheit:" GridPane.rowIndex="2" />
+                  <Label fx:id="valueLabel" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                     </children>
                 </GridPane>
             <GridPane>
@@ -54,10 +57,10 @@
                <children>
                   <Label fx:id="textLabel" GridPane.columnIndex="1" />
                   <Label fx:id="intentLabel" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Label  text="Text:" />
-                  <Label  text="Intent:" GridPane.rowIndex="1" />
+                  <Label text="Text:" />
+                  <Label text="Intent:" GridPane.rowIndex="1" />
                   <Label text="Entities:" GridPane.rowIndex="2" />
-                  <TextFlow prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" fx:id="entityText" />
+                  <TextFlow fx:id="entityText" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
                <padding>
                   <Insets right="10.0" />

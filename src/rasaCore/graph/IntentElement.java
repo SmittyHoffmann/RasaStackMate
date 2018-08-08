@@ -2,6 +2,7 @@ package rasaCore.graph;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -17,6 +18,7 @@ import javafx.scene.text.Text;
 import main.util.EditEntitiesDialog;
 import rasaNLU.model.intent.Intent;
 
+import java.util.Map;
 import java.util.Optional;
 
 public class IntentElement extends Cell {
@@ -25,13 +27,13 @@ public class IntentElement extends Cell {
 
     String intentName;
     Button editEntities;
-    ObservableList<String> entities;
+    ObservableMap<String,String> entities;
     Text entityText;
 
     public IntentElement(String cellId, String intentName) {
         super(cellId);
 
-        entities = FXCollections.observableArrayList();
+        entities = FXCollections.observableHashMap();
 
         this.intentName = intentName;
 
@@ -70,8 +72,8 @@ public class IntentElement extends Cell {
 
         editEntities.addEventFilter(ActionEvent.ACTION, (EventHandler<Event>) event -> {
             System.out.println("vor Dialog");
-            Dialog<ObservableList<String>> dialog = new EditEntitiesDialog(entityList, getEntities());
-            Optional<ObservableList<String>> result = dialog.showAndWait();
+            Dialog<ObservableMap<String,String>> dialog = new EditEntitiesDialog(entityList, getEntities());
+            Optional<ObservableMap<String,String>> result = dialog.showAndWait();
             result.ifPresent(resultData -> {
                 setEntities(resultData);
             });
@@ -81,19 +83,19 @@ public class IntentElement extends Cell {
     }
 
 
-    public ObservableList<String> getEntities() {
+    public ObservableMap<String,String> getEntities() {
         return this.entities;
     }
 
-    public void setEntities(ObservableList<String> entities) {
+    public void setEntities(ObservableMap<String,String> entities) {
         this.entities.clear();
         String entityString = "";
-        for (String entity : entities) {
-            this.entities.add(entity);
+        for(Map.Entry<String,String> entry : entities.entrySet()){
+            this.entities.put(entry.getKey(),entry.getValue());
             if (entityString.isEmpty()) {
-                entityString = entity;
+                entityString = entry.getKey() + " : " + entry.getValue();
             } else {
-                entityString = entityString + ", " + entity;
+                entityString = "\n" +entityString + ", " + entry.getKey() + " : " + entry.getValue();
             }
         }
         entityText.setText("{ " + entityString + " }");
@@ -113,8 +115,6 @@ public class IntentElement extends Cell {
     public boolean equals(Cell element) {
         if (element instanceof IntentElement) {
             IntentElement compareElement =(IntentElement) element;
-            FXCollections.sort(getEntities());
-            FXCollections.sort(compareElement.getEntities());
            if(compareElement.getEntities().equals(getEntities()) && compareElement.getIntentName().equals(getIntentName())){
                return true;
            }

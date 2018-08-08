@@ -149,7 +149,7 @@ public class MainViewController implements Initializable {
     private void setContentToStoryEditor() {
         fxmlLoader.setRoot(null);
         fxmlLoader.setController(null);
-        fxmlLoader.setLocation(getClass().getResource("../../rasaCore/view/story/storyView.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("../../rasaCore/view/storyView.fxml"));
         try {
             content = fxmlLoader.load();
         } catch (IOException e) {
@@ -161,7 +161,7 @@ public class MainViewController implements Initializable {
     private void setContentToDomain() {
         fxmlLoader.setRoot(null);
         fxmlLoader.setController(null);
-        fxmlLoader.setLocation(getClass().getResource("../../rasaCore/view/domain/domainView.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("../../rasaCore/view/domainView.fxml"));
         try {
             content = fxmlLoader.load();
         } catch (IOException e) {
