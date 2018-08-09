@@ -17,42 +17,81 @@ import javax.inject.Inject;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controller für die Testview
+ */
 public class CoreTestViewController implements Initializable {
+    /**
+     * Button zum Senden einer Nachricht
+     */
     @FXML
     Button sendButton;
+    /**
+     * Container für die seitlichen Kontrollelemente
+     */
     @FXML
     VBox sideBox;
 
-
+    /**
+     * Textfeld zum Eingabe der Nachricht
+     */
     @FXML
     TextArea inputMessage;
+    /**
+     * ScrollPane für das Chatfenster
+     */
     @FXML
     ScrollPane chatBoxContainer;
 
-
+    /**
+     * Container für die Nachrichten
+     */
     private VBox chatBox;
-
+    /**
+     * Geteilter Button für die Modi-Auswahl
+     */
     private SegmentedButton toggle;
+    /**
+     * Button für Normal-Modus
+     */
     private ToggleButton normalTest;
+    /**
+     * Button für interaktiver Trainer modus
+     */
     private ToggleButton trainerTest;
-
+    /**
+     * Container für GUI-Elemente des Normalen Tests
+     */
     private GridPane normalGrid;
+    /**
+     * Container für GUI-Elemente des Interaktiven Trainings
+     */
     private GridPane trainOnlineGrid;
-
-    private Label coreModelLabel;
+    /**
+     * Auswahlbox für Core-Models
+     */
     private ChoiceBox<String> coreModelChoiceBox;
-
-    private Label nluModelLabel;
+    /**
+     * Auswahlbox für NLU-Models(normaler Test)
+     */
     private ChoiceBox<String> nluModelChoiceBox;
 
-    private Label trainNluModelLabel;
+    /**
+     * AuswahlBox für NLU-Model(Interaktiver Trainer)
+     */
     private ChoiceBox<String> trainNluModelChoiceBox;
-
+    /**
+     * AuswahlBox für Storydatei
+     */
     private ChoiceBox<String> storyFileChoiceBox;
+    /**
+     * Auswahlbox für Domaindatei
+     */
     private ChoiceBox<String> domainFileChoiceBox;
-    private Label storyFileLabel;
-    private Label domainFileLabel;
 
+    /**
+     * Button zum Starten eines Python-Skripts
+     */
     private Button loadButton;
 
 
@@ -63,11 +102,64 @@ public class CoreTestViewController implements Initializable {
     Process currentProcess;
     Label currentAnswer;
 
-
+    /**
+     *
+     * {@inheritDoc}
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         createComponents();
+        setHandlers();
+
+
+
+
+
+
+    }
+
+    /**
+     * Legt zusätzliche GUI-Elemente an und befüllt die View mit Daten
+     */
+    private void createComponents() {
+
+
+        chatBox = new VBox();
+        normalTest = new ToggleButton("Normal");
+        trainerTest = new ToggleButton("Interaktives Training");
+        toggle = new SegmentedButton(normalTest, trainerTest);
+        loadButton = new Button("Laden");
+
+        normalGrid = new GridPane();
+        trainOnlineGrid = new GridPane();
+
+
+        Label coreModelLabel = new Label("Core-Model:");
+        Label nluModelLabel = new Label("NLU-Model:");
+        nluModelChoiceBox = new ChoiceBox<>();
+        coreModelChoiceBox = new ChoiceBox<>();
+        nluModelChoiceBox.setItems(fileManager.getNLUModels());
+        coreModelChoiceBox.setItems(fileManager.getCoreModels());
+
+        Label trainNluModelLabel = new Label("NLU-Model");
+        trainNluModelChoiceBox = new ChoiceBox<>();
+        trainNluModelChoiceBox.setItems(fileManager.getNLUModels());
+
+        Label storyFileLabel = new Label("Story-Datei:");
+        Label domainFileLabel = new Label("Domain-Datei:");
+        storyFileChoiceBox = new ChoiceBox<>();
+        storyFileChoiceBox.setItems(fileManager.getCoreStoryFiles());
+        domainFileChoiceBox = new ChoiceBox<>();
+        domainFileChoiceBox.setItems(fileManager.getCoreDomainFiles());
+
+
+        normalTest.prefWidthProperty().bind(toggle.widthProperty().divide(2));
+        trainerTest.prefWidthProperty().bind(toggle.widthProperty().divide(2));
+        toggle.setMaxWidth(Double.MAX_VALUE);
+
+        toggle.getStyleClass().add(SegmentedButton.STYLE_CLASS_DARK);
+
 
         normalGrid.add(nluModelChoiceBox, 1, 0);
         normalGrid.add(coreModelChoiceBox, 1, 1);
@@ -91,7 +183,13 @@ public class CoreTestViewController implements Initializable {
         sideBox.getChildren().add(toggle);
         sideBox.getChildren().add(loadButton);
 
+        chatBoxContainer.setContent(chatBox);
+    }
 
+    /**
+     * Fügt EventHandler zu Buttons hinzu
+     */
+    private void setHandlers(){
         normalTest.setOnAction(event -> {
             if (sideBox.getChildren().contains(trainOnlineGrid)) {
                 sideBox.getChildren().remove(trainOnlineGrid);
@@ -107,7 +205,7 @@ public class CoreTestViewController implements Initializable {
         });
 
 
-        chatBoxContainer.setContent(chatBox);
+
 
 
         this.loadButton.setOnAction(event -> {
@@ -211,48 +309,11 @@ public class CoreTestViewController implements Initializable {
 
             }
         });
-
-
     }
 
-    public void createComponents() {
-        chatBox = new VBox();
-        normalTest = new ToggleButton("Normal");
-        trainerTest = new ToggleButton("Interaktives Training");
-        toggle = new SegmentedButton(normalTest, trainerTest);
-        loadButton = new Button("Laden");
-
-        normalGrid = new GridPane();
-        trainOnlineGrid = new GridPane();
-
-
-        coreModelLabel = new Label("Core-Model:");
-        nluModelLabel = new Label("NLU-Model:");
-        nluModelChoiceBox = new ChoiceBox<>();
-        coreModelChoiceBox = new ChoiceBox<>();
-        nluModelChoiceBox.setItems(fileManager.getNLUModels());
-        coreModelChoiceBox.setItems(fileManager.getCoreModels());
-
-        trainNluModelLabel = new Label("NLU-Model");
-        trainNluModelChoiceBox = new ChoiceBox<>();
-        trainNluModelChoiceBox.setItems(fileManager.getNLUModels());
-
-        storyFileLabel = new Label("Story-Datei:");
-        domainFileLabel = new Label("Domain-Datei:");
-        storyFileChoiceBox = new ChoiceBox<>();
-        storyFileChoiceBox.setItems(fileManager.getCoreStoryFiles());
-        domainFileChoiceBox = new ChoiceBox<>();
-        domainFileChoiceBox.setItems(fileManager.getCoreDomainFiles());
-
-
-        normalTest.prefWidthProperty().bind(toggle.widthProperty().divide(2));
-        trainerTest.prefWidthProperty().bind(toggle.widthProperty().divide(2));
-        toggle.setMaxWidth(Double.MAX_VALUE);
-
-        toggle.getStyleClass().add(SegmentedButton.STYLE_CLASS_DARK);
-    }
-
-
+    /**
+     * Listener zum Hinzufügen von Chatnachrichten zum Chatfenster
+     */
     ChangeListener<String> listener = new ChangeListener<String>() {
         @Override
         public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {

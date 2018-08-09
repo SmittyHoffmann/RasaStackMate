@@ -13,6 +13,9 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * Controller für die CoreTrainView
+ */
 public class CoreTrainViewController implements Initializable {
 
 
@@ -27,28 +30,36 @@ public class CoreTrainViewController implements Initializable {
     @FXML
     Button trainButton;
     @Inject
+    private
     RasaFileManager fileManager;
 
 
-    CoreTrainPythonProcessor processor;
+    private CoreTrainPythonProcessor processor;
 
+    /**
+     *{@inheritDoc}
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        initComponents();
 
-        storyFileChoiceBox.setItems(fileManager.getCoreStoryFiles());
-        domainFileChoiceBox.setItems(fileManager.getCoreDomainFiles());
-        nluModelChoiceBox.setItems(fileManager.getNLUModels());
-
+        setHandlers();
 
 
+    }
+
+    /**
+     * Fügt Handler zu GUI-Elementen hinzu
+     */
+    private void setHandlers() {
         trainButton.setOnAction(event -> {
             String coreModelName = this.modelNameTextField.getText();
             String storyFileName = storyFileChoiceBox.getSelectionModel().getSelectedItem();
             String domainFileName = domainFileChoiceBox.getSelectionModel().getSelectedItem();
             String nluModelName = nluModelChoiceBox.getSelectionModel().getSelectedItem();
-            if(!coreModelName.isEmpty() && !storyFileName.isEmpty() && !domainFileName.isEmpty() && !nluModelName.isEmpty()){
-                this.processor = new CoreTrainPythonProcessor(storyFileName,coreModelName,domainFileName,nluModelName);
+            if (!coreModelName.isEmpty() && !storyFileName.isEmpty() && !domainFileName.isEmpty() && !nluModelName.isEmpty()) {
+                this.processor = new CoreTrainPythonProcessor(storyFileName, coreModelName, domainFileName, nluModelName);
                 this.processor.start();
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Training gestartet!");
@@ -57,16 +68,15 @@ public class CoreTrainViewController implements Initializable {
                 alert.showAndWait();
 
 
-
             }
 
             this.processor.setOnSucceeded((WorkerStateEvent we) -> {
                 List<String> result = processor.getValue();
                 Dialog dialog;
-                if(result.get(result.size()-1).equals("0")){
-                    dialog = new ProcessEndedDialog(result,true);
-                }else{
-                    dialog = new ProcessEndedDialog(result,false);
+                if (result.get(result.size() - 1).equals("0")) {
+                    dialog = new ProcessEndedDialog(result, true);
+                } else {
+                    dialog = new ProcessEndedDialog(result, false);
                 }
 
                 this.processor.reset();
@@ -82,8 +92,14 @@ public class CoreTrainViewController implements Initializable {
         });
 
 
+    }
 
-
-
+    /**
+     * Befüllt View mit Daten
+     */
+    private void initComponents() {
+        storyFileChoiceBox.setItems(fileManager.getCoreStoryFiles());
+        domainFileChoiceBox.setItems(fileManager.getCoreDomainFiles());
+        nluModelChoiceBox.setItems(fileManager.getNLUModels());
     }
 }

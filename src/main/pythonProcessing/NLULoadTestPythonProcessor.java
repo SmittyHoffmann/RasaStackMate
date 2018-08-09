@@ -11,16 +11,34 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Service zum Laden eines NLU-Test-Python-Skripts
+ */
 public class NLULoadTestPythonProcessor extends Service<Process> {
-    String modelName;
+    /**
+     * Name des NLU-Modells
+     */
+    private String modelName;
 
+    /**
+     * Erzeugt Objekt und setzt NLU-Model-Name
+     * @param modelName Name des zu testenden NLU-Modells
+     */
     public NLULoadTestPythonProcessor(String modelName) {
         this.modelName = modelName;
     }
 
+    /**
+     * Erzeugt Task zum Starten eines Python-Skripts
+     * @return erzeugter Task
+     */
     @Override
     protected Task<Process> createTask() {
         return new Task<>() {
+            /**
+             * Erzeugt Python-Prozess und liest Output. Wenn "Bot geladen" gelesen wird, wird der Prozess zurückgegeben und der Task ist zuende
+             * @return aktiver Python-Prozess
+             */
             @Override
             protected Process call() throws Exception {
                 List<String> output = new ArrayList<>();

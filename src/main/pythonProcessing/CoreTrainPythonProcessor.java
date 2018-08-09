@@ -13,14 +13,34 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Service-Klasse zum Starten des Core-Trainings
+ */
 public class CoreTrainPythonProcessor extends Service<List<String>> {
+    /**
+     * Name der Story-Datei
+     */
+    private String storyFileName;
+    /**
+     * Name des gewünschten Models
+     */
+    private String coreModelName;
+    /**
+     * Name der Domain-Datei
+     */
+    private String domainName;
+    /**
+     * Name des NLU-Models
+     */
+    private String nluModelName;
 
-    String storyFileName;
-
-    String coreModelName;
-    String domainName;
-    String nluModelName;
-
+    /**
+     * Erzeugt neues Objekt zum Starten des Core-Trainings
+     * @param storyFileName Name der Story-Datei
+     * @param coreModelName Gewünschter Name des neuen Core-Models
+     * @param domainName Name der Domain-Datei
+     * @param nluModelName Name des NLU-Models
+     */
     public CoreTrainPythonProcessor(String storyFileName, String coreModelName, String domainName, String nluModelName) {
         this.storyFileName = storyFileName;
         this.coreModelName = coreModelName;
@@ -29,11 +49,18 @@ public class CoreTrainPythonProcessor extends Service<List<String>> {
 
     }
 
-
+    /**
+     * Erzeugt Task zum Trainieren eines Core-Models
+     * @return erzeugter Task
+     */
     @Override
     protected Task<List<String>> createTask() {
 
-        return new Task<List<String>>() {
+        return new Task<>() {
+            /**
+             * Startet das Training und wartet bis es fertig ist. Danach wird der Output zurückgegeben
+             * @return Output des Trainings
+             */
             @Override
             protected List<String> call() throws Exception {
                 String formattedCommand = String.format(CoreCommands.TRAIN_CORE_MODEL.getCommandString(),
@@ -51,23 +78,20 @@ public class CoreTrainPythonProcessor extends Service<List<String>> {
 
 
                 Process process = builder.start();
-                final Thread ioThread = new Thread() {
-                    @Override
-                    public void run() {
-                        try {
-                            final BufferedReader reader = new BufferedReader(
-                                    new InputStreamReader(process.getInputStream()));
-                            String line = null;
-                            while ((line = reader.readLine()) != null) {
-                                System.out.println(line);
-                                output.add(line);
-                            }
-                            reader.close();
-                        } catch (final Exception e) {
-                            e.printStackTrace();
+                final Thread ioThread = new Thread(() -> {
+                    try {
+                        final BufferedReader reader = new BufferedReader(
+                                new InputStreamReader(process.getInputStream()));
+                        String line = null;
+                        while ((line = reader.readLine()) != null) {
+                            System.out.println(line);
+                            output.add(line);
                         }
+                        reader.close();
+                    } catch (final Exception e) {
+                        e.printStackTrace();
                     }
-                };
+                });
                 final Thread errorThread = new Thread() {
                     @Override
                     public void run() {
@@ -89,8 +113,6 @@ public class CoreTrainPythonProcessor extends Service<List<String>> {
                 ioThread.start();
                 errorThread.start();
 
-              //  BufferedReader in = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                BufferedReader errorIn = new BufferedReader(new InputStreamReader(process.getErrorStream()));
 
                 int exitCode = process.waitFor();
 

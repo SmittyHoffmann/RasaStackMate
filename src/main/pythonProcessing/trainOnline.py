@@ -16,7 +16,7 @@ from rasa_core.interpreter import RasaNLUInterpreter
 
 
 
-
+# definiert Parameter
 def create_argument_parser():
     parser = argparse.ArgumentParser(description='Startet Online-Training')
 
@@ -29,7 +29,7 @@ def create_argument_parser():
     return parser
 
 
-
+#startet Interaktives Training und wartet auf Input
 if __name__ == '__main__':
 
 

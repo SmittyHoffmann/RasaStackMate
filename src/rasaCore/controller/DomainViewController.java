@@ -16,6 +16,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
+/**
+ * Controller für die Domain-Hauptansicht
+ */
 public class DomainViewController implements Initializable {
 
 
@@ -57,23 +60,42 @@ public class DomainViewController implements Initializable {
     FXMLLoader fxmlLoader;
 
 
-    Parent intentView;
-    Parent entityView;
-    Parent slotView;
-    Parent templateView;
-    Parent customActionView;
+    private Parent intentView;
+    private Parent entityView;
+    private Parent slotView;
+    private Parent templateView;
+    private Parent customActionView;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        setupComponents();
+        setHandler();
 
+
+
+    }
+
+    /**
+     * Setzt die Ansichten für die Tabs und befüllt die Auswahlbox für Domaindateien
+     */
+    private void setupComponents(){
         setIntentTabContent();
         setEntityTabContent();
         setSlotTabContent();
         setTemplateTabContent();
         setCustomActionTabContent();
         domainFileChoiceBox.setItems(fileManager.getCoreDomainFiles());
+    }
 
+
+    /**
+     * Fügt GUI-Elementen Eventhandler hinzu
+     */
+    private void setHandler(){
         generateButton.setOnAction(event->{
             String fileName;
             TextInputDialog dialog = new TextInputDialog("Dateiname");
@@ -107,10 +129,9 @@ public class DomainViewController implements Initializable {
     }
 
 
-
-
-
-
+    /**
+     * Setzt die CustomActionTab-View
+     */
     private void setCustomActionTabContent() {
         fxmlLoader.setRoot(null);
         fxmlLoader.setController(null);
@@ -122,7 +143,9 @@ public class DomainViewController implements Initializable {
         }
         customActionTab.setContent(customActionView);
     }
-
+    /**
+     * Setzt die TemplateTab-View
+     */
     private void setTemplateTabContent() {
         fxmlLoader.setRoot(null);
         fxmlLoader.setController(null);
@@ -135,7 +158,9 @@ public class DomainViewController implements Initializable {
         templateTab.setContent(templateView);
     }
 
-
+    /**
+     * Setzt die SlotTab-View
+     */
     private void setSlotTabContent() {
         fxmlLoader.setRoot(null);
         fxmlLoader.setController(null);
@@ -148,6 +173,9 @@ public class DomainViewController implements Initializable {
         slotTab.setContent(slotView);
     }
 
+    /**
+     * Setzt die EntityTab-View
+     */
     private void setEntityTabContent() {
         fxmlLoader.setRoot(null);
         fxmlLoader.setController(null);
@@ -159,7 +187,9 @@ public class DomainViewController implements Initializable {
         }
         entityTab.setContent(entityView);
     }
-
+    /**
+     * Setzt die IntentTab-View
+     */
     private void setIntentTabContent() {
         fxmlLoader.setRoot(null);
         fxmlLoader.setController(null);

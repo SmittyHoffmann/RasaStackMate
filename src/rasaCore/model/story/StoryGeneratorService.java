@@ -2,14 +2,12 @@ package rasaCore.model.story;
 
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
-import rasaCore.graph.ActionElement;
-import rasaCore.graph.Cell;
-import rasaCore.graph.GraphModel;
-import rasaCore.graph.IntentElement;
-import rasaNLU.model.entity.EntityManager;
+import rasaCore.model.graph.ActionElement;
+import rasaCore.model.graph.Cell;
+import rasaCore.model.graph.GraphModel;
+import rasaCore.model.graph.IntentElement;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 

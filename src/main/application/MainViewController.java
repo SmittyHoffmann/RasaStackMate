@@ -20,49 +20,62 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+/**
+ * Controller für die View
+ */
 public class MainViewController implements Initializable {
-
-
-    @FXML Button coreTest;
-    @FXML Button coreTrain;
-    @FXML Button storyEditor;
-    @FXML Button domainEdit;
-    @FXML Button feedBack;
-    @FXML VBox secondSubMenuList;
-    @FXML Button secondMenu;
-    @FXML VBox secondSubVBox;
-
-    @FXML
-    BorderPane mainPane;
-    @FXML
-    AnchorPane rootPane;
-
-    @FXML
-    VBox vBox;
-
-    @FXML
-    Button firstMenu;
+    //Hauptfenster
+    @FXML BorderPane mainPane;
+    //menü-Container
+    @FXML VBox menuBox;
+    //Button zum Ausklappen des NLU-Menüs
+    @FXML Button firstMenu;
+    //Container für NLU-Menü
     @FXML VBox firstSubVBox;
+    //Container für UnterMenü-Punkte des NLU-Menüs
     @FXML VBox firstSubMenuList;
 
+    //Container für Untermenü-Punkte des Core-Menüs
+    @FXML VBox secondSubMenuList;
+    //Button zum Ausklappen des Core-Menüs
+    @FXML Button secondMenu;
+    // Container für 2. Core-Menü
+    @FXML VBox secondSubVBox;
 
+    // Button zum öffnen der Core-Test-View
+    @FXML Button coreTest;
+    //Button zum öffnen der Core-Train-View
+    @FXML Button coreTrain;
+    //Button zum Öffnen des Story-Editors
+    @FXML Button storyEditor;
+    //Button zum öffnen Der DomainView
+    @FXML Button domainEdit;
 
-    Map<VBox,VBox> map = new HashMap<>();
-
+    //Button zum Öffnen der NLU-Bearbeitungs-Ansicht
     @FXML Button nluEdit;
+    //Button zum Öffnen NLU-Train-View
     @FXML Button nluTrain;
+    //Button zum Öffnen der NLU-Test-View
     @FXML Button nluTest;
 
+
+    //Helfer zum entfernen und Hinzufügen der Untermenüpunkte
+    private Map<VBox,VBox> map = new HashMap<>();
+
+
+    //Container für den Hauptteil der Ansicht
     private Parent content;
-    private Parent menu;
 
 
+    //JavaFX-Klasse zum Laden von FXML-Dateien
+    //Wird injected damit sich das DI-Framework einklinken kann
     @Inject
-    FXMLLoader fxmlLoader;
+    private FXMLLoader fxmlLoader;
 
-    @Inject
-    IntentManager manager;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -100,10 +113,6 @@ public class MainViewController implements Initializable {
 
 
 
-        feedBack.setOnAction(event-> {
-            setContentToFeedBack();
-        });
-
         firstMenu.setOnAction(event -> {
             toolsSlider(firstSubVBox, firstSubMenuList);
             removeOtherMenus(firstSubVBox);
@@ -117,6 +126,9 @@ public class MainViewController implements Initializable {
 
     }
 
+    /**
+     * Setzt die Ansicht auf Core-Training
+     */
     private void setContentToTrainCore() {
         fxmlLoader.setRoot(null);
         fxmlLoader.setController(null);
@@ -128,7 +140,9 @@ public class MainViewController implements Initializable {
         }
         mainPane.setCenter(content);
     }
-
+    /**
+     * Setzt die Ansicht auf Core-Testen
+     */
     private void setContentToTestCore() {
         fxmlLoader.setRoot(null);
         fxmlLoader.setController(null);
@@ -141,11 +155,9 @@ public class MainViewController implements Initializable {
         mainPane.setCenter(content);
     }
 
-
-
-    private void setContentToFeedBack() {
-    }
-
+    /**
+     * Setzt die Ansicht auf den Story-Editor
+     */
     private void setContentToStoryEditor() {
         fxmlLoader.setRoot(null);
         fxmlLoader.setController(null);
@@ -157,7 +169,9 @@ public class MainViewController implements Initializable {
         }
         mainPane.setCenter(content);
     }
-
+    /**
+     * Setzt die Ansicht auf Domain-Bearbeiten
+     */
     private void setContentToDomain() {
         fxmlLoader.setRoot(null);
         fxmlLoader.setController(null);
@@ -170,6 +184,9 @@ public class MainViewController implements Initializable {
         mainPane.setCenter(content);
     }
 
+    /**
+     * Setzt die Ansicht auf Nlu-Test
+     */
     private void setContentToTestNLU() {
         fxmlLoader.setRoot(null);
         fxmlLoader.setController(null);
@@ -184,7 +201,9 @@ public class MainViewController implements Initializable {
     }
 
 
-
+    /**
+     * Setzt die Ansicht auf NLU-Daten bearbeiten
+     */
     public void setContentToNLU(){
         fxmlLoader.setRoot(null);
         fxmlLoader.setController(null);
@@ -199,7 +218,9 @@ public class MainViewController implements Initializable {
     }
 
 
-
+    /**
+     * Setzt die Ansicht auf NLU-Testen
+     */
     public void setContentToTrainNLU(){
         fxmlLoader.setRoot(null);
         fxmlLoader.setController(null);
@@ -214,13 +235,17 @@ public class MainViewController implements Initializable {
     }
 
 
-
+    /**
+     * Setzt die Größe des Menüs
+     */
     private void setComponentsSize(){
 
-        vBox.setPrefWidth(200);
-        vBox.setPrefHeight(800);
+        menuBox.setPrefWidth(200);
+        menuBox.setPrefHeight(800);
     }
-
+    /**
+     * WEist die Menü-Buttons dem Menü hinzu, versteckt sie aber
+     */
     private void addMenusToMap(){
         map.put(firstSubVBox,firstSubMenuList);
         map.put(secondSubVBox,secondSubMenuList);
@@ -230,7 +255,11 @@ public class MainViewController implements Initializable {
         }
     }
 
-
+    /**
+     * Methode zum ein und Ausblenden der Menü-Punkte
+     * @param menu Menü-Container
+     * @param subMenu Container für Unter-Menü-Punkte
+     */
     public void toolsSlider(VBox menu, VBox subMenu){
         if (menu.getChildren().contains(subMenu)){
             final FadeTransition transition = new FadeTransition((Duration.millis(500)),menu);
@@ -249,6 +278,10 @@ public class MainViewController implements Initializable {
         }
     }
 
+    /**
+     * Entfernt die übergebenen Menü-Punkte
+     * @param menu Menü das nicht mehr angezeigt werden soll
+     */
     public void removeOtherMenus(VBox menu){
         for(Map.Entry<VBox,VBox> entry : map.entrySet()){
             if(!entry.getKey().equals(menu)){

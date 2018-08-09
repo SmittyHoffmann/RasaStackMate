@@ -1,4 +1,4 @@
-package rasaCore.graph;
+package rasaCore.view.story;
 
 public abstract class Layout {
 

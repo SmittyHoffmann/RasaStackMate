@@ -10,20 +10,41 @@ import org.controlsfx.control.textfield.TextFields;
 
 import javax.inject.Inject;
 
+/**
+ * Hilfsklasse um Textfelder als Listenzellen zu erzeugen und ihnen AutoCompletion hinzuzufügen
+ */
 public class TextFieldListCellWithProvider extends ListCell<String> {
+    /**
+     * Textfeld der Listenzelle
+     */
     private TextField textfield;
+    /**
+     * Provider der Vorschläge macht
+     */
     private SuggestionProvider<String> provider;
+    /**
+     * Vorschläge die der Provider macht
+     */
     private ObservableList<String> suggestions = FXCollections.observableArrayList();
 
     @Inject
+    private
     EntityManager manager;
 
+
+    /**
+     * Erzeugt Listzelle
+     * @param manager Entity-Manager Instanz um Namen zu erhalten
+     */
     public TextFieldListCellWithProvider(EntityManager manager){
         super();
         this.manager = manager;
 
     }
 
+    /**
+     * wird aufgerufen wenn Editieren gestartet wird
+     */
     @Override
     public void startEdit(){
         if(!isEditable() || !getListView().isEditable()){
@@ -48,6 +69,11 @@ public class TextFieldListCellWithProvider extends ListCell<String> {
         textfield.selectAll();
     }
 
+    /**
+     * aktualisiert Listzelle mit eingegebenem Wert
+     * @param item Inhalt der Listzelle
+     * @param empty Inhalt leer oder gefüllt?
+     */
     @Override
     public void updateItem(String item, boolean empty){
         super.updateItem(item,empty);
@@ -68,6 +94,9 @@ public class TextFieldListCellWithProvider extends ListCell<String> {
         }
     }
 
+    /**
+     * Fügt dem Textfield einen Provider hinzu der Vorschläge macht
+     */
     public void addProvider(){
 
         this.textfield.textProperty().addListener((observable,oldValue,newValue) -> {

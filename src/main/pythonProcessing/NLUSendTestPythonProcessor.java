@@ -8,20 +8,41 @@ import org.json.simple.parser.ParseException;
 
 import java.io.*;
 
+/**
+ * Klasse zum Senden von zu testenden Sätzen an ein NLU-Test-Python-Skript
+ */
 public class NLUSendTestPythonProcessor extends Service<JSONObject> {
-
+    /**
+     * zu testender Satz
+     */
     private String sentence;
+    /**
+     * aktiver Python-Prozess
+     */
     private Process process;
 
+    /**
+     * Erzeugt das Objekt
+     * @param process Prozess an den geschrieben werden soll
+     * @param sentence zu testender Satz
+     */
     public NLUSendTestPythonProcessor(Process process, String sentence) {
         this.process = process;
         this.sentence = sentence;
     }
 
+    /**
+     * Erzeugt Task zum Testen eines Satzes
+     * @return erzeugter Task
+     */
     @Override
     protected Task<JSONObject> createTask() {
-        return new Task<>() {
 
+        return new Task<>() {
+            /**
+             * Sendet Satz an das Test-Pythonskript und gibt den Output als JSON-Object zurück
+             * @return Ergebnis des Test-Pythonskripts
+             */
             @Override
             protected JSONObject call() throws Exception {
                 String result;

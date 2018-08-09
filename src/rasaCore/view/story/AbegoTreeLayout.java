@@ -1,17 +1,17 @@
-package rasaCore.graph;
+package rasaCore.view.story;
 
 import javafx.application.Platform;
-import javafx.geometry.Bounds;
 import org.abego.treelayout.Configuration;
 import org.abego.treelayout.Configuration.Location;
 import org.abego.treelayout.NodeExtentProvider;
 import org.abego.treelayout.TreeLayout;
 import org.abego.treelayout.util.DefaultConfiguration;
 import org.abego.treelayout.util.DefaultTreeForTreeLayout;
+import rasaCore.model.graph.Cell;
+import rasaCore.model.graph.Graph;
 
 import java.awt.geom.Rectangle2D;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicInteger;
 
 
 public class AbegoTreeLayout extends Layout{

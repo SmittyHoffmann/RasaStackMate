@@ -14,6 +14,9 @@ import javax.inject.Inject;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controller für die Domain-Entity-View
+ */
 public class DomainEntityController implements Initializable {
 
 
@@ -34,13 +37,23 @@ public class DomainEntityController implements Initializable {
     @Inject
     DomainManager domainManager;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        entityListView.setItems((ObservableList<String>) domainManager.getEntities());
+        initComponents();
 
-        entityListView.setEditable(true);
-        entityListView.setCellFactory(TextFieldListCell.forListView());
+        setHandlers();
+
+
+    }
+
+    /**
+     * Fügt GUI-Elementen Eventhandler hinzu
+     */
+    private void setHandlers() {
 
         takeOverButton.setOnAction(event-> {
             domainManager.setEntities(entityManager.getEntityNames());
@@ -59,5 +72,14 @@ public class DomainEntityController implements Initializable {
                 this.domainManager.deleteEntity(selectedEntity);
             }
         });
+    }
+
+    /**
+     * Initialisiert GUI-Elemente und befüllt sie
+     */
+    private void initComponents(){
+        entityListView.setItems((ObservableList<String>) domainManager.getEntities());
+        entityListView.setEditable(true);
+        entityListView.setCellFactory(TextFieldListCell.forListView());
     }
 }

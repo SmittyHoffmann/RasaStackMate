@@ -1,4 +1,4 @@
-package rasaCore.graph;
+package rasaCore.model.graph;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
-public class Cell extends Pane implements IGraphElement{
+public class Cell extends Pane implements IGraphElement {
 
     String cellId;
 

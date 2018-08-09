@@ -9,7 +9,7 @@
    <children>
       <BorderPane fx:id="mainPane" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="40">
           <left>
-              <VBox id="vBox" fx:id="vBox" layoutX="0.0" AnchorPane.topAnchor="40">
+              <VBox  fx:id="menuBox" AnchorPane.topAnchor="40">
                   <children>
                       <VBox id="firstSubVBox" fx:id="firstSubVBox" >
                           <children>
@@ -29,7 +29,7 @@
                                   <Button fx:id="storyEditor" alignment="CENTER" styleClass="subMenu" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Story-Editor"/>
                                   <Button fx:id="coreTrain" alignment="CENTER" styleClass="subMenu" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Trainieren"/>
                                   <Button fx:id="coreTest" alignment="CENTER" styleClass="subMenu" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Testen"/>
-                                  <Button fx:id="feedBack" alignment="CENTER" styleClass="subMenu" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Feedback"/>
+
                               </VBox>
                           </children>
                       </VBox>

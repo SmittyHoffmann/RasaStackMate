@@ -1,4 +1,4 @@
-package rasaCore.graph;
+package rasaCore.view.story;
 
 import javafx.beans.InvalidationListener;
 import javafx.beans.property.DoubleProperty;

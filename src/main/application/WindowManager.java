@@ -8,45 +8,69 @@ import javafx.stage.Stage;
 import javax.inject.Inject;
 import java.io.IOException;
 
-public class WindowManager {
+/**
+ * Klasse zum Wechseln der Szenen zwischen Start- und Haupt-Ansicht
+ */
+class WindowManager {
 
-    public static Stage stage;
-    @Inject private FXMLLoader fxmlLoader;
+    //Anwendungsfenster
+    static Stage stage;
+    //Zum Laden der FXML-Dateien
+    @Inject
+    private FXMLLoader fxmlLoader;
 
-    public enum SCENES{
+    /**
+     * Enum für die verschiedenen Szenen/View-Dateien der  Start- und Haupt-Ansicht
+     */
+    public enum SCENES {
+
         START_SCENE("startView.fxml"),
         MAIN_SCENE("mainView.fxml");
 
+        /**
+         * Name der FXML-Datei
+         */
         private String sceneName;
 
-        SCENES(String scenePath){
+        /**
+         * Weist String Pfad Enum zu
+         *
+         * @param scenePath Pfad der FXML-Datei
+         */
+        SCENES(String scenePath) {
             this.sceneName = scenePath;
         }
 
-        public String getSceneName(){
+        /**
+         * gibt zugehörigen Pfad-String zurück
+         */
+        public String getSceneName() {
             return sceneName;
         }
     }
 
-
-    public void switchScene(SCENES scene){
+    /**
+     * Wechselt zur der übergebenen Ansicht
+     * @param scene Ansicht zu der gewechselt werden soll
+     */
+    void switchScene(SCENES scene) {
         fxmlLoader.setRoot(null);
         fxmlLoader.setController(null);
         fxmlLoader.setLocation(getClass().getResource(scene.getSceneName()));
 
         Parent root = null;
 
-        try{
+        try {
             root = fxmlLoader.load();
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
             System.out.println("Falscher Pfad" + e.getMessage());
         }
-        if(null ==root){
+        if (null == root) {
             throw new IllegalStateException("Gab nen Fehler beim Controller Initialisieren");
         }
         fxmlLoader.getController();
-        if(stage!=null){
+        if (stage != null) {
             stage.close();
         }
         stage = new Stage();

@@ -2,15 +2,15 @@ package rasaCore.model.story;
 
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import main.application.GUI;
 import main.fileHandling.RasaFileManagerImpl;
-import rasaCore.graph.*;
 import rasaCore.model.domain.DomainManager;
+import rasaCore.model.graph.*;
 import rasaCore.model.template.TemplateManager;
+import rasaCore.view.story.Layout;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -89,7 +89,7 @@ public class StoryReaderService extends Service<String> {
 
 
                 } else if (line.startsWith("*") && inStory) {
-                    ObservableMap<String,String> entities = FXCollections.observableHashMap();
+                    ObservableMap<String, String> entities = FXCollections.observableHashMap();
                     Matcher intentNameMatcher = intentNamePattern.matcher(line);
                     intentNameMatcher.find();
                     String intentName = intentNameMatcher.group("intentName");
@@ -98,10 +98,10 @@ public class StoryReaderService extends Service<String> {
                     while (entitiesMatcher.find()) {
                         String entityKey = entitiesMatcher.group("entityKey");
                         String entityValue = entitiesMatcher.group("entityValue");
-                        if(!domainManager.getEntities().contains(entityKey)){
+                        if (!domainManager.getEntities().contains(entityKey)) {
                             domainManager.addEntity(entityKey);
                         }
-                        entities.put(entityKey,entityValue);
+                        entities.put(entityKey, entityValue);
                     }
 
 
@@ -113,7 +113,6 @@ public class StoryReaderService extends Service<String> {
                                 domainManager.addIntent(intentName);
                             }
                         });
-
 
 
                         Cell bufferCell = new IntentElement("buffer", intentName);
@@ -150,12 +149,12 @@ public class StoryReaderService extends Service<String> {
                     actionNameMatcher.find();
                     String actionName = actionNameMatcher.group("actionName");
 
-                    if(actionName.startsWith("utter")){
-                        if(!templateManager.getTemplateNames().contains(actionName)){
+                    if (actionName.startsWith("utter")) {
+                        if (!templateManager.getTemplateNames().contains(actionName)) {
                             templateManager.addTemplate(actionName);
                         }
-                    }else{
-                        if(!domainManager.getCustomActions().contains(actionName)){
+                    } else {
+                        if (!domainManager.getCustomActions().contains(actionName)) {
                             domainManager.addCustomAction(actionName);
                         }
                     }

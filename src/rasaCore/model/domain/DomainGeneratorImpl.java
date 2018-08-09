@@ -15,26 +15,38 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
+/**
+ * Implementierung des DomainGenerator Interface
+ */
 public class DomainGeneratorImpl implements DomainGenerator {
     SlotFactory factory;
 
+    /**
+     * Erzeugt neue Instanz und eine SlotFactory
+     */
     public DomainGeneratorImpl() {
         factory = new SlotFactory();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public Map<String, List<String>> generateEntities(DomainManager domainManager) {
         Map<String, List<String>> entities = new HashMap<>();
         entities.put("entities", domainManager.getEntities());
         return entities;
     }
-
+    /**
+     * {@inheritDoc}
+     */
     public Map<String, List<String>> generateIntents(DomainManager domainManager) {
         Map<String, List<String>> intents = new HashMap<>();
         intents.put("intents", domainManager.getIntents());
         return intents;
     }
-
+    /**
+     * {@inheritDoc}
+     */
     public Map<String, List<String>> generateActions(DomainManager domainManager, TemplateManager templateManager) {
         Map<String, List<String>> actions = new HashMap<>();
         List<String> actionList = new ArrayList<>();
@@ -46,7 +58,9 @@ public class DomainGeneratorImpl implements DomainGenerator {
         actions.put("actions", actionList);
         return actions;
     }
-
+    /**
+     * {@inheritDoc}
+     */
     public List<String> generateTemplates(TemplateManager manager) {
 
         List<String> result = new ArrayList<>();
@@ -62,7 +76,9 @@ public class DomainGeneratorImpl implements DomainGenerator {
 
         return result;
     }
-
+    /**
+     * {@inheritDoc}
+     */
     public Map<String, Map<String, Map<String, Object>>> generateSlots(SlotManager slotManager) {
         Map<String, Map<String, Map<String, Object>>> rootSlot = new HashMap<>();
         Map<String, Map<String, Object>> slots = new HashMap<>();
@@ -86,7 +102,9 @@ public class DomainGeneratorImpl implements DomainGenerator {
         rootSlot.put("slots", slots);
         return rootSlot;
     }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void fillManagers(String fileName, DomainManager domainManager, SlotManager slotManager, TemplateManager templateManager) {
         String filePath = GUI.getWorkSpace() + "\\" + fileName;

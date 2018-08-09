@@ -1,4 +1,4 @@
-package rasaCore.graph;
+package rasaCore.model.graph;
 
 public interface IGraphElement {
 

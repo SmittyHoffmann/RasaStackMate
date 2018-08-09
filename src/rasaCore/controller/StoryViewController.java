@@ -13,17 +13,22 @@ import javafx.scene.layout.BorderPane;
 
 import main.fileHandling.RasaFileManager;
 import rasaCore.model.domain.DomainManager;
+import rasaCore.model.graph.CellType;
+import rasaCore.model.graph.Graph;
 import rasaCore.model.template.TemplateManager;
-import rasaCore.graph.*;
 import rasaCore.model.story.StoryGeneratorService;
 import rasaCore.model.story.StoryReaderService;
-import rasaNLU.model.entity.EntityManager;
-
+import rasaCore.view.story.AbegoTreeLayout;
+import rasaCore.view.story.Layout;
 import javax.inject.Inject;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+
+/**
+ * Controller für den Story-Editor
+ */
 public class StoryViewController implements Initializable {
 
     @FXML Button resetButton;
@@ -43,7 +48,8 @@ public class StoryViewController implements Initializable {
     ChoiceBox<String> storyFileChoiceBox;
     @FXML
     BorderPane contentPane;
-    ObservableList<String> actionList;
+
+    private ObservableList<String> actionList;
 
 
     @Inject
@@ -52,15 +58,33 @@ public class StoryViewController implements Initializable {
     @Inject
     TemplateManager templateManager;
 
-    @Inject Graph graph;
+    @Inject
+    Graph graph;
 
     @Inject
     RasaFileManager fileManager;
 
     Layout layout;
 
+    /**
+     *{@inheritDoc}
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+
+            setupComponents();
+            setHandler();
+
+
+
+
+    }
+
+    /**
+     * Bereitet GUI-Elemente vor und füllt Daten
+     */
+    private void setupComponents(){
         actionList = FXCollections.observableArrayList();
 
         fillActionList();
@@ -78,12 +102,23 @@ public class StoryViewController implements Initializable {
         layout = new AbegoTreeLayout(graph);
         layout.execute();
 
+    }
 
+    /**
+     * Befüllt die ActionList
+     */
+    private void fillActionList() {
+        actionList.addAll(domainManager.getCustomActions());
+        actionList.addAll(templateManager.getTemplateNames());
+        actionList.add("action_restart");
+    }
+
+    private void setHandler() {
         addActionButton.setOnAction(event -> {
             String action = actionListView.getSelectionModel().getSelectedItem();
-            if(action != null){
+            if (action != null) {
                 graph.beginUpdate();
-                graph.getModel().addCell(action,CellType.ACTION);
+                graph.getModel().addCell(action, CellType.ACTION);
                 graph.getModel().getCell(graph.getModel().getCellCounter()).setManaged(true);
                 graph.endUpdate();
             }
@@ -92,9 +127,9 @@ public class StoryViewController implements Initializable {
 
         addIntentButton.setOnAction(event -> {
             String intent = intentListView.getSelectionModel().getSelectedItem();
-            if(intent != null){
+            if (intent != null) {
                 graph.beginUpdate();
-                graph.getModel().addCell(intent,CellType.INTENT);
+                graph.getModel().addCell(intent, CellType.INTENT);
                 graph.getModel().getCell(graph.getModel().getCellCounter()).setManaged(true);
                 graph.endUpdate();
             }
@@ -108,29 +143,23 @@ public class StoryViewController implements Initializable {
             dialog.setContentText("Bitte geben sie den gewünschten Dateinamen an");
 
             Optional<String> result = dialog.showAndWait();
-            if(result.isPresent()){
+            if (result.isPresent()) {
                 fileName = result.get();
                 StoryGeneratorService generatorService = new StoryGeneratorService(graph.getModel());
 
 
-                generatorService.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
-                    @Override
-                    public void handle(WorkerStateEvent event) {
-                        fileManager.writeStoryFile(generatorService.getValue(),fileName);
-                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                        alert.setTitle("Generierung erfolgreich");
-                        alert.setHeaderText(null);
-                        alert.setContentText("Generierung der Datei war erfolgreich");
-                        alert.showAndWait();
-                    }
+                generatorService.setOnSucceeded(event13 -> {
+                    fileManager.writeStoryFile(generatorService.getValue(), fileName);
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Generierung erfolgreich");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Generierung der Datei war erfolgreich");
+                    alert.showAndWait();
                 });
 
-                generatorService.setOnFailed(new EventHandler<WorkerStateEvent>() {
-                    @Override
-                    public void handle(WorkerStateEvent event) {
-                        generatorService.getException().printStackTrace(System.err);
-                        System.out.println("Gab nen Fehler");
-                    }
+                generatorService.setOnFailed(event12 -> {
+                    generatorService.getException().printStackTrace(System.err);
+                    System.out.println("Gab nen Fehler");
                 });
 
                 generatorService.start();
@@ -139,13 +168,7 @@ public class StoryViewController implements Initializable {
         });
 
 
-        resetButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                graph.reset();
-            }
-        });
-
+        resetButton.setOnAction(event -> graph.reset());
 
 
         importButton.setOnAction(event -> {
@@ -154,7 +177,7 @@ public class StoryViewController implements Initializable {
             //graph.reset();
             //graph.beginUpdate();
 
-            StoryReaderService service = new StoryReaderService(graph,layout, fileName, domainManager, templateManager);
+            StoryReaderService service = new StoryReaderService(graph, layout, fileName, domainManager, templateManager);
             service.start();
 
 
@@ -169,22 +192,8 @@ public class StoryViewController implements Initializable {
 
             });
 
-            //storyGenerator.fillGraphModel(graph.getModel(),fileName);
-
-            //graph.endUpdate();
-
-
-
-            //layout.execute();
-
         });
+
+
     }
-
-    private void fillActionList() {
-        actionList.addAll(domainManager.getCustomActions());
-        actionList.addAll(templateManager.getTemplateNames());
-        actionList.add("action_restart");
-    }
-
-
 }

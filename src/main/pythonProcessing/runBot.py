@@ -15,7 +15,7 @@ from rasa_core.interpreter import RasaNLUInterpreter
 logger = logging.getLogger(__name__)
 
 
-
+# definiert Parameter
 
 def create_argument_parser():
     parser = argparse.ArgumentParser(description='Startet einen Chatbot')
@@ -28,7 +28,7 @@ def create_argument_parser():
     return parser
 
 
-
+#startet Bot und wartet auf Input
 if __name__ == '__main__':
 
     logging.basicConfig(level='INFO')
@@ -39,7 +39,7 @@ if __name__ == '__main__':
 
 
 
-    os.chdir("C:\\Users\\Chris\\Desktop\\WeatherBot")
+
     interpreter = RasaNLUInterpreter(cmdline_args.nlu)
     agent = Agent.load(cmdline_args.core,interpreter= interpreter)
     print("Bot geladen")

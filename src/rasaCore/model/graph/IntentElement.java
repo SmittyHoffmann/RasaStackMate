@@ -1,4 +1,4 @@
-package rasaCore.graph;
+package rasaCore.model.graph;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,7 +16,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import main.util.EditEntitiesDialog;
-import rasaNLU.model.intent.Intent;
 
 import java.util.Map;
 import java.util.Optional;

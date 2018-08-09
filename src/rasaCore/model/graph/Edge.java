@@ -1,9 +1,8 @@
-package rasaCore.graph;
+package rasaCore.model.graph;
 
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
-import javafx.scene.shape.Line;
+import rasaCore.view.story.Arrow;
 
 public class Edge extends Group implements IGraphElement{
 

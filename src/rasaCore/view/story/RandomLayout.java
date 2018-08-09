@@ -1,5 +1,8 @@
-package rasaCore.graph;
+package rasaCore.view.story;
 
+
+import rasaCore.model.graph.Cell;
+import rasaCore.model.graph.Graph;
 
 import java.util.List;
 import java.util.Random;

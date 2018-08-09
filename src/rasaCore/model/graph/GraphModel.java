@@ -1,5 +1,4 @@
-package rasaCore.graph;
-import javafx.beans.value.ObservableValue;
+package rasaCore.model.graph;
 import javafx.collections.ObservableList;
 import javafx.scene.shape.Circle;
 

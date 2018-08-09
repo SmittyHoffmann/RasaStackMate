@@ -8,8 +8,19 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import org.controlsfx.control.textfield.TextFields;
 
+/**
+ * Klasse zum Ändern eines Namens
+ */
 public class NameChangeDialog extends Dialog{
+    /**
+     * Textfeld in das der neue Name eingegeben werden kann
+     */
     private TextField nameField;
+
+    /**
+     * Erzeugt Dialog
+     * @param name Bisher gesetzter Name
+     */
     public NameChangeDialog(String name){
         super();
         this.setTitle("Name bearbeiten");
@@ -50,6 +61,10 @@ public class NameChangeDialog extends Dialog{
         });
     }
 
+    /**
+     * Fügt AutoCompletionFunktion hinzu
+     * @param provider Provider der Namen vorschlägt
+     */
     public void addSuggestionProvider(SuggestionProvider<String> provider){
         TextFields.bindAutoCompletion(this.nameField, provider);
     }

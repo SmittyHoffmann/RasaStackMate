@@ -14,6 +14,9 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/**
+ * Controller für die Domain-Template-View
+ */
 public class DomainTemplateController implements Initializable {
 
 
@@ -35,11 +38,26 @@ public class DomainTemplateController implements Initializable {
 
     String currentTemplateName;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        templateChoiceBox.setItems(templateManager.getTemplateNames());
+        setupComponents();
+        setHandler();
 
+
+
+
+
+    }
+
+
+    /**
+     * Fügt GUI-Elementen Eventhandler hinzu
+     */
+    private void setHandler() {
         templateChoiceBox.getSelectionModel().selectedItemProperty().addListener((ChangeListener<String>) (observable, oldValue, newValue) ->{
             if(newValue!= null) {
                 exampleListView.setItems(templateManager.getUtterancesToTemplate(newValue));
@@ -47,9 +65,6 @@ public class DomainTemplateController implements Initializable {
             }
             currentTemplateName = newValue;
         });
-
-        exampleListView.setEditable(true);
-        exampleListView.setCellFactory(TextFieldListCell.forListView());
 
         addTemplateButton.setOnAction(event ->{
             String templateName = templateNameTextField.getText();
@@ -101,5 +116,14 @@ public class DomainTemplateController implements Initializable {
         });
 
 
+    }
+
+    /**
+     * Bereitet GUI-Elemente vor
+     */
+    private void setupComponents() {
+        templateChoiceBox.setItems(templateManager.getTemplateNames());
+        exampleListView.setEditable(true);
+        exampleListView.setCellFactory(TextFieldListCell.forListView());
     }
 }

@@ -1,4 +1,4 @@
-package rasaCore.graph;
+package rasaCore.view.story;
 
 import javafx.event.EventHandler;
 import javafx.scene.Group;

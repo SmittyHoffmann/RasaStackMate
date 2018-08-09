@@ -11,10 +11,24 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import rasaCore.model.slot.CategoricalSlot;
 
+/**
+ * Klasse zum Edtitieren eines CategoricalSlots
+ */
 public class EditCategoricalSlotDialog extends Dialog {
+    /**
+     * ListView für Werte des KategorieSlots
+     */
     private ListView<String> valueListView;
+
+    /**
+     * Werte des Kategorieslots
+     */
     private ObservableList<String> values;
 
+    /**
+     * Erzeugt Dialog zum Bearbeiten eines bestehenden Slots
+     * @param slot Slot der bearbeitet werden soll
+     */
     public EditCategoricalSlotDialog(CategoricalSlot slot){
         super();
         values = FXCollections.observableArrayList();
@@ -22,12 +36,18 @@ public class EditCategoricalSlotDialog extends Dialog {
         setupDialog();
     }
 
+    /**
+     * Erzeugt Dialog für initiales Bearbeiten eines Slots
+     */
     public EditCategoricalSlotDialog(){
         super();
         values = FXCollections.observableArrayList();
         setupDialog();
     }
 
+    /**
+     * Initialisiert Dialog-Oberfläche
+     */
     private void setupDialog(){
         this.setTitle("CategoricalSlot bearbeiten");
         this.setHeaderText("Gib die Daten ein");

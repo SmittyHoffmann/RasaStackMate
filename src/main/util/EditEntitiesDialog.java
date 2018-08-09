@@ -19,15 +19,40 @@ import java.util.AbstractMap;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Dialog zum Bearbeiten von Entities eines IntentElements
+ */
 public class EditEntitiesDialog extends Dialog {
+    /**
+     * ListView zum Anzeigen aller verfügbaren Entity-Werte
+     */
     private ListView<String> entityListView;
+    /**
+     * Liste der verfügbaren Entity-Werte
+     */
     private ObservableList<String> entities;
+    /**
+     * Tabelle für Entity-Wert-Paare die dem IntentElement zugewiesen sind
+     */
     private TableView<Map.Entry<String,String>> selectedEntitiesTableView;
+    /**
+     * Liste mit Entity-Wert-Paaren des IntentElements
+     */
     private ObservableList<Map.Entry<String,String>> selectedEntities;
+    /**
+     * Zeigt Aktuell ausgewählte Entity an
+     */
     private Label selectedEntityLabel;
+    /**
+     * Textfeld zum Eingeben eines Wertes der der Entity zugewiesen werden soll
+     */
     private TextField entityValueTextField;
 
-
+    /**
+     * Erezeugt Dialog
+     * @param entities verfügbare Entities
+     * @param selectedEntities Entities die schon zugewiesen sind
+     */
     public EditEntitiesDialog(ObservableList<String> entities, ObservableMap<String,String> selectedEntities){
         super();
         this.entities = FXCollections.observableArrayList();
@@ -36,9 +61,6 @@ public class EditEntitiesDialog extends Dialog {
 
         this.selectedEntities.addAll(selectedEntities.entrySet());
 
-
-
-
        this.entities.removeAll(selectedEntities.keySet());
 
         setupDialog();
@@ -46,6 +68,9 @@ public class EditEntitiesDialog extends Dialog {
 
     }
 
+    /**
+     * Initialisiert Dialogoberfläche
+     */
     private void setupDialog() {
 
         this.setTitle("Entities bearbeiten");
@@ -151,6 +176,9 @@ public class EditEntitiesDialog extends Dialog {
         });
     }
 
+    /**
+     * Erzeugt und füllt Die Tabelle der zugewiesenen Entities
+     */
     private void setupTableView() {
         selectedEntitiesTableView = new TableView(selectedEntities);
         TableColumn<Map.Entry<String,String>,String> entityNameColumn = new TableColumn<>("Entity-Name");

@@ -4,6 +4,7 @@ from rasa_nlu.model import Metadata, Interpreter
 
 builder = ComponentBuilder(use_cache = True)
 
+#laedt NLU-Interpreter und wartet auf Input
 if __name__ == '__main__':
     print(sys.argv)
     interpreter = Interpreter.load(sys.argv[1],builder);

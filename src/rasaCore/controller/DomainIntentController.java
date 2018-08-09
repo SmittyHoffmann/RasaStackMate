@@ -14,6 +14,9 @@ import javax.inject.Inject;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controller für Domain-Intent-View
+ */
 public class DomainIntentController implements Initializable {
 
 
@@ -34,12 +37,21 @@ public class DomainIntentController implements Initializable {
     @Inject
     IntentManager intentManager;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        intentListView.setItems((ObservableList<String>) domainManager.getIntents());
 
-        intentListView.setEditable(true);
-        intentListView.setCellFactory(TextFieldListCell.forListView());
+        initComponents();
+
+        setHandler();
+    }
+
+    /**
+     * Fügt GUI-Elementen Event-Handler hinzu
+     */
+    private void setHandler() {
 
         takeOverButton.setOnAction(event-> {
             domainManager.setIntents(intentManager.getIntentNames());
@@ -58,5 +70,15 @@ public class DomainIntentController implements Initializable {
                 domainManager.deleteEntity(selectedIntent);
             }
         });
+    }
+
+    /**
+     * Initialisiert und Befüllt GUI-Elemente
+     */
+    private void initComponents() {
+        intentListView.setItems((ObservableList<String>) domainManager.getIntents());
+
+        intentListView.setEditable(true);
+        intentListView.setCellFactory(TextFieldListCell.forListView());
     }
 }

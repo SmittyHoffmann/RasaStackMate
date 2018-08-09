@@ -1,22 +1,34 @@
-package rasaCore.graph;
+package rasaCore.controller;
 
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Line;
+import rasaCore.model.graph.Cell;
+import rasaCore.model.graph.Graph;
 
-
+/**
+ * Klasse die EventHandler für Graph-Elemente enthält
+ */
 public class MouseGestures {
     final DragContext dragContext = new DragContext();
 
     Graph graph;
     private Line line;
 
+    /**
+     * Erzeugt Instanz und setzt Graphen
+     * @param graph Graph der die Elemente enthält
+     */
     public MouseGestures(Graph graph) {
         this.graph = graph;
     }
 
+    /**
+     * Fügt einem Graph-Element die Eventhandler hinzu
+     * @param node Graph-Element
+     */
     public void addHandlers(final Node node) {
 
         node.addEventFilter(MouseEvent.MOUSE_PRESSED,onMousePressedEventHandler);
@@ -29,8 +41,11 @@ public class MouseGestures {
 
     }
 
-
-    EventHandler<MouseEvent> onDragDetectedHandler = new EventHandler<MouseEvent>() {
+    /**
+     * Handler wenn Maus-Drag erkannt wird
+     * Rechter Maus-Button startet das Ziehen einer Linie die dem Mauszeiger folgt
+     */
+    private EventHandler<MouseEvent> onDragDetectedHandler = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
             if (!event.isPrimaryButtonDown() && event.isSecondaryButtonDown()) {
@@ -55,8 +70,11 @@ public class MouseGestures {
         }
     };
 
-
-    EventHandler<MouseEvent> onMousePressedEventHandler = new EventHandler<MouseEvent>() {
+    /**
+     * EventHandler wenn die Maus gedrückt wird
+     * Linke Maustaste gedrückt signalisiert den Start zum Verschieben eines Elements
+     */
+    private EventHandler<MouseEvent> onMousePressedEventHandler = new EventHandler<MouseEvent>() {
 
         @Override
         public void handle(MouseEvent event) {
@@ -73,8 +91,12 @@ public class MouseGestures {
     };
 
 
-
-    EventHandler<MouseEvent> onMouseDraggedEventHandler = new EventHandler<MouseEvent>() {
+    /**
+     * Eventhandler wenn die Maus bewegt wird während eine Maustaste gedrückt wird
+     * LinkeMaustaste gedrückt verschiebt ausgewähltes Element zu Mauszeiger
+     * Rechte Maustaste gedrückt zieht Line von Event-Ursprung zu Mauszeiger
+     */
+    private EventHandler<MouseEvent> onMouseDraggedEventHandler = new EventHandler<MouseEvent>() {
 
         @Override
         public void handle(MouseEvent event) {
@@ -105,7 +127,11 @@ public class MouseGestures {
     };
 
 
-    EventHandler<MouseDragEvent> onMouseDragReleased = new EventHandler<MouseDragEvent>() {
+    /**
+     * EventHandler wenn Mouse-Drag beendet wurde
+     * Wenn auf einem Graph-Element beendet wurde wird eine Edge zwischen Ursprungs-Element und Ziel-Element angelegt
+     */
+    private EventHandler<MouseDragEvent> onMouseDragReleased = new EventHandler<MouseDragEvent>() {
         @Override
         public void handle(MouseDragEvent event) {
 

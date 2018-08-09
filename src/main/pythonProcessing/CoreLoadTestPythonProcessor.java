@@ -12,20 +12,46 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Service-Klasse zum Starten eines Python-Skripts für Test oder Interaktives Training
+ */
 public class CoreLoadTestPythonProcessor extends Service<Process> {
 
     private String domainFile;
     private String storyFile;
+
+    /**
+     * Name des Core-Models
+     */
     private String coreModel;
+    /**
+     * Name des NLU-Models
+     */
     private String nluModel;
+
+    /**
+     * Gewählter Modus
+     */
     private boolean trainOnlineMode;
 
+
+    /**
+     * Konstruktor für das Laden des Test-Python-Skripts
+     * @param coreModel Name des Core-Models
+     * @param nluModel Name des NLU-Models
+     */
     public CoreLoadTestPythonProcessor(String coreModel, String nluModel){
         this.coreModel = coreModel;
         this.nluModel = nluModel;
         this.trainOnlineMode = false;
     }
 
+    /**
+     * Konstruktor für das Laden des Python-Skripts für interaktives Training
+     * @param storyFile Name der Story-Datei
+     * @param domainFile Name der Domain-Datei
+     * @param nluModel Name des NLU-Models
+     */
     public CoreLoadTestPythonProcessor(String storyFile,String domainFile,String nluModel){
         this.storyFile = storyFile;
         this.domainFile = domainFile;
@@ -33,10 +59,19 @@ public class CoreLoadTestPythonProcessor extends Service<Process> {
         this.trainOnlineMode = true;
     }
 
+    /**
+     *  Erzeugt Task der das Python-Skript ausführt
+     * @return Task der das Python-Skript ausführt
+     */
     @Override
     protected Task createTask() {
         return new Task() {
             @Override
+            /**
+             * Je nach Modus wird ein anderer Kommandozeilenbefehl befüllt und ausgeführt.
+             * Danach wird der Output des Prozesses gelesen bis "Bot geladen" gelesen wird
+             * @return gestarteten Python-Prozess
+             */
             protected Process call() throws Exception {
                 String out = "";
                 String formattedCommand;

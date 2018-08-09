@@ -13,6 +13,9 @@ import javax.inject.Inject;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controller für die Domain-CustomAction-View
+ */
 public class DomainCustomActionController implements Initializable {
 
 
@@ -25,13 +28,34 @@ public class DomainCustomActionController implements Initializable {
     @Inject
     DomainManager manager;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        initComponents();
+        setHandlers();
+
+
+
+
+    }
+
+    /**
+     * Initialisiert GUI-Elemente und befüllt sie
+     */
+    private void initComponents(){
 
         this.actionListView.setItems((ObservableList<String>) manager.getCustomActions());
         actionListView.setEditable(true);
         actionListView.setCellFactory(TextFieldListCell.forListView());
+    }
 
+    /**
+     * Fügt GUI-Elementen Eventhandler hinzu
+     */
+    private void setHandlers(){
         addCustomActionButton.setOnAction(event->{
             String customAction = customActionTextField.getText();
             if(!customAction.isEmpty()){
@@ -44,7 +68,7 @@ public class DomainCustomActionController implements Initializable {
                 manager.deleteCustomAction(selectedAction);
             }
         });
-
-
     }
+
+
 }

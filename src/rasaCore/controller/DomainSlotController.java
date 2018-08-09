@@ -46,29 +46,27 @@ public class DomainSlotController implements Initializable {
     SuggestionProvider<String> provider;
     private ObservableList<String> suggestions = FXCollections.observableArrayList();
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        slotTypeChoiceBox.getItems().setAll(SLOTTYPE.values());
+        setupComponents();
+        setHandler();
 
-        suggestions = (ObservableList<String>) domainManager.getEntities();
 
+
+        }
+
+    /**
+     * Fügt GUI-Elementen Eventhandler hinzu
+     */
+    private void setHandler() {
         suggestions.addListener((ListChangeListener<String>) event -> {
             provider.clearSuggestions();
             provider.addPossibleSuggestions(suggestions);
         });
-        this.provider = SuggestionProvider.create(suggestions);
-
-        TextFields.bindAutoCompletion(slotNameTextField,provider);
-
-        slotTableView.setItems(slotManager.getSlots());
-        slotTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        nameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getName()));
-
-        typeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getType().getType()));
-        nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        slotTableView.setEditable(true);
-        nameColumn.setEditable(true);
 
         addSlotButton.setOnAction(event -> {
             String slotName = slotNameTextField.getText();
@@ -130,7 +128,30 @@ public class DomainSlotController implements Initializable {
 
             }
         });
-        }
-
     }
+
+    /**
+     * GUI-Elemente werden befüllt und vorbereitet
+     */
+    private void setupComponents() {
+        slotTypeChoiceBox.getItems().setAll(SLOTTYPE.values());
+
+        suggestions = (ObservableList<String>) domainManager.getEntities();
+
+
+        this.provider = SuggestionProvider.create(suggestions);
+
+        TextFields.bindAutoCompletion(slotNameTextField,provider);
+
+        slotTableView.setItems(slotManager.getSlots());
+        slotTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        nameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getName()));
+
+        typeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getType().getType()));
+        nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        slotTableView.setEditable(true);
+        nameColumn.setEditable(true);
+    }
+
+}
 

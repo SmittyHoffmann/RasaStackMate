@@ -7,9 +7,22 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.util.Pair;
 
+/**
+ * Dialog-Klasse zum Hinzufügen eines Regulären Ausdrucks
+ */
 public class AddRegexDialog  extends Dialog {
+    /**
+     * Textfeld zum Eingeben des regulären Ausdrucks
+     */
     private TextField patternField;
+    /**
+     * Textfeld um Name des Regukären Ausdrucks anzugeben
+     */
     private TextField nameField;
+
+    /**
+     * Initialisiert die Dialog-Oberfläche
+     */
     public AddRegexDialog(){
         super();
         this.setTitle("Regex hinzufügen");

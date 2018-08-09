@@ -9,10 +9,24 @@ import javafx.scene.layout.BorderPane;
 
 import java.util.List;
 
+/**
+ * Dialogfenster wenn ein Prozess beendet wurde
+ */
 public class ProcessEndedDialog extends Dialog {
-    List<String> result;
-    boolean success;
+    /**
+     * Ergebnis des Dialogs
+     */
+    private List<String> result;
+    /**
+     * Prozess fehlgeschlagen oder erfolgreich
+     */
+    private boolean success;
 
+    /**
+     * Erzeugt Dialog
+     * @param result Ergebnis des Prozess
+     * @param success true wenn erfolgreich , false wenn fehlgeschlagen
+     */
     public ProcessEndedDialog(List<String> result,boolean success){
         super();
         this.result = result;
@@ -21,7 +35,9 @@ public class ProcessEndedDialog extends Dialog {
     }
 
 
-
+    /**
+     * Initialisiert Dialogoberfläche
+     */
     private void setupDialog(){
         if(success){
             setTitle("Training erfolgreich");

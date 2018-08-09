@@ -1,4 +1,4 @@
-package rasaCore.graph;
+package rasaCore.model.graph;
 
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -8,6 +8,8 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import rasaCore.controller.MouseGestures;
+import rasaCore.view.story.ZoomableScrollPane;
 
 public class Graph {
 

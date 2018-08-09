@@ -1,7 +1,6 @@
-package rasaCore.graph;
+package rasaCore.model.graph;
 
 import javafx.geometry.Insets;
-import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -16,7 +15,10 @@ public class ActionElement extends Cell{
 
         super(id);
         this.actionName = actionName;
+        setupUI();
+    }
 
+    private void setupUI() {
         VBox box = new VBox();
 
 

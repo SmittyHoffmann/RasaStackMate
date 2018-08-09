@@ -9,20 +9,41 @@ import javafx.scene.layout.VBox;
 import javafx.util.Pair;
 import rasaCore.model.slot.FloatSlot;
 
+/**
+ * Dialog zum Bearbeiten eines FloatSlots
+ */
 public class EditFloatSlotDialog extends Dialog {
-
+    /**
+     * Textfeld in das der minimale Float-Wert eingegeben werden kann
+     */
     private TextField minValueField;
+    /**
+     * Textfeld in das der maximaler Float-Wert eingegeben werden kann
+     */
     private TextField maxValueField;
-    float minvalue;
-    float maxValue;
+    /**
+     * aktuell gesetzter minimaler Wert
+     */
+    private float minvalue;
+    /**
+     * aktuell gesetzter maxmimaler Wert
+     */
+    private float maxValue;
 
-
+    /**
+     * Erzeugt Dialog mit existierendem Slot
+     * @param slot Slot der bearbeitet werden soll
+     */
     public EditFloatSlotDialog(FloatSlot slot){
         super();
         this.maxValue = slot.getMaxValue();
         this.minvalue = slot.getMinValue();
         setupDialog();
     }
+
+    /**
+     * Erzeugt Dialog für initiales Bearbeiten eines FloatSlots
+     */
     public EditFloatSlotDialog(){
         super();
         setupDialog();
@@ -30,6 +51,9 @@ public class EditFloatSlotDialog extends Dialog {
 
     }
 
+    /**
+     * Erzeugt Dialogoberfläche
+     */
     public void setupDialog(){
         this.setTitle("FloatSlot bearbeiten");
         this.setHeaderText("Gib die Daten ein");

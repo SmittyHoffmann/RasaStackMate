@@ -15,35 +15,41 @@ import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controller für die StartView
+ */
 public class StartViewController implements Initializable {
+    //Text mit ausgewähltem Ordnerpfad
     @FXML
     private Text directoryText;
-
+    //Button zum Auswählen des Ordners
     @FXML
     private Button directoryButton;
-
-    @FXML private Button startButton;
-
+    //Button zum Wechseln zur Hauptansicht
+    @FXML
+    private Button startButton;
+    //Instanz zum Wechseln der aktuellen Szene
     @Inject
-    WindowManager windowManager;
+    private WindowManager windowManager;
 
-
+    /**
+     *{@inheritDoc}
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
 
         String defaultFont = Font.getDefault().getName();
 
-        directoryText.setFont(Font.font(defaultFont,FontWeight.BOLD,12));
+        directoryText.setFont(Font.font(defaultFont, FontWeight.BOLD, 12));
         directoryText.setFill(Color.WHITE);
 
         directoryButton.setOnAction(event -> {
             DirectoryChooser directoryChooser = new DirectoryChooser();
             File choosedDirectory = directoryChooser.showDialog(WindowManager.stage);
-            if(choosedDirectory == null){
+            if (choosedDirectory == null) {
                 directoryText.setText("Kein Ordner ausgewählt");
-            }
-            else{
+            } else {
                 String path = choosedDirectory.getAbsolutePath();
                 directoryText.setText(path);
                 GUI.setWorkSpace(path);
