@@ -76,9 +76,6 @@ public class StoryViewController implements Initializable {
             setupComponents();
             setHandler();
 
-
-
-
     }
 
     /**

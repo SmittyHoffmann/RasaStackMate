@@ -6,11 +6,11 @@ import com.google.inject.Provides;
 import com.google.inject.Singleton;
 import main.fileHandling.RasaFileManager;
 import main.fileHandling.RasaFileManagerImpl;
-import rasaCore.graph.Graph;
 import rasaCore.model.domain.DomainGenerator;
 import rasaCore.model.domain.DomainGeneratorImpl;
 import rasaCore.model.domain.DomainManager;
 import rasaCore.model.domain.DomainManagerImpl;
+import rasaCore.model.graph.Graph;
 import rasaCore.model.slot.SlotFactory;
 import rasaCore.model.slot.SlotManager;
 import rasaCore.model.slot.SlotManagerImpl;
@@ -28,8 +28,6 @@ import rasaNLU.model.synonym.SynonymManager;
 import rasaNLU.model.synonym.SynonymManagerImpl;
 
 public class GuiConfig extends AbstractModule {
-
-
 
 
     @Override
